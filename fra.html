@@ -233,7 +233,7 @@
 ## (2) Mining - <br/>L'extraction d'informations
 
 ---
-#### Axe 1 : La _Bibliographie du genre romanesque français_ 
+### Axe 1 : La _Bibliographie du genre romanesque français_ 
 <a href="img/bgrf-Candide.png"><img height="400" src="img/bgrf-Candide.png"></img></a>
 
 - Martin / Mylne / Frautschi: <em>Bibliographie<br/> du genre romanesque français, 1751-1800</em>, 1977
@@ -272,7 +272,7 @@
 
 
 ---
-#### Axe 2 : Les textes littéraires (romans)
+### Axe 2 : Les textes littéraires (romans)
 - Corpus de romans français du dix-huitième siècle (1751-1800) <!-- .element: class="fragment" data-fragment-index="1" -->
   - Dirigée par Julia Röttgermann
   - Disponible en ligne: https://github.com/mimotext/roman18
@@ -371,7 +371,7 @@
 
 ---
 #### Annotation au niveau 'Predicate' 
-<a href="img/inception_genre.png"><img height="300" src="img/inception_genre.png"></img></a>
+<a href="img/inception_genre.png"><img height="350" src="img/inception_genre.png"></img></a>
 
 - Dans l'exemple, c'est le prédicat "hasGenre" qui est utilisé
 - Sujet: Bélisaire (Wikidata: Q5005038)
@@ -380,6 +380,8 @@
 ::
 - "hasGenre" est un prédicat défini dans notre propre ontologie
 - Dans Wikidata, il y bien "genre" (Q483394) et "literary genre" (Q223393), mais c'est une entité, pas un prédicat 
+- Mais on s'approche de plus en plus de la question de la modélisation des données 
+- Autant en parler explicitement. 
 
 
 
@@ -388,65 +390,71 @@
 
 
 --
-## (3) Modellierung - Repräsentation und Vernetzung von Wissen
+## (3) Modélisation – <br/>La mise en réseau des données 
 
-## (2) L'histoire littéraire<br/>pensée comme un réseau
 
 ---
-### Modellierungsansatz: Linked Open Data (LOD)
-<img height="350" data-src="img/rdf11-primer-example-graph.jpg">
+#### Approche de modélisation : Linked Open Data (LOD)
+<img height="400" data-src="img/rdf11-primer-example-graph.jpg">
 	
-Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
+Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
 
 ::
+- On voit des entités, comme des personnes, des oeuvres, etc. 
+- Et on voit des liens entre les entités, comme "is interested in" ou "is a friend of"
+- C'est le principe des Linked Open Data 
+- C'est aussi à la base de Wikidata, le pendant côté données de Wikipédia. 
 
 ---
-### Grundprinzip 
-* Linked Open Data <!-- .element: class="fragment" data-fragment-index="1" -->
-    * große Menge einfacher Aussagen 
-    * Subjekt, Prädikat, Objekt (Tripel)
-* zentrale literaturgeschichtliche Subjekte <!-- .element: class="fragment" data-fragment-index="2" -->
-	* Personen (Autor:in, Herausgeber:in, Verleger:in etc.)
-	* Publikationen (Primärtext, Fachliteratur etc.)
+### Quelques principes de la modélisation
+- Linked Open Data <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Un grand nombre d'assertions simples 
+  - Une structure en triplets: sujet, prédicat, objet 
+  - Un inventaire d'entités, mais surtout un inventaire de prédicats
+<br/><br/>
+- Les entités (sujets) fondamentaux en histoire littéraire <!-- .element: class="fragment" data-fragment-index="2" -->
+  - les personnes (auteurs, éditeurs, imprimeurs, etc.)
+  - les publications (littérature primaire, littérature scientifique)
+  - les événements (naissance, mort, publication, réception) 
+  - plus compliqué: les entités objets (e.g. genres, styles) et les prédicats 
 
 :: 
-- in Geschichte bspw. "Ereignisse" als relevante Subjekte (?)
+- Simplement expliquer les points sur le slide.
+
 
 ---
-### Aussagetypen (1) 
+### Quelques patrons d'assertions de MiMoText (1) 
 
-* person AUTHOR_OF publication
-* publication PLACE_OF_PUBLICATION place
-* publication DATE_OF_PUBLICATION year
-
+- Patrons du type métadonnées bibliographiques <!-- .element: class="fragment" data-fragment-index="1" -->
+  - person AUTHOR_OF publication 
+  - publication PLACE_OF_PUBLICATION place 
+  - publication DATE_OF_PUBLICATION year 
 
 :: 
-- Aussagen hier erst einmal konzeptionell repräsentiert; 
-- hier bewusst erstmal "einfache Metadaten", für die es kein Einverständnis oder Konsensbildung in einer community braucht
-- im Folgenden Eingehen auf Formalisierungsfragen
+- simples métadonnées bibliographiques
+- peu de discussion sur l'ontologie 
 
 ---
-### Aussagetypen (2) 
+### D'autres patrons d'assertions (2) 
 
-* publication NARRATIVE_LOCATION place <!-- .element: class="fragment" data-fragment-index="1" -->
-* publication EXTENT_WORDS number of words <!-- .element: class="fragment" data-fragment-index="2" -->
-* person/publ. DESCRIBED_AS (adjective | noun) <!-- .element: class="fragment" data-fragment-index="3" -->
-* person/publ. SIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="4" -->
-* person/publ. DISSIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="5" -->
-* person/publ. INFLUENCED_BY person/publ. <!-- .element: class="fragment" data-fragment-index="6" -->
-* publication ABOUT keyword <!-- .element: class="fragment" data-fragment-index="7" -->
+- Relativement simples<!-- .element: class="fragment" data-fragment-index="1" --> 
+  - publication NARRATIVE_LOCATION place 
+  - publication EXTENT_WORDS number of words
+  - person/publ. DESCRIBED_AS (adjective | noun) 
+
+- Déjà un peu plus compliquées <!-- .element: class="fragment" data-fragment-index="2" -->
+  - person/publ. SIMILAR_TO person/publ. 
+  - person/publ. DISSIMILAR_TO person/publ. 
+  - person/publ. INFLUENCED_BY person/publ. 
+  - publication ABOUT keyword 
 
 :: 
-- LOD-Paradigma als leitend; Knackpunkt: zugrundeliegende Ontologie 
-- Vor allem: Inventar an Aussagetypen; 
+- Simples, parce que le prédicat est clair, et l'objet peut être dérivé de la source 
+- Compliqueés, parce que le prédicat est moins clair, et/ou parce que l'objet demande une ontologie sur laquelle on doit se mettre d'accord, et qu'on doit appliquer uniformément
 
 
 
----
-#### Willard McCarty, *Humanities Computing*, 2005
-<img height="250" data-src="img/mccarty.jpg">
 
-> "recursive modeling": </br> Modellierung als ein iterativer Prozess
 
 
 ---
@@ -514,8 +522,16 @@ Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 
 ::
 
+
 --
-## (5) Fazit - Wissensnetzwerke aus und für Textanalysen
+## (4) Illustration – Requêtes SPARQL 
+
+---
+### Quelques exemples du Tutoriel
+
+
+--
+## (5) Conclusion
 
 ---
 #### Wissensnetzwerk ('Knowledge Graph')
@@ -581,7 +597,7 @@ Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 
 **Lien vers cette page**
 
-https://mimotext.github.io/lod-lithist/fra.html#/6/5
+https://mimotext.github.io/lod-lithist/fra.html#/6/6
 
 
  
