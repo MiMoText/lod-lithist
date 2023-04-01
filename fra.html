@@ -233,120 +233,158 @@
 ## (2) Mining - <br/>L'extraction d'informations
 
 ---
-### Säule 1: Bibliographie du genre romanesque français 
+#### Axe 1 : La _Bibliographie du genre romanesque français_ 
 <a href="img/bgrf-Candide.png"><img height="400" src="img/bgrf-Candide.png"></img></a>
-<p>Martin / Mylne / Frautschi: <em>Bibliographie<br/> du genre romanesque français, 1751-1800</em>, 1977</p>
 
-::
-- Ein Eintrag unter rund 2500: Voltaires Candide; 
-- Candide dient als "roter Faden" im Vortrag (neben den 3 Säulen)
-- die drei Säulen der verschiedenen Informationsquellen sind strukturgebend; 
-
----
-#### Welche Metadaten enthält diese Bibliographie?
-* zusammenfassende Statistik <!-- .element: class="fragment" data-fragment-index="1" -->
-	* ~1100 verschiedene Autor:innen
-	* ~2600 Einträge (Romane)
-	* ~58.000 Triples (ca. 22 pro Roman)
-* weitere Informationen <!-- .element: class="fragment" data-fragment-index="2" -->
-	* ~720 Romane in der 1. Person
-	* ~920 in 3. Person
-	* 2210 Einträge mit Angaben zum Inhalt
+- Martin / Mylne / Frautschi: <em>Bibliographie<br/> du genre romanesque français, 1751-1800</em>, 1977
+- Version en RDF: https://doi.org/10.5281/zenodo.3401428 (2019)
 
 
 ::
-- Bibliographie ist Referenzpunkt für das Projekt; nicht Kanon, sondern Grundgesamtheit der französischsprachigen Romane der 2. Hälfte des 18. Jhds.
-- An Werke und Autoren werden nun weitere Informationen "angehängt"
-[Statistik-Einschränkungen: Herausforderungen der maschinellen Aufbereitung; "Romane 1./3.Person" im weiteren Sinne und die Komplexität verschiedener Zwischenformen vereinfachend]
+- Bibliographie presque exhaustive, établie sur plusieurs années 
+- L'image montre une entrée parmi les 2500 entrées; Candide de Voltaire
+- (Cet ouvrage va revenir plusieurs fois dans la suite de la présentation)
+- On voit un peu quelles informations sont contenues dans la bibliographie 
+  - métadonnées bibliographiques
+  - informations sur le contenu: protagonistes, lieux, thèmes, histoire, tonalité.  
+  - histoire éditoriale: rééditions
+- On a numérisé et modélisé tout cela en RDF en 2019. 
 
 ---
-### Säule 2: Primärliteratur (Romane)
-* Pilotkorpus: ca. 100 französische Romane (1750-1800) <!-- .element: class="fragment" data-fragment-index="1" -->
-* Kodierung: in XML-TEI, mit Metadaten, nach ELTeC-Schema <!-- .element: class="fragment" data-fragment-index="2" -->
-* Analyse: Topic Modeling zur Identifikation von Themen <!-- .element: class="fragment" data-fragment-index="3" -->
+#### Combien d'informations se trouvent dans la BGRF ?  
+* Quelques statistiques (sur base de notre version en RDF) <!-- .element: class="fragment" data-fragment-index="1" -->
+  - ~1100 auteur(e)s différent(e)s
+  - ~2600 entrées (romans)
+  - ~58.000 pièces d'information (22 / roman)
+<br/><br/>
+- Autres informations disponibles <!-- .element: class="fragment" data-fragment-index="2" -->
+  - ~720 romans à la première personne
+  - ~920 romans à la troisième personne
+  - ~2210 entrées avec des informations sur le contenu (les mots-clés)
+
 
 ::
-- neben Topic Modeling weitere Analyseverfahren zur Generierung von Metadaten (ggf. Rückverweis "Was sind relevante Metadaten?"; "Was sind überhaupt literaturwissenschaftlich relevante Analyse- und Interpretationsmethoden"?)
+- Expliquer d'abord les statistiques 
+- Quelques remarques supplémentaires 
+  - La bibliographie représente la fondation du projet: les auteurs et les ouvrages. 
+  - C'est une bibliographie exhaustive: pas de limitations qui dépendent du prestige ou de la notoriété des auteurs (autre que le processus historique)
+- Quand nous relevons d'autres informations, elles sont toujours reliées à ces auteurs et ouvrages; le coeur du réseau, en quelque sorte
 
 
 ---
-#### Das "roman18"-Korpus
+#### Axe 2 : Les textes littéraires (romans)
+- Corpus de romans français du dix-huitième siècle (1751-1800) <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Dirigée par Julia Röttgermann
+  - Disponible en ligne: https://github.com/mimotext/roman18
+  <br/><br/>
+- Analyses du corpus <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Topic Modeling, pour obtenir les thèmes les plus pertinents de chaque roman
+  - Named Entity Recognition, pour obtenier les lieux de l'action 
+  - etc. 
+
+::
+- Corpus établi par Julia Röttgermann. 
+- Source de 'statements' à travers plusieurs analyses 
+
+
+
+---
+#### Le corpus de romans français du 18e siècle (1751-1800)
 
 <img height="400" src="img/roman18.jpg"></img>
-<br/><p>Collection de romans français du dix-huitième siècle (1750-1800) /<br/>Collection of Eighteenth-Century French Novels (1750-1800)</p>
+<br/><p>Corpus de romans français du dix-huitième siècle (1750-1800)<br/>dirigée par Julia Röttgermann. </p>
 
 ::
-- im Sinne der FAIR-Prinzipien: auf Zenodo mit einem DOI für Persistenz (regelmäßige releases); fortlaufend Aktualisierungen auf Github
+- Différentes sources, du TEI tout prêt au livre à scanner
+- Double keying pour un groupe de roman, modèle OCR adaptée pour OCR4all.
+- Disponible ouvertement sur Github et Zenodo 
+- Effort de suivre les principes FAIR 
+- Améliorations encore en cours, mais en principe, le corpus est prêt 
+
 
 ---
-#### Topic Modeling - Erste Ergebnisse
+#### Topic Modeling - Quelques résultats
 <a href="img/pilot_mod200_fr_10_500_expStop.html"><img height="500" src="img/pyldavis.png"></img></a>
 
 ::
-- Einige Topics: Familie, Philosophie, Liebe, Monarchie, Sexualität, Lesen/Schreiben, Tod, etc.
-- Festhalten, welche der Topics jeweils in bestimmten Romanen am wichtigsten sind
-[- Beispielsweise: In Candide hat das Topic "philsosphy" die Wahrscheinlichkeit 0.34 (zweit-wichtigster Topic)]
+- Quelques topics: famille, philosophie, amour, monarchie, sexualité, lire/écrire, mort, etc. 
+- Pour chaque roman, nous retenons les 5 topics avec la plus grande probabilité (c'est arbitraire, mais utile) 
+- Le modèle entier est aussi disponible en ligne, bien sûr.  
 
 
 ---
-#### Zwei "major topics"
+#### Deux topics majeurs
 <br/>
-"monarchy" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "love"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"monarchie" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "amour"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br/><img height="250" src="img/topic_002.png"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="250" src="img/topic_009.png"></img>
 
----
-#### Abgeleitete Aussagen ('statements')
-* Candide IS_ABOUT "monarchie"
-* Clarice IS_ABOUT "amour"
+- Pour chaque roman du corpus : les 5 topics principaux
+- Les étiquettes viennent d'un vocabulaire contrôlée multilingue
 
 ::
-- einfache, erstmal oberflächliche statements
-- Topics sind ein Weg, Themen zu definieren, also wovon ein Werk handelt; "what it IS_ABOUT"
-- hervorzuheben: die Labels kommen aus einem kontrollierten Vokabular; 
-[- Topics have a precise probability (and probability rank) in each novel; Topics depend on the specific topic model 
-- Models depend on a specific version of our corpus, and parameters
-- To create some transparency, we indicate the top words of each topic]
+- Tout d'abord, il faudrait dire que les topics != thèmes 
+- Cependant, les topics expriment quand même les préoccupations thématiques des romans, y inclus le personnel, le setting etc. 
+- Chaque topic a besoin d'une étiquette, c'est un processus manuel 
+- L'attribution des étiquettes s'appuie sur un vocabulaire contrôlée de termes 
+- Le vocabulaire est dérivée du Dictionnaire européen des Lumières 
+- Nous l'avons complété et traduit en allemand et anglais (multilingue!)
+- En plus de l'étiquette, on peut voir les mots les plus probables de chaque topic;
+- Pour plus de transparende, le modèle entier est disponible aussi
 
 
 ---
-### Säule 3: Sekundärliteratur (literaturwiss. Fachtexte)
+### Axe 3: L'historiographie littéraire
 
-3 Elemente für Extraktion von Aussagen aus Sekundärliteratur:
-* Annotationsguidelines (basierend auf Datenmodell)  <!-- .element: class="fragment" data-fragment-index="1" -->
-* manuelle Annotation: Generierung von Traingsdaten (in INCEpTION)  <!-- .element: class="fragment" data-fragment-index="2" -->
-* Training: Machine Learning (in Python)  <!-- .element: class="fragment" data-fragment-index="3" -->
-
+- Objectif : obtenir des assertions pertinentes de l'historiographie littéraire  <!-- .element: class="fragment" data-fragment-index="1" -->
+- Dans une première étape : des chapitres / panoramas sur le roman du 18e  <!-- .element: class="fragment" data-fragment-index="2" -->
+- Une approche qui allie annotation manuelle et machine learning  <!-- .element: class="fragment" data-fragment-index="3" -->
+  - Des guides d'annotation (en lien avec le modèle de données)
+  - Une annotation manuelle (assertions + données d'entraînement)
+  - En s'appuyant sur une instance INCEPTION reliée à la Wikibase 
+  - (Ensuite : entraînement d'un algorithme de reconnaissance automatique)
 
 ::
-- 1 & 2. nicht in der klaren Reihenfolge, daher "Elemente", nicht Schritte :); [nicht Mining zuerst, aber auch nicht Modeling]
-[- evtl. überleitung Einordnung "unsupervised" bei Topic Modeling gegenüber "supervised" für Seklit.]
-- Train and apply Machine Learning (in Python)
+- on voit ici un peu la complexité de la tâche 
+- le guide d'annotation dépend du modèle des données 
+- mais le modèle des données dépend aussi de l'experience d'annotation 
+- les assertions annotéés peuvent être rentrés dans la Wikibase
+- mais elles doivent servir aussi comme données d'entraînement 
+- (C'est une étape sur laquelle on travaille encore)
+
 
 ---
-#### Annotationen auf 'Named Entity'-Layer 
+#### Exemple d'une annotation au niveau 'Named Entity' 
 <a href="img/inception_Candide-disambiguation.png"><img height="350" src="img/inception_Candide-disambiguation.png"></img></a>
 
-* Annotationen von Autoren und Werken (Entitäten -> Subjekt-/ObjektPosition in Aussagen)
-* Disambiguierung von Entitäten über Knowledgebase-Anbindung (hier: Wikidata)
+- Annotation des auteurs et des ouvrages (sujet ou objet dans les assertions)
+- Entités sont liés à des fichiers d'autorité (MiMoTextBase / Wikidata)
 
-:: 
+
+::
+- L'annotation relie les entités aux fiches d'autorité 
+- (cela peut être notre instance Wikibase, ou bien Wikidata plus généralemnet)
+- elle contient les auteurs et oeuvres de la BGRF essentiellement
+- Cela permet, entre autres, de désambiguiser les entités. 
+
+
 
 
 ---
-#### Annotation auf 'Predicate'/Relation-Layer
+#### Annotation au niveau 'Predicate' 
 <a href="img/inception_genre.png"><img height="300" src="img/inception_genre.png"></img></a>
 
-* "hasGenre" als Property bzw. Prädikat
-* Subjekt verknüpft mit Wikidata-Identifier für "Bélisaire" (Q5005038)
-* Objekt verknüpft mit Wikidata-Identifier für "novel" (Q8261)
+- Dans l'exemple, c'est le prédicat "hasGenre" qui est utilisé
+- Sujet: Bélisaire (Wikidata: Q5005038)
+* Objet: "novel / roman" (Wikidata: Q8261)
 
 ::
-[- hasGenre hier erstmal eigene KB]
-- Identifier-Verknüpfung analog zu Disambiguierungs-Beispiel von Candide (daher hier gekürzt)
-- Tripel-Struktur-Reihenfolge muss nicht mit String-Reihenfolge im zu annotierenden Satz übereinstimmen 
-[- Trainingsdaten -> Machine Learning in Python (s.o.)]
-[- Hintergrundinfo: Wikidata-Identifier: genre Q483394; ist ein Q-Identifier, kein P-Identifier]
-[- Ebenso für "literary genre": https://www.wikidata.org/wiki/Q223393]
+- "hasGenre" est un prédicat défini dans notre propre ontologie
+- Dans Wikidata, il y bien "genre" (Q483394) et "literary genre" (Q223393), mais c'est une entité, pas un prédicat 
+
+
+
+
+
 
 
 --
