@@ -49,23 +49,22 @@
 
 --
 ## Structure
-1. [Introduction au projet MiMoText](#/2)
-2. [L'histoire littéraire comme réseau de savoir](#/3)
-3. [Mining - L'extraction d'informations](#/4)
-4. [Modeling - La représentation et la mise en réseau des informations](#/5)
-5. [Conclusion](#/6)
+1. [Introduction – L'histoire littéraire en réseau](#/2)
+3. [Mining - L'extraction d'informations](#/3)
+4. [Modeling - La représentation des informations](#/4)
+5. [Conclusion](#/5)
 
 
 ::
-- Kurzer Überblick über das Projekt
-- Mining: Wie ermitteln wir Informationen/Metadaten aus Text?
-- Modeling: Repräsentation als Voraussetzung für Vernetzung
-- Mining und Modeling nicht getrennt zu denken! Vortragschronologie entspricht keiner Chronologie des Forschungsprozesses; alle Teilprojekte greifen in ständigem 'work in progress' ineinander  
-[- Weitergehende Motivation: erproben hier an älterer Literatur; Wünsche für die Zukunft des wiss. Publizierens.]
+- Je commence par une introduction au projet et un peu de contexte
+- Mining: comment nous obtenons les informations à partir des sources 
+- Modeling: comment nous représentons les informations, 
+- dans le but de les mettre en réseau, de les relier entr-eux
+- "Mining" et "Modeling" se passent cependant en parallèle, pas l'un après l'autre
 
 
 --
-## (1) Introduction au projet <br/>'Mining and Modeling Text'
+## (1) Introduction – <br/>L'histoire littéraire en réseau
 
 ---
 #### Contexte: Trier Center for Digital Humanities
@@ -132,36 +131,8 @@
 - Alors, on se demande: 
   - Quelles informations devrait-on relever ? 
   - Quelles informations pouvons-nous relever ? 
+- Une source d'inspiration pourraient être d'autres projets similaires 
 
-
----
-#### Quelles informations sont pertinentes et disponibles ?
-
-- Ressources bibliographiques  <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Métadonnées : auteurs, oeuvres, éditeurs, etc. (histoire du livre)
-  - Mots-clés (dans la BGRF): lieu, thèmes, protagonistes, tonalité
-<br/><br/>    
-- Historiographie littéraire  <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Résumés portant sur l'histoire racontée, les thèmes
-  - Description / classements en terme de genre, période, style, etc.
-  - Déclarations sur les relations entre auteurs, entre oeuvres
-  - Jugements de valeur sur les auteurs et les oeuvres
-<br/><br/>    
-- Romans <!-- .element: class="fragment" data-fragment-index="3" -->
-  - la longeur des textes
-  - lieu de l'action (NER) 
-  - les noms des personnages (NER, réseaux)
-  - les thèmes (Topic Modeling)
-  - la proportion du discours direct des personnages (ML)
-  - la similarité entre les romans (stylométrie)
-
-::
-- Structuré selon les trois axes du projet 
-- Une certaine tension entre ce qui est pertinent et ce qui est possible
-- Cela devient intéressant, quant on a plusieurs sources d'informations pour le même type d'informations 
-- Exemples: 
-  - Thèmes selon publications scientifiques vs. Topic Modeling;
-  - lieux de l'action selon BGRF vs. Named Entity Recognition sur les romans
 
 ---
 #### Projet précurseur : la BDHL
@@ -169,6 +140,8 @@
 <img height="300" data-src="img/bdhl.png">
 
 - Henri Béhar (Paris III), à partir de 1985 (!)
+- 500 auteurs, 2000 oeuvres 
+- métadonnées, dont genres / sous-genres et canonicité
 
 ::
 - Henri Béhar, pionnier des humanités numériques 
@@ -200,75 +173,64 @@
 - MPCE: tjs pas disponible; MEDIATE: version préliminaire, seulement avec un compte. 
 - et MODERN, bien sûr ! On verra bien ce qu'on pourrait faire ensemble. 
 
-
---
-## (2) L'histoire littéraire<br/>pensée comme un réseau
-
 ---
-### Modellierungsansatz: Linked Open Data (LOD)
-<img height="350" data-src="img/rdf11-primer-example-graph.jpg">
-	
-Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
+#### Quelles informations sont pertinentes et disponibles ?
+
+- Ressources bibliographiques  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Métadonnées : auteurs, oeuvres, éditeurs, etc. (histoire du livre)
+  - Mots-clés (dans la BGRF): lieu, thèmes, protagonistes, tonalité
+<br/><br/>    
+- Historiographie littéraire  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Résumés portant sur l'histoire racontée, les thèmes
+  - Description / classements en terme de genre, période, style, etc.
+  - Déclarations sur les relations entre auteurs, entre oeuvres
+  - Jugements de valeur sur les auteurs et les oeuvres
+<br/><br/>    
+- Romans <!-- .element: class="fragment" data-fragment-index="3" -->
+  - la longeur des textes
+  - lieu de l'action (NER) 
+  - les noms des personnages (NER, réseaux)
+  - les thèmes (Topic Modeling)
+  - la tonalité (Sentiment Analysis)
+  - la proportion du discours direct des personnages (ML)
+  - la similarité entre les romans (stylométrie)
+  - etc. 
 
 ::
-
----
-### Grundprinzip 
-* Linked Open Data <!-- .element: class="fragment" data-fragment-index="1" -->
-    * große Menge einfacher Aussagen 
-    * Subjekt, Prädikat, Objekt (Tripel)
-* zentrale literaturgeschichtliche Subjekte <!-- .element: class="fragment" data-fragment-index="2" -->
-	* Personen (Autor:in, Herausgeber:in, Verleger:in etc.)
-	* Publikationen (Primärtext, Fachliteratur etc.)
-
-:: 
-- in Geschichte bspw. "Ereignisse" als relevante Subjekte (?)
-
----
-### Aussagetypen (1) 
-
-* person AUTHOR_OF publication
-* publication PLACE_OF_PUBLICATION place
-* publication DATE_OF_PUBLICATION year
+- Structuré selon les trois axes du projet 
+- Une certaine tension entre ce qui est pertinent et ce qui est possible
+- Cela devient intéressant, quant on a plusieurs sources d'informations pour le même type d'informations 
+- Exemples: 
+  - Thèmes selon publications scientifiques vs. Topic Modeling;
+  - lieux de l'action selon BGRF vs. Named Entity Recognition sur les romans
 
 
-:: 
-- Aussagen hier erst einmal konzeptionell repräsentiert; 
-- hier bewusst erstmal "einfache Metadaten", für die es kein Einverständnis oder Konsensbildung in einer community braucht
-- im Folgenden Eingehen auf Formalisierungsfragen
+  ---
+#### Objectifs du projet
+ 
+- Notre objectif : "Wikidata pour l'histoire littéraire" <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Un système d'information sur l'histoire littéraire
+  - Rôle central des taxonomies, ontologies, fichiers d'autorité
+  - Basé sur le LOD, avec interface explorative et SPARQL-endpoint
+- À la différence de Wikidata : <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Beaucoup plus focalisé sur un domaine (roman francais 1750-1800)
+  - Meilleure couverture pour ce domaine 
+  - Plus grande densité des assertions pour ce domaine 
+  - Basé sur une modélisation explicite des données
+  - Facilitér des scénarios d'analyse poussés  
+  
 
----
-### Aussagetypen (2) 
+::
+- Le challenge : comment obtenir et relier ces informations? 
+- Pour réaliser ces objectifs ? 
+- Nous le verrons maintenant
+  - obtenir => Mining
+  - relier => Modeling
 
-* publication NARRATIVE_LOCATION place <!-- .element: class="fragment" data-fragment-index="1" -->
-* publication EXTENT_WORDS number of words <!-- .element: class="fragment" data-fragment-index="2" -->
-* person/publ. DESCRIBED_AS (adjective | noun) <!-- .element: class="fragment" data-fragment-index="3" -->
-* person/publ. SIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="4" -->
-* person/publ. DISSIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="5" -->
-* person/publ. INFLUENCED_BY person/publ. <!-- .element: class="fragment" data-fragment-index="6" -->
-* publication ABOUT keyword <!-- .element: class="fragment" data-fragment-index="7" -->
-
-:: 
-- LOD-Paradigma als leitend; Knackpunkt: zugrundeliegende Ontologie 
-- Vor allem: Inventar an Aussagetypen; 
-
-
----
-### Ziele
-
-* Unser Ziel: "Wikidata für die Literaturgeschichte" <!-- .element: class="fragment" data-fragment-index="1" -->
-    * literaturhistorisches Informationssystem
-    * LOD-Basis, SPARQL-Endpoint, Suchmaske
-* Aber mit: <!-- .element: class="fragment" data-fragment-index="2" -->
-    * viel spezifischerem Fokus (Romanliteratur 1750-1800)
-    * stark erweiterter Abdeckung (Autoren, Werke)
-    * stark erhöhter Aussagendichte
-    * systematischer Ontologie von Aussagentypen
-    * vielfältigen Anwendungsszenarien für die Literaturgeschichtsschreibung
-   
+  
 
 --
-## (3) Mining - <br/>Extrahieren von Informationen
+## (2) Mining - <br/>L'extraction d'informations
 
 ---
 ### Säule 1: Bibliographie du genre romanesque français 
@@ -388,7 +350,59 @@ Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 
 
 --
-## (4) Modellierung - Repräsentation und Vernetzung von Wissen
+## (3) Modellierung - Repräsentation und Vernetzung von Wissen
+
+## (2) L'histoire littéraire<br/>pensée comme un réseau
+
+---
+### Modellierungsansatz: Linked Open Data (LOD)
+<img height="350" data-src="img/rdf11-primer-example-graph.jpg">
+	
+Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
+
+::
+
+---
+### Grundprinzip 
+* Linked Open Data <!-- .element: class="fragment" data-fragment-index="1" -->
+    * große Menge einfacher Aussagen 
+    * Subjekt, Prädikat, Objekt (Tripel)
+* zentrale literaturgeschichtliche Subjekte <!-- .element: class="fragment" data-fragment-index="2" -->
+	* Personen (Autor:in, Herausgeber:in, Verleger:in etc.)
+	* Publikationen (Primärtext, Fachliteratur etc.)
+
+:: 
+- in Geschichte bspw. "Ereignisse" als relevante Subjekte (?)
+
+---
+### Aussagetypen (1) 
+
+* person AUTHOR_OF publication
+* publication PLACE_OF_PUBLICATION place
+* publication DATE_OF_PUBLICATION year
+
+
+:: 
+- Aussagen hier erst einmal konzeptionell repräsentiert; 
+- hier bewusst erstmal "einfache Metadaten", für die es kein Einverständnis oder Konsensbildung in einer community braucht
+- im Folgenden Eingehen auf Formalisierungsfragen
+
+---
+### Aussagetypen (2) 
+
+* publication NARRATIVE_LOCATION place <!-- .element: class="fragment" data-fragment-index="1" -->
+* publication EXTENT_WORDS number of words <!-- .element: class="fragment" data-fragment-index="2" -->
+* person/publ. DESCRIBED_AS (adjective | noun) <!-- .element: class="fragment" data-fragment-index="3" -->
+* person/publ. SIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="4" -->
+* person/publ. DISSIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="5" -->
+* person/publ. INFLUENCED_BY person/publ. <!-- .element: class="fragment" data-fragment-index="6" -->
+* publication ABOUT keyword <!-- .element: class="fragment" data-fragment-index="7" -->
+
+:: 
+- LOD-Paradigma als leitend; Knackpunkt: zugrundeliegende Ontologie 
+- Vor allem: Inventar an Aussagetypen; 
+
+
 
 ---
 #### Willard McCarty, *Humanities Computing*, 2005
@@ -471,6 +485,14 @@ Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 
 ::
 - Kleiner Ausschnitt: Abgleich zwischen Bibliographie und Topic Modeling und NER: Themen, Handlungsorte - Abgleich hier (zuvor punktuell)
+
+
+---
+#### Les apports de la science ouverte 
+
+- Exemple central: les "requêtes fédérées" 
+- MiMoTextBase et Wikidata, ensemble
+
 
 
 ---
