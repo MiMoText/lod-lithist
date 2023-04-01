@@ -251,7 +251,9 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   vertical-align: top; }
 
 .reveal img {
-  margin: 20px 0; }
+  margin: 20px 0; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.50) 
+  }
 
 /*********************************************
  * LINKS

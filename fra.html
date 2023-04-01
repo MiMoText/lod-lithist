@@ -39,18 +39,21 @@
 
 ::
 
-- Bericht aus laufendem Projekt am TCDH der Universität Trier
-- Kollaboratives Projekt mit Beiträgen aus CL, Informatik, DH und LitWiss
-- work in progress: alles in ständiger Bewegung 
-- Gefördert durch die Forschungsinitiative Rheinland-Pfalz
+- Bonjour et bienvenu(e)s à cette conférence
+- Le sujet aujourd'hui: les linked open data et l'histoire littéraire
+- Partager nos expériences dans un projet collaboratif à l'université de Trèves
+- Collaboration de NLP, informatique, études littéraires, humanités numériques
+- C'est un projet en cours, qui dure encore jusqu'à la fin de l'année
+- C'est coordonné par moi au Trier Center for Digital Humanities
+- Le financement, sur 4 ans, vient de l'état de Rhénanie-Palatinat
 
 --
-## Gliederung
-1. [Einführung in MiMoText](#/2)
-2. [Literaturgeschichte als Wissensnetzwerk](#/3)
-3. [Mining - Extrahieren von Informationen](#/4)
-4. [Modeling - Repräsentation und Vernetzung von Wissen](#/5)
-5. [Fazit - Wissensnetzwerke aus und für Textanalysen](#/6)
+## Structure
+1. [Introduction au projet MiMoText](#/2)
+2. [L'histoire littéraire comme réseau de savoir](#/3)
+3. [Mining - L'extraction d'informations](#/4)
+4. [Modeling - La représentation et la mise en réseau des informations](#/5)
+5. [Conclusion](#/6)
 
 
 ::
@@ -62,67 +65,144 @@
 
 
 --
-## (1) Einführung in <br/>'Mining and Modeling Text'
+## (1) Introduction au projet <br/>'Mining and Modeling Text'
 
 ---
-### MiMoText: Überblick
-<a href="img/mimotext-overview.png"><img height="450" data-src="img/mimotext-overview.png"></a>
-<br/><a href="https://mimotext.uni-trier.de">https://mimotext.uni-trier.de</a>
+#### Contexte: Trier Center for Digital Humanities
+<a href="https://tcdh.uni-trier.de/en"><img height="320" data-src="img/tcdh.png"></a>
 
-::
-- Gegenstand: französischer Roman des 18. Jahrhunderts; Übertragung auf andere Disziplinen ist geplant
-- Drei Informationsquellen: -> alle lassen sich als Metadaten auffassen mit einem weiten/erweiterten 'Metadaten'-Begriff (vgl. nächste Folie)
-- (A) Metadaten aus Nachweissystemen (Bibliographie du genre romanesque français); 
-- (B) Sachinformationen aus Fachliteratur (Literaturgeschichten); 
-- (C) Texteigenschaften aus Primärtexten (Volltexte der Romane) 
-- Ziel: Informationen extrahieren, als LOD modellieren und zusammenführen
-
----
-### Was sind (literaturhistorisch) relevante <br/>(und extrahierbare) Informationen?
-
-* Nachweissysteme  <!-- .element: class="fragment" data-fragment-index="1" -->
-    * Metadaten: Autoren, Werke, Verlage, etc.
-    * Keywords in der *Bibliographie...*: Setting, Themen, Protagonisten
-<br/><br/>    
-* Primärtexte <!-- .element: class="fragment" data-fragment-index="2" -->
-    * Handlungsorte 
-    * Figurennamen
-    * Topics 
-    * Anteil direkter Rede
-    * Textlänge
-    * uvm.
-<br/><br/>    
-* Fachliteratur  <!-- .element: class="fragment" data-fragment-index="3" -->
-    * Handlung, Inhalte, Themen
-    * Wertungen von Autor:innen und Werken
-    * Beziehungen zwischen Autor:innen und Werken
-
-::
-- Bezogen auf die drei Säulen des Projekts
-- Austausch mit / Diskussion in fachwissenschaftlicher Community (Relevanzdiskussion etc.)
-- Handlungsorte = Setting; Figurennamen = Protagonisten; Topics = Themen
-
-
----
-### Was ist oder wie funktioniert Literaturgeschichte?
-
-* Ziele  <!-- .element: class="fragment" data-fragment-index="1" -->
-    * Sammeln und Dokumentieren literaturgeschichtlicher Fakten
-    * Liefern von Erklärungen für die Entwicklung von Literatur
-* Organisationsprinzipien  <!-- .element: class="fragment" data-fragment-index="2" -->
-	* Nationen, Perioden, Bewegungen/Strömungen, Genres
-	* Ähnlichkeiten und Unterschiede
-	* Kontinuitäten und Wandel 
-*  Erklärungen für literarische Entwicklungen <!-- .element: class="fragment" data-fragment-index="3" -->
-	* kultureller oder soziohistorischer Kontext
-	* innere Dynamiken des literarischen Systems
-	
+- Centre de recherche en humanités numériques fondé en 1998
+- Trois domaines de recherche 
+  - Édition de textes et lexicographie numériques
+  - Infrastructures et outils de recherche 
+  - Études littéraires et culturelles computationelles
+- En savoir plus: https://tcdh.uni-trier.de/en
 
 :: 
-kein Konsens, viel Theoretisierung, wenig praktische Gedanken über Qualitäten von Informationen, Fakten, Wissen etc.
+- Projet est mené au TCDH
+- TCDH: Fondée en 1998, par Kurt Gärtner; 
+- Dirigé par Claudine Moulin depuis 2003; avec moi depuis 2017. 
+- Les trois domaines de recherche principaux
+- Environ 30 chercheuses et chercheurs 
+- Bien plus de cent projets menés à bien 
+
+---
+#### MiMoText: première approche 
+<a href="img/overview_eng.jpg"><img height="450" data-src="img/overview_eng.jpg"></a>
+<br/><a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a>
+
+::
+- Objet d'étude: le roman francais du 18e siècle; 
+- trois sources d'informations
+  - metadonnées bibliographiques, source: BGRF (années 1970s)
+  - savoirs établis par l'historiographie littéraire, source: publications scientifiques (sur l'histoire littéraire)
+  - propriétés des textes primaires, source: un corpus de romans 
+- Le but général: 
+  - extraire des informations des ces sources (hétérogènes)
+  - les modéliser en linked open data (homogène) 
+  - les mettre en réseau sous forme d'une instance Wikibase propre
+- Tout est entièrement ouvert: corpus, méthodes, publications, ressources, résultats. 
+- Mais quelles informations inclure ?
+
+
+---
+#### Qu'est-ce que l'historiographie littéraire ?
+
+- Objectifs  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Collectionner et documenter des faits (?) sur l'histoire littéraire
+  - En déduire l'évolution de l'histoire littéraire 
+  - En déduire des explications pour cette évolution
+<br/><br/>    
+- Principes d'organisation  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Nations / langues, périodes, mouvements, genres, auteurs
+  - Similarités et différences
+  - continuités et ruptures
+<br/><br/>    
+- Explications pour l'évolution littéraire <!-- .element: class="fragment" data-fragment-index="3" -->
+  - contexte culturel et socio-historique
+  - dynamique interne du système littéraire 
+  - production continue d'innovation / d'intérêt 
+   
+
+:: 
+- Question fondamentale, à laquelle nous revenons constamment
+- Expliquer les points sur les slides
+- Au final: très peu d'accord sur les principes 
+- Et surtout : très peu d'accord sur les informations fondamentalement pertinentes de l'histoire littéraire 
+- Alors, on se demande: 
+  - Quelles informations devrait-on relever ? 
+  - Quelles informations pouvons-nous relever ? 
+
+
+---
+#### Quelles informations sont pertinentes et disponibles ?
+
+- Ressources bibliographiques  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Métadonnées : auteurs, oeuvres, éditeurs, etc. (histoire du livre)
+  - Mots-clés (dans la BGRF): lieu, thèmes, protagonistes, tonalité
+<br/><br/>    
+- Historiographie littéraire  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Résumés portant sur l'histoire racontée, les thèmes
+  - Description / classements en terme de genre, période, style, etc.
+  - Déclarations sur les relations entre auteurs, entre oeuvres
+  - Jugements de valeur sur les auteurs et les oeuvres
+<br/><br/>    
+- Romans <!-- .element: class="fragment" data-fragment-index="3" -->
+  - la longeur des textes
+  - lieu de l'action (NER) 
+  - les noms des personnages (NER, réseaux)
+  - les thèmes (Topic Modeling)
+  - la proportion du discours direct des personnages (ML)
+  - la similarité entre les romans (stylométrie)
+
+::
+- Structuré selon les trois axes du projet 
+- Une certaine tension entre ce qui est pertinent et ce qui est possible
+- Cela devient intéressant, quant on a plusieurs sources d'informations pour le même type d'informations 
+- Exemples: 
+  - Thèmes selon publications scientifiques vs. Topic Modeling;
+  - lieux de l'action selon BGRF vs. Named Entity Recognition sur les romans
+
+---
+#### Projet précurseur : la BDHL
+
+<img height="300" data-src="img/bdhl.png">
+
+- Henri Béhar (Paris III), à partir de 1985 (!)
+
+::
+- Henri Béhar, pionnier des humanités numériques 
+- BDHL comme précurseur 
+  - auteurs, oeuvres, genres / sous-genres, thèmes, éditeurs, prix 
+  - interactif, statistique
+  - particularité: données sur la canonicité à travers les manuels scolaires et universitaires
+- Mais c'est aussi une sorte d'avertissement
+  - très focalisé sur les oeuvres canoniques (500 auteurs, 2000 oeuvres) 
+  - => comment assurer qu'une telle ressource reste pertinente par rapport aux études littéraires telles qu'elles évoluent ? 
+  - pas ouvert dans le sens du travail collaboratif
+  - => comment assurer que la base reste ouverte au contexte des données existants ailleurs (LOD, donnés d'autorité)
+  - n'est plus maintenu, plus fonctionnel
+  - => Comment intégrer la ressource dans des infrastructures plus générales
+
+---
+#### Projets voisins : histoire du livre / de la littérature  
+
+<a href="img/mediate.png"><img height="300" data-src="img/mediate.png"></a>
+
+- MPCE: Mapping Print, Charting Enlightenment (Simon Burrows, Univ. of Sydney)
+- MEDIATE: Measuring Enlightenment. Disseminating Ideas, Authors and Texts in Europe, 1665-1830 (Alicia Montoya, Radboud University)
+- MODERN: Modelling Enlightenment. Reassembling Networks of Modernity through data-driven research (Glenn Roe, Paris-Sorbonne) <!-- .element: class="fragment" data-fragment-index="1" -->
+
+::
+- projets très pertinents, axés plus sur l'histoire du livre, et l'époque des Lumières
+- mais développant bien sur des bases de données avec potentiellement beaucoup d'informations pertinentes pour MiMoText aussi. 
+- Cependant, pas vraiment pensés dans l'esprit de la science ouverte (plus pour MEDIATE que pour MPCE, peut-être) 
+- MPCE: tjs pas disponible; MEDIATE: version préliminaire, seulement avec un compte. 
+- et MODERN, bien sûr ! On verra bien ce qu'on pourrait faire ensemble. 
+
 
 --
-## (2) Literaturgeschichte als Wissensnetzwerk
+## (2) L'histoire littéraire<br/>pensée comme un réseau
 
 ---
 ### Modellierungsansatz: Linked Open Data (LOD)
@@ -428,20 +508,35 @@ Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 
 
 ---
-### Pour en savoir plus 
+#### Un grand merci! 
+
+<img height="60" data-src="img/basics/mimotext-logo.png">
+
+**Pour en savoir plus** 
+- Actualités du projet: https://mimotext.uni-trier.de/en
+- Tutoriel pour la MiMoTextBase: https://docs.mimotext.uni-trier.de
+- SPARQL endpoint: https://query.mimotext.uni-trier.de
+- MiMoTextBase: https://data.mimotext.uni-trier.de
+- Publication de référence: ['Smart Modeling for Digital Literary History'](https://www.euppublishing.com/doi/10.3366/ijhac.2022.0278)
+
+**Lien vers cette page**
+
+https://mimotext.github.io/lod-lithist/fra.html#/6/5
 
 
+ 
 
 
 ---
-## Vielen Dank!<br/><br/>Fragen oder Kommentare?
+## Back Matter
+<br/><br/>
 <br/><br/>
 <br/><br/>
 <hr/>
 <small>
-<br/>Folien: <a href="https://mimotext.github.io/lod-lithist">https://mimotext.github.io/lod-listhist</a>
-<br/>Projekt: <a href="https://mimotext.uni-trier.de">https://mimotext.uni-trier.de</a>
-<br/>Lizenz: <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution (CC BY)</a>, 2020
+<br/>Slides: <a href="https://mimotext.github.io/lod-lithist/fra.html#">https://mimotext.github.io/lod-listhist</a>
+<br/>Projet: <a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a>
+<br/>Licence: <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution (CC BY)</a>, 2023
 </small>
 <hr/>
 
