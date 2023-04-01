@@ -1,0 +1,575 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>LOD-LitHist</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/simple.css" id="theme">
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+	<div class="reveal">
+	<div class="slides">
+
+<section data-markdown=""
+         data-separator="^\n--\n" 
+         data-separator-vertical="^\n---\n" 
+         data-separator-notes="^::" 
+         data-charset="utf-8" 
+         data-background-image="img/basics/uni-trier_icon.png" 
+         data-background-size="70px" 
+         data-background-position="right 10px top 10px">
+
+<!-- ============ BEGINNING OF SLIDE CONTENT =========== -->
+
+<textarea data-template>
+# Pour une histoire littéraire ouverte et en réseau: le projet Mining and Modeling Text  
+<img height="60" data-src="img/basics/mimotext-logo.png">
+<br/>
+<hr/>
+<p>Christof Schöch, avec des contributions de toute l'équipe!</p>
+<br/>
+<p><a href="https://mimotext.github.io/lod-lithist">https://mimotext.github.io/lod-lithist</a></p>
+<p><strong><emph>Sorbonne Université, Paris</emph> | 04.04.2023</strong></p>
+<hr/>
+<img height="50" data-src="img/basics/tcdh-slim.png">&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/uni-trier.png">&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/mwrlp.svg">
+
+::
+
+- Bericht aus laufendem Projekt am TCDH der Universität Trier
+- Kollaboratives Projekt mit Beiträgen aus CL, Informatik, DH und LitWiss
+- work in progress: alles in ständiger Bewegung 
+- Gefördert durch die Forschungsinitiative Rheinland-Pfalz
+
+--
+## Gliederung
+1. [Einführung in MiMoText](#/2)
+2. [Literaturgeschichte als Wissensnetzwerk](#/3)
+3. [Mining - Extrahieren von Informationen](#/4)
+4. [Modeling - Repräsentation und Vernetzung von Wissen](#/5)
+5. [Fazit - Wissensnetzwerke aus und für Textanalysen](#/6)
+
+
+::
+- Kurzer Überblick über das Projekt
+- Mining: Wie ermitteln wir Informationen/Metadaten aus Text?
+- Modeling: Repräsentation als Voraussetzung für Vernetzung
+- Mining und Modeling nicht getrennt zu denken! Vortragschronologie entspricht keiner Chronologie des Forschungsprozesses; alle Teilprojekte greifen in ständigem 'work in progress' ineinander  
+[- Weitergehende Motivation: erproben hier an älterer Literatur; Wünsche für die Zukunft des wiss. Publizierens.]
+
+
+--
+## (1) Einführung in <br/>'Mining and Modeling Text'
+
+---
+### MiMoText: Überblick
+<a href="img/mimotext-overview.png"><img height="450" data-src="img/mimotext-overview.png"></a>
+<br/><a href="https://mimotext.uni-trier.de">https://mimotext.uni-trier.de</a>
+
+::
+- Gegenstand: französischer Roman des 18. Jahrhunderts; Übertragung auf andere Disziplinen ist geplant
+- Drei Informationsquellen: -> alle lassen sich als Metadaten auffassen mit einem weiten/erweiterten 'Metadaten'-Begriff (vgl. nächste Folie)
+- (A) Metadaten aus Nachweissystemen (Bibliographie du genre romanesque français); 
+- (B) Sachinformationen aus Fachliteratur (Literaturgeschichten); 
+- (C) Texteigenschaften aus Primärtexten (Volltexte der Romane) 
+- Ziel: Informationen extrahieren, als LOD modellieren und zusammenführen
+
+---
+### Was sind (literaturhistorisch) relevante <br/>(und extrahierbare) Informationen?
+
+* Nachweissysteme  <!-- .element: class="fragment" data-fragment-index="1" -->
+    * Metadaten: Autoren, Werke, Verlage, etc.
+    * Keywords in der *Bibliographie...*: Setting, Themen, Protagonisten
+<br/><br/>    
+* Primärtexte <!-- .element: class="fragment" data-fragment-index="2" -->
+    * Handlungsorte 
+    * Figurennamen
+    * Topics 
+    * Anteil direkter Rede
+    * Textlänge
+    * uvm.
+<br/><br/>    
+* Fachliteratur  <!-- .element: class="fragment" data-fragment-index="3" -->
+    * Handlung, Inhalte, Themen
+    * Wertungen von Autor:innen und Werken
+    * Beziehungen zwischen Autor:innen und Werken
+
+::
+- Bezogen auf die drei Säulen des Projekts
+- Austausch mit / Diskussion in fachwissenschaftlicher Community (Relevanzdiskussion etc.)
+- Handlungsorte = Setting; Figurennamen = Protagonisten; Topics = Themen
+
+
+---
+### Was ist oder wie funktioniert Literaturgeschichte?
+
+* Ziele  <!-- .element: class="fragment" data-fragment-index="1" -->
+    * Sammeln und Dokumentieren literaturgeschichtlicher Fakten
+    * Liefern von Erklärungen für die Entwicklung von Literatur
+* Organisationsprinzipien  <!-- .element: class="fragment" data-fragment-index="2" -->
+	* Nationen, Perioden, Bewegungen/Strömungen, Genres
+	* Ähnlichkeiten und Unterschiede
+	* Kontinuitäten und Wandel 
+*  Erklärungen für literarische Entwicklungen <!-- .element: class="fragment" data-fragment-index="3" -->
+	* kultureller oder soziohistorischer Kontext
+	* innere Dynamiken des literarischen Systems
+	
+
+:: 
+kein Konsens, viel Theoretisierung, wenig praktische Gedanken über Qualitäten von Informationen, Fakten, Wissen etc.
+
+--
+## (2) Literaturgeschichte als Wissensnetzwerk
+
+---
+### Modellierungsansatz: Linked Open Data (LOD)
+<img height="350" data-src="img/rdf11-primer-example-graph.jpg">
+	
+Quelle: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
+
+::
+
+---
+### Grundprinzip 
+* Linked Open Data <!-- .element: class="fragment" data-fragment-index="1" -->
+    * große Menge einfacher Aussagen 
+    * Subjekt, Prädikat, Objekt (Tripel)
+* zentrale literaturgeschichtliche Subjekte <!-- .element: class="fragment" data-fragment-index="2" -->
+	* Personen (Autor:in, Herausgeber:in, Verleger:in etc.)
+	* Publikationen (Primärtext, Fachliteratur etc.)
+
+:: 
+- in Geschichte bspw. "Ereignisse" als relevante Subjekte (?)
+
+---
+### Aussagetypen (1) 
+
+* person AUTHOR_OF publication
+* publication PLACE_OF_PUBLICATION place
+* publication DATE_OF_PUBLICATION year
+
+
+:: 
+- Aussagen hier erst einmal konzeptionell repräsentiert; 
+- hier bewusst erstmal "einfache Metadaten", für die es kein Einverständnis oder Konsensbildung in einer community braucht
+- im Folgenden Eingehen auf Formalisierungsfragen
+
+---
+### Aussagetypen (2) 
+
+* publication NARRATIVE_LOCATION place <!-- .element: class="fragment" data-fragment-index="1" -->
+* publication EXTENT_WORDS number of words <!-- .element: class="fragment" data-fragment-index="2" -->
+* person/publ. DESCRIBED_AS (adjective | noun) <!-- .element: class="fragment" data-fragment-index="3" -->
+* person/publ. SIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="4" -->
+* person/publ. DISSIMILAR_TO person/publ. <!-- .element: class="fragment" data-fragment-index="5" -->
+* person/publ. INFLUENCED_BY person/publ. <!-- .element: class="fragment" data-fragment-index="6" -->
+* publication ABOUT keyword <!-- .element: class="fragment" data-fragment-index="7" -->
+
+:: 
+- LOD-Paradigma als leitend; Knackpunkt: zugrundeliegende Ontologie 
+- Vor allem: Inventar an Aussagetypen; 
+
+
+---
+### Ziele
+
+* Unser Ziel: "Wikidata für die Literaturgeschichte" <!-- .element: class="fragment" data-fragment-index="1" -->
+    * literaturhistorisches Informationssystem
+    * LOD-Basis, SPARQL-Endpoint, Suchmaske
+* Aber mit: <!-- .element: class="fragment" data-fragment-index="2" -->
+    * viel spezifischerem Fokus (Romanliteratur 1750-1800)
+    * stark erweiterter Abdeckung (Autoren, Werke)
+    * stark erhöhter Aussagendichte
+    * systematischer Ontologie von Aussagentypen
+    * vielfältigen Anwendungsszenarien für die Literaturgeschichtsschreibung
+   
+
+--
+## (3) Mining - <br/>Extrahieren von Informationen
+
+---
+### Säule 1: Bibliographie du genre romanesque français 
+<a href="img/bgrf-Candide.png"><img height="400" src="img/bgrf-Candide.png"></img></a>
+<p>Martin / Mylne / Frautschi: <em>Bibliographie<br/> du genre romanesque français, 1751-1800</em>, 1977</p>
+
+::
+- Ein Eintrag unter rund 2500: Voltaires Candide; 
+- Candide dient als "roter Faden" im Vortrag (neben den 3 Säulen)
+- die drei Säulen der verschiedenen Informationsquellen sind strukturgebend; 
+
+---
+#### Welche Metadaten enthält diese Bibliographie?
+* zusammenfassende Statistik <!-- .element: class="fragment" data-fragment-index="1" -->
+	* ~1100 verschiedene Autor:innen
+	* ~2600 Einträge (Romane)
+	* ~58.000 Triples (ca. 22 pro Roman)
+* weitere Informationen <!-- .element: class="fragment" data-fragment-index="2" -->
+	* ~720 Romane in der 1. Person
+	* ~920 in 3. Person
+	* 2210 Einträge mit Angaben zum Inhalt
+
+
+::
+- Bibliographie ist Referenzpunkt für das Projekt; nicht Kanon, sondern Grundgesamtheit der französischsprachigen Romane der 2. Hälfte des 18. Jhds.
+- An Werke und Autoren werden nun weitere Informationen "angehängt"
+[Statistik-Einschränkungen: Herausforderungen der maschinellen Aufbereitung; "Romane 1./3.Person" im weiteren Sinne und die Komplexität verschiedener Zwischenformen vereinfachend]
+
+---
+### Säule 2: Primärliteratur (Romane)
+* Pilotkorpus: ca. 100 französische Romane (1750-1800) <!-- .element: class="fragment" data-fragment-index="1" -->
+* Kodierung: in XML-TEI, mit Metadaten, nach ELTeC-Schema <!-- .element: class="fragment" data-fragment-index="2" -->
+* Analyse: Topic Modeling zur Identifikation von Themen <!-- .element: class="fragment" data-fragment-index="3" -->
+
+::
+- neben Topic Modeling weitere Analyseverfahren zur Generierung von Metadaten (ggf. Rückverweis "Was sind relevante Metadaten?"; "Was sind überhaupt literaturwissenschaftlich relevante Analyse- und Interpretationsmethoden"?)
+
+
+---
+#### Das "roman18"-Korpus
+
+<img height="400" src="img/roman18.jpg"></img>
+<br/><p>Collection de romans français du dix-huitième siècle (1750-1800) /<br/>Collection of Eighteenth-Century French Novels (1750-1800)</p>
+
+::
+- im Sinne der FAIR-Prinzipien: auf Zenodo mit einem DOI für Persistenz (regelmäßige releases); fortlaufend Aktualisierungen auf Github
+
+---
+#### Topic Modeling - Erste Ergebnisse
+<a href="img/pilot_mod200_fr_10_500_expStop.html"><img height="500" src="img/pyldavis.png"></img></a>
+
+::
+- Einige Topics: Familie, Philosophie, Liebe, Monarchie, Sexualität, Lesen/Schreiben, Tod, etc.
+- Festhalten, welche der Topics jeweils in bestimmten Romanen am wichtigsten sind
+[- Beispielsweise: In Candide hat das Topic "philsosphy" die Wahrscheinlichkeit 0.34 (zweit-wichtigster Topic)]
+
+
+---
+#### Zwei "major topics"
+<br/>
+"monarchy" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "love"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><img height="250" src="img/topic_002.png"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="250" src="img/topic_009.png"></img>
+
+---
+#### Abgeleitete Aussagen ('statements')
+* Candide IS_ABOUT "monarchie"
+* Clarice IS_ABOUT "amour"
+
+::
+- einfache, erstmal oberflächliche statements
+- Topics sind ein Weg, Themen zu definieren, also wovon ein Werk handelt; "what it IS_ABOUT"
+- hervorzuheben: die Labels kommen aus einem kontrollierten Vokabular; 
+[- Topics have a precise probability (and probability rank) in each novel; Topics depend on the specific topic model 
+- Models depend on a specific version of our corpus, and parameters
+- To create some transparency, we indicate the top words of each topic]
+
+
+---
+### Säule 3: Sekundärliteratur (literaturwiss. Fachtexte)
+
+3 Elemente für Extraktion von Aussagen aus Sekundärliteratur:
+* Annotationsguidelines (basierend auf Datenmodell)  <!-- .element: class="fragment" data-fragment-index="1" -->
+* manuelle Annotation: Generierung von Traingsdaten (in INCEpTION)  <!-- .element: class="fragment" data-fragment-index="2" -->
+* Training: Machine Learning (in Python)  <!-- .element: class="fragment" data-fragment-index="3" -->
+
+
+::
+- 1 & 2. nicht in der klaren Reihenfolge, daher "Elemente", nicht Schritte :); [nicht Mining zuerst, aber auch nicht Modeling]
+[- evtl. überleitung Einordnung "unsupervised" bei Topic Modeling gegenüber "supervised" für Seklit.]
+- Train and apply Machine Learning (in Python)
+
+---
+#### Annotationen auf 'Named Entity'-Layer 
+<a href="img/inception_Candide-disambiguation.png"><img height="350" src="img/inception_Candide-disambiguation.png"></img></a>
+
+* Annotationen von Autoren und Werken (Entitäten -> Subjekt-/ObjektPosition in Aussagen)
+* Disambiguierung von Entitäten über Knowledgebase-Anbindung (hier: Wikidata)
+
+:: 
+
+
+---
+#### Annotation auf 'Predicate'/Relation-Layer
+<a href="img/inception_genre.png"><img height="300" src="img/inception_genre.png"></img></a>
+
+* "hasGenre" als Property bzw. Prädikat
+* Subjekt verknüpft mit Wikidata-Identifier für "Bélisaire" (Q5005038)
+* Objekt verknüpft mit Wikidata-Identifier für "novel" (Q8261)
+
+::
+[- hasGenre hier erstmal eigene KB]
+- Identifier-Verknüpfung analog zu Disambiguierungs-Beispiel von Candide (daher hier gekürzt)
+- Tripel-Struktur-Reihenfolge muss nicht mit String-Reihenfolge im zu annotierenden Satz übereinstimmen 
+[- Trainingsdaten -> Machine Learning in Python (s.o.)]
+[- Hintergrundinfo: Wikidata-Identifier: genre Q483394; ist ein Q-Identifier, kein P-Identifier]
+[- Ebenso für "literary genre": https://www.wikidata.org/wiki/Q223393]
+
+
+--
+## (4) Modellierung - Repräsentation und Vernetzung von Wissen
+
+---
+#### Willard McCarty, *Humanities Computing*, 2005
+<img height="250" data-src="img/mccarty.jpg">
+
+> "recursive modeling": </br> Modellierung als ein iterativer Prozess
+
+
+---
+#### Säule 1: Bibliographie als RDF 
+<a href="img/bgrf-Candide-RDF.png"><img height="500" src="img/bgrf-Candide-RDF.png"></img></a>
+
+
+::
+- Eintrag in modellierter Form (Andreas Lüschow)
+- Explizite Zuordnung jeder Information zu einem Konzept in einer Ontologie
+-> Bibliographie als LOD -> aktueller Schritt (verschiedene Ontologien: SPAR-Ontologien vs. Wikidata-Ontologie)
+
+---
+#### Säule 1: Statements aus Bibliographie
+
+* Candide NARRATIVE_LOCATION "Europe" <!-- .element: class="fragment" data-fragment-index="1" -->
+* Candide NARRATIVE_LOCATION "Amérique" <!-- .element: class="fragment" data-fragment-index="2" -->
+* Candide IS_ABOUT "thèmes philosophiques" <!-- .element: class="fragment" data-fragment-index="3" -->
+
+---
+#### Säule 2: Statements aus Topic Modeling 
+
+* Beispiel Topic Modeling  <!-- .element: class="fragment" data-fragment-index="1" -->
+  * Subjekt: *Candide*
+  * Prädikat: IS_ABOUT (schema.org/about; Wikidata "main_subject")
+  * Objekt: Topic "philosophie"
+* LOD-Statements <!-- .element: class="fragment" data-fragment-index="2" -->
+  * Candide IS_ABOUT 'philosophie'
+  * Candide IS_ABOUT 'monarchie'
+
+::
+
+
+---
+#### Säule 2: Romananalysen (Topic Modeling)
+<a href="img/Pilot_CRETA_TopMod_reduced.png"><img height="500" src="img/Pilot_CRETA_TopMod_reduced.png"></img></a>
+
+::
+- Wir verlinken zum gesamten Topic Model (Github / Zenodo)
+
+
+---
+#### Säule 3: Literaturgeschichtsschreibung
+
+>Candide ist das meistgelesene Werk Voltaires und war es wohl schon zu Lebzeiten des Autors. Als es 1759 in Genf erstmals im Druck erschien, wurde es zwar sofort verboten, aber doch nur mit dem Ergebnis, daß es im gleichen Jahr noch dreizehn Neuauflagen erlebte. <br/>(Erich Köhler, Aufklärung II, 1984)
+
+
+::
+- = Einfache bibliographische Metadaten
+- Identifier: kommen aus Wikidata; 
+[-> ggf. Wikibase-Instanz mit weiteren Identifiern erwähnen?]
+
+---
+#### Säule 3: Aussagen aus Fachliteratur
+
+* Aussagen in zitiertem Beispiel <!-- .element: class="fragment" data-fragment-index="1" -->
+	* Candide PUBLICATION_DATE 1759 
+	* Candide LEGAL_STATUS censored 
+	* Candide RECEPTION_INTENSITY high 
+* weitere Aussagen: <!-- .element: class="fragment" data-fragment-index="2" -->
+	* Candide GENRE novel; satire; utopia  
+	* Voltaire TOPIC_INTEREST Gesellschaftskritik
+	* Voltaire INFLUENCED_BY Leibniz 
+
+
+::
+
+--
+## (5) Fazit - Wissensnetzwerke aus und für Textanalysen
+
+---
+#### Wissensnetzwerk ('Knowledge Graph')
+<a href="img/network-of-information_CRETA.png"><img height="500" src="img/network-of-information_CRETA.png"></img></a>
+
+::
+- Kleiner Ausschnitt: Abgleich zwischen Bibliographie und Topic Modeling und NER: Themen, Handlungsorte - Abgleich hier (zuvor punktuell)
+
+
+---
+#### Herausforderungen
+
+* Modellierung von "Meta-Tripeln" ('reification'; 'qualifier' etc.) <!-- .element: class="fragment" data-fragment-index="1" -->
+	* {Voltaire AUTHOR_OF Candide} SOURCE Köhler_1984 <!-- .element: class="fragment" data-fragment-index="2" -->
+	* {Candide LEGAL_STATUS censored} TEMPORAL_SCOPE 1759-1765 <!-- .element: class="fragment" data-fragment-index="3" -->
+	* {[Subject] PREDICATE [Object]} RELIABILITY (low | middle | high} <!-- .element: class="fragment" data-fragment-index="4" -->
+* wenig Konsens in/über Literaturgeschichte; tendenziell Entkoppelung von 'Theorie' und 'Praxis'<!-- .element: class="fragment" data-fragment-index="5" -->
+* Standardisierung am Anfang (kein "literaturhistorisches CIDOC-CRM")<!-- .element: class="fragment" data-fragment-index="6" --> 
+* Implementierung (über verschiedene Tools hinweg)<!-- .element: class="fragment" data-fragment-index="7" -->
+* Konkretisierung von Nutzungsszenarien<!-- .element: class="fragment" data-fragment-index="8" -->
+* Mehrsprachigkeit (z.B. NER Fachliteratur)<!-- .element: class="fragment" data-fragment-index="9" -->
+* Entwicklung kontrollierter Vokabulare (z.B. 'Themen'-Werte in Pilotprojekt)<!-- .element: class="fragment" data-fragment-index="10" -->
+
+---
+#### Chancen von Wissensnetzwerken für die Literaturgeschichtsschreibung
+
+
+* (1) Linked Open Data-Paradigma als Ansatz <!-- .element: class="fragment" data-fragment-index="1" -->
+	* Pluralität von Perspektiven, Heterogenität der Quellen <!-- .element: class="fragment" data-fragment-index="2" -->
+	* Referenzierung der Quellen ist möglich; gezieltere Suchoptionen in Abhängigkeit von Qualifiern insgesamt <!-- .element: class="fragment" data-fragment-index="3" -->
+	* unsichere Informationen können berücksichtigt werden (Zuverlässigkeitsgrad "qualifizierbar") <!-- .element: class="fragment" data-fragment-index="4" -->
+	* widersprüchliche, komplementäre Informationen können nebeneinander bestehen <!-- .element: class="fragment" data-fragment-index="5" -->
+* (2) Standardisierungsprozesse als Reflexionsanlass & Dialogpotential <!-- .element: class="fragment" data-fragment-index="6" -->
+	* viele Fragen: Was sind in einer Disziplin / Community die relevanten Entitäten und Relationen? Welche Aussagetypen sind (jenseits von Metadaten) notwendig? Welche könnten nützlich sein? <!-- .element: class="fragment" data-fragment-index="7" -->
+	* Metaperspektive auf disziplinären Diskurs <!-- .element: class="fragment" data-fragment-index="8" -->
+
+
+
+---
+### Textanalysen reflektierend-rekursiv?
+<a href="img/mimotextanalysen2.png"><img height="400" src="img/mimotextanalysen2.png"></img></a>
+
+
+
+---
+## Vielen Dank!<br/><br/>Fragen oder Kommentare?
+<br/><br/>
+<br/><br/>
+<hr/>
+<small>
+<br/>Folien: <a href="https://mimotext.github.io/lod-lithist">https://mimotext.github.io/lod-listhist</a>
+<br/>Projekt: <a href="https://mimotext.uni-trier.de">https://mimotext.uni-trier.de</a>
+<br/>Lizenz: <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution (CC BY)</a>, 2020
+</small>
+<hr/>
+
+
+
+
+--
+## Bonus-Folien
+
+---
+### Ontologie-Auszug: Pilotprojekt ("thematische Aussagen")
+
+<a href="img/network-of-information_themat-statements_ontology.html"><img height="400" src="img/network-of-information_themat-statements_ontology.png"></img></a>
+
+---
+### Wikidata query
+<a href="https://query.wikidata.org/#SELECT%20DISTINCT%20%3Fbook%20%3FbookLabel%0AWHERE%20%7B%0A%20%20%3Fbook%20wdt%3AP31%20wd%3AQ7725634%20%3B%20%20%23%20books%20that%20are%20literary%20works%0A%20%20%20%20%20%20%20%20wdt%3AP407%20wd%3AQ150%20%3B%20%20%20%20%20%20%23%20books%20written%20in%20French%0A%20%20%20%20%20%20%20%20wdt%3AP921%20wd%3AQ5891%3B%20%23main%20subject%3A%20philosophy%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cfr%22%20.%0A%20%20%7D%0A%7D%20%0A"><img height="500" src="img/wikidata-query.png"></img></a>
+
+::
+
+---
+### Kontrolliertes Vokabular
+
+<br/><img height="200" src="img/DEL_Cover.jpg"></img>&nbsp;&nbsp;<img height="200" src="img/DEL_liste-auszug.png"></img>
+* Kern bzw. Basis: domänenspezifische Ressource für themat. Konzepte (*Dictionnaire européen des Lumières.* Hrsg. von Michel Delon, PUF, Paris, 1997.)
+* Erweiterung
+	* temporäre Dynamik: Ergänzung von Konzepten (alle 3 Infoquellen)
+	* Prozess der Konsolidierung (u.a. über Identifier/Normdaten)
+	* work in progress: https://github.com/MiMoText/vocabularies/
+
+
+---
+### Publikationen als Daten (prospektiv)
+
+* Digital und Open Access <!-- .element: class="fragment" data-fragment-index="1" -->
+* Publikationen als (maschinenlesbare) Daten  <!-- .element: class="fragment" data-fragment-index="2" --> 
+  * Reichhaltige Metadaten <!-- .element: class="fragment" data-fragment-index="3" -->
+  * Explizite, semantisch kodierte Textstruktur <!-- .element: class="fragment" data-fragment-index="4" -->
+  * Auszeichnung und Identifikation von Entitäten (Normdaten) <!-- .element: class="fragment" data-fragment-index="5" -->
+  * Kernaussagen als LOD-Statements <!-- .element: class="fragment" data-fragment-index="6" -->
+  * Alles in offenen Standardformaten <!-- .element: class="fragment" data-fragment-index="7" -->
+
+::
+- (1) retrospektiv
+- die Perspektive des ganzen Projekts, weil wir ja "retrodigitalisieren" 
+- Und weil wir Literaturgeschichtsschreibung betreiben
+- (2) prospektiv
+- wie sollten Publikationen gestaltet sein, damit sie leichter "als Daten" ausgewertet werden können?
+- Im Projekt alles extrem aufwändig
+- Überführung von unstrukturiertem Text in maschinenlesbare Daten
+- Motivation für Änderungen im Publikationswesen
+- Im Grunde sind das alles Anforderungen an das zukünftige, wissenschaftliche Publikationssystem
+- Dafür brauchen wir auch wissenschaftsadäquate Software, insbesondere Schreibsoftware
+- Software, die bspw. dabei unterstützt, Entitäten auszuzeichnen
+- Aber auch ein Verständnis dafür bei den Kolleg:innen, dass das sinnvoll ist
+- Wir hoffen, heute hierzu etwas beigetragen zu haben
+
+
+---
+### "Ziele der Literaturgeschichtsschreibung" (Borkowski/Heine 2013)
+
+* zwei Konzeptionen	
+	* Fokus auf Historisierung
+	* Fokus auf Herstellung von Gegenwartsbezügen
+* Ziele der historisierenden Konzeption
+	* Rekonstruktion: Etablierung wahrer oder wahrscheinlicher Aussagen über Literatur
+	* Konsolidierung: Sammeln und Verbreiten des fundierten Wissensbestands
+
+---
+### Machine Learning
+
+* Material: sentences automatically annotated for named entities
+* Further linguistic annotation (feature engineering)
+* Provide manual annotations of sentences (training and evaluation)
+* Learn patterns / probabilities for features indicative of a relation
+* Generate relation annotations for all sentences
+
+
+
+---
+#### Romananalyse: Topic Modeling
+<a href="img/tm_blei.png"><img height="500" src="img/tm_blei.png"></img></a>
+
+::
+
+---
+#### Jannidis & Flanders, *The Shape of Data in DH*, 2019
+<img height="250" data-src="img/flanders-jannidis.jpg">
+
+>"The term 'data modeling' in computer science is most typically used in a fairly restrictive sense for the modeling of relational databases, while the digital humanities has a more general understanding of the term: data modeling is the modeling of some segment of the world in such a way to make some aspects computable."
+
+---
+#### Wikibase: Candide
+<a href="img/candide_wikibase_pilot.png"><img height="500" src="img/candide_wikibase_pilot.png"></img></a>
+
+
+---
+#### Wikibase: Aussagenstruktur S-P-O
+<a href="img/candide_S-P-O.png"><img height="500" src="img/candide_S-P-O.png"></img></a>
+
+
+---
+#### Wikibase: Referenzierung von Aussagen
+<a href="img/candide_statement_referenzierung.png"><img height="500" src="img/candide_statement_referenzierung.png"></img></a>
+
+
+</textarea>
+
+<!-- ============ END OF SLIDE CONTENT =========== -->
+
+</section>
+
+	</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+        Reveal.configure({ pdfSeparateFragments: false });
+		Reveal.initialize({
+			hash: true,
+            progress: true,
+            slideNumber: true,
+            fragments: true,
+            center: false,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+</body>
+</html>
