@@ -30,7 +30,7 @@
 <img height="60" data-src="img/basics/mimotext-logo.png">
 <br/>
 <hr/>
-<p>Christof Schöch,<br/>avec des contributions de toute l'équipe</p>
+<p>Christof Schöch<br/>avec Maria Hinzmann, Julia Röttgermann,<br/>Tinghui Duan, Anne Klee, Moritz Steffes, et d'autres</p>
 <br/>
 <p><a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a></p>
 <p><strong><emph>Sorbonne Université, Paris</emph> | 04.04.2023</strong></p>
@@ -50,9 +50,9 @@
 --
 ## Structure
 1. [Introduction – L'histoire littéraire en réseau](#/2)
-3. [Mining - L'extraction d'informations](#/3)
-4. [Modeling - La représentation des informations](#/4)
-5. [Conclusion](#/5)
+3. [Mining – L'extraction d'informations](#/3)
+4. [Modeling – La représentation des informations](#/4)
+5. [Conclusion – Avantages et difficultés](#/5)
 
 
 ::
@@ -248,7 +248,18 @@
   - métadonnées bibliographiques
   - informations sur le contenu: protagonistes, lieux, thèmes, histoire, tonalité.  
   - histoire éditoriale: rééditions
-- On a numérisé et modélisé tout cela en RDF en 2019. 
+
+---
+#### La BGRF en RDF 
+<a href="img/bgrf-Candide-RDF.png"><img height="500" src="img/bgrf-Candide-RDF.png"></img></a>
+
+
+::
+- On a numérisé et modélisé tout cela en RDF en 2019 (Andreas Lüschow). 
+- Processus de OCR, puis annotation partielle, puis machine learning 
+- Puis modélisation: chaque morceau d'information est liée à un élément dans une Ontologie 
+- Différents modules de la famille des ontologies SPAR. 
+- Maintenant : tout est transféré dans notre instance Wikibase  
 
 ---
 #### Combien d'informations se trouvent dans la BGRF ?  
@@ -405,8 +416,15 @@ Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 - C'est le principe des Linked Open Data 
 - C'est aussi à la base de Wikidata, le pendant côté données de Wikipédia. 
 
+
 ---
-### Quelques principes de la modélisation
+#### Modélisation S-P-O dans MiMoText
+<a href="img/candide_S-P-O.png"><img height="500" src="img/candide_S-P-O.png"></img></a>
+
+
+
+---
+#### Quelques principes de la modélisation
 - Linked Open Data <!-- .element: class="fragment" data-fragment-index="1" -->
   - Un grand nombre d'assertions simples 
   - Une structure en triplets: sujet, prédicat, objet 
@@ -423,165 +441,154 @@ Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 
 
 ---
-### Quelques patrons d'assertions de MiMoText (1) 
+#### Quelques exigences du LOD 
 
-- Patrons du type métadonnées bibliographiques <!-- .element: class="fragment" data-fragment-index="1" -->
-  - person AUTHOR_OF publication 
-  - publication PLACE_OF_PUBLICATION place 
-  - publication DATE_OF_PUBLICATION year 
+- Fiches d'autorité / standards  <!-- .element: class="fragment" data-fragment-index="1" --> 
+  - Wikidata IDs, principalement
+  - Mais aussi : BGRF, GND, Getty TGN, etc. 
+  - Standards comme RDF, XML-TEI, etc. 
+  <br/><br/>
+- Ontologies de prédicats et d'objets  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Vocabulaire + structure pour assertions thématiques
+  - Vocabulaire + structure pour assertions sur forme narrative
+  - 11 modules, voir : https://github.com/MiMoText/ontology
+  <br/><br/>
+- Un esprit d'ouverture et de transparence   <!-- .element: class="fragment" data-fragment-index="3" -->
+  - Usage exclusif de logiciels libres (OCR4all, Inception, Wikibase, etc.)
+  - Mises en ligne continuelles ("release early, release often") 
+  - Les sources des assertions sont indiquées 
+  - Tout est amplement documenté (Tutoriel, etc.)
+
+::
+- (Simplement expliquer les points.)
+
+
+---
+#### Patrons d'assertions (1): simples / bibliographiques 
+
+- {person} _author_of_ {publication} 
+<br/><br/>
+- {publication} _place_of_publication_ {place} 
+<br/><br/>
+- {publication} _publication_date_ {year}
+<br/><br/>
+- {publication} _instance_of_ "literary work" (Q2)
 
 :: 
 - simples métadonnées bibliographiques
 - peu de discussion sur l'ontologie 
 
 ---
-### D'autres patrons d'assertions (2) 
+#### Patrons d'assertions (2) : simples, analytiques 
 
-- Relativement simples<!-- .element: class="fragment" data-fragment-index="1" --> 
-  - publication NARRATIVE_LOCATION place 
-  - publication EXTENT_WORDS number of words
-  - person/publ. DESCRIBED_AS (adjective | noun) 
+- {publication} _narrative_location_ {place}, {place}, {place}, ... 
+<br/><br/>
+- {publication} _characters_string_ {string de la BGRF}
+<br/><br/>
+- {publication} _full_work_available_at_ {lien vers texte dans notre corpus}  
 
-- Déjà un peu plus compliquées <!-- .element: class="fragment" data-fragment-index="2" -->
-  - person/publ. SIMILAR_TO person/publ. 
-  - person/publ. DISSIMILAR_TO person/publ. 
-  - person/publ. INFLUENCED_BY person/publ. 
-  - publication ABOUT keyword 
+
+::
+- Simples, parce que le prédicat est clair, et l'objet peut être dérivé de la source 
+  
+
+---
+#### Patrons d'assertions (3) : interprétatifs 
+
+- {publication} _narrative_form_ {autodiegetic | homodiegetic | heterodiegetic | epistolary | dialogue | mixed}
+<br/><br/>
+- {publication} _about_ {thème du vocabulaire thématique}, {thème}, {thème}, ...
+<br/><br/>
+
 
 :: 
-- Simples, parce que le prédicat est clair, et l'objet peut être dérivé de la source 
-- Compliqueés, parce que le prédicat est moins clair, et/ou parce que l'objet demande une ontologie sur laquelle on doit se mettre d'accord, et qu'on doit appliquer uniformément
-
-
-
-
+- Compliqueés, avant tout parce que l'objet demande une ontologie ou un vocabulaire contrôlé
+- Aussi, parce qu'il faut appliquer le vocabulaire aux informations que nous avons
 
 
 ---
-#### Säule 1: Bibliographie als RDF 
-<a href="img/bgrf-Candide-RDF.png"><img height="500" src="img/bgrf-Candide-RDF.png"></img></a>
+#### Méta-assertions : sources 
+<img height="400" src="img/mimotextbase_sources.png"></img>
 
+- [ {publication} _about_ {thème} ] _stated_in_ {source}
 
 ::
-- Eintrag in modellierter Form (Andreas Lüschow)
-- Explizite Zuordnung jeder Information zu einem Konzept in einer Ontologie
--> Bibliographie als LOD -> aktueller Schritt (verschiedene Ontologien: SPAR-Ontologien vs. Wikidata-Ontologie)
+- Pour beaucoup d'assertions, il y a une source 
+- BGRF, un topic model spécifique, une analyse NER, etc. 
+- Souvent : passage de la source et une abstraction modélisée  
+- C'est souvent intéressant de comparer les informations sur un point donnée mais venant de différentes sources (assertions, pas "faits"!)
 
----
-#### Säule 1: Statements aus Bibliographie
-
-* Candide NARRATIVE_LOCATION "Europe" <!-- .element: class="fragment" data-fragment-index="1" -->
-* Candide NARRATIVE_LOCATION "Amérique" <!-- .element: class="fragment" data-fragment-index="2" -->
-* Candide IS_ABOUT "thèmes philosophiques" <!-- .element: class="fragment" data-fragment-index="3" -->
-
----
-#### Säule 2: Statements aus Topic Modeling 
-
-* Beispiel Topic Modeling  <!-- .element: class="fragment" data-fragment-index="1" -->
-  * Subjekt: *Candide*
-  * Prädikat: IS_ABOUT (schema.org/about; Wikidata "main_subject")
-  * Objekt: Topic "philosophie"
-* LOD-Statements <!-- .element: class="fragment" data-fragment-index="2" -->
-  * Candide IS_ABOUT 'philosophie'
-  * Candide IS_ABOUT 'monarchie'
-
-::
-
-
----
-#### Säule 2: Romananalysen (Topic Modeling)
-<a href="img/Pilot_CRETA_TopMod_reduced.png"><img height="500" src="img/Pilot_CRETA_TopMod_reduced.png"></img></a>
-
-::
-- Wir verlinken zum gesamten Topic Model (Github / Zenodo)
-
-
----
-#### Säule 3: Literaturgeschichtsschreibung
-
->Candide ist das meistgelesene Werk Voltaires und war es wohl schon zu Lebzeiten des Autors. Als es 1759 in Genf erstmals im Druck erschien, wurde es zwar sofort verboten, aber doch nur mit dem Ergebnis, daß es im gleichen Jahr noch dreizehn Neuauflagen erlebte. <br/>(Erich Köhler, Aufklärung II, 1984)
-
-
-::
-- = Einfache bibliographische Metadaten
-- Identifier: kommen aus Wikidata; 
-[-> ggf. Wikibase-Instanz mit weiteren Identifiern erwähnen?]
-
----
-#### Säule 3: Aussagen aus Fachliteratur
-
-* Aussagen in zitiertem Beispiel <!-- .element: class="fragment" data-fragment-index="1" -->
-	* Candide PUBLICATION_DATE 1759 
-	* Candide LEGAL_STATUS censored 
-	* Candide RECEPTION_INTENSITY high 
-* weitere Aussagen: <!-- .element: class="fragment" data-fragment-index="2" -->
-	* Candide GENRE novel; satire; utopia  
-	* Voltaire TOPIC_INTEREST Gesellschaftskritik
-	* Voltaire INFLUENCED_BY Leibniz 
-
-
-::
 
 
 --
-## (4) Illustration – Requêtes SPARQL 
+## (4) Illustration – Navigation<br/> et requêtes dans la MiMoTextBase  
 
 ---
-### Quelques exemples du Tutoriel
+#### La MiMoTextBase
+<a href="http://data.mimotext.uni-trier.de/wiki/Main_Page"><img height="450" src="img/mimotextbase.png"></img></a>
 
+- http://data.mimotext.uni-trier.de
+
+:: 
+- Commencer par les exemples: 
+- author: très peu d'infos, mais: "exact_match" (!) => Wikidata 
+- title: beaucoup d'informations! données + strings, différentes sources; méta-assertions. 
+- On peut chercher à travers la mimotext Base, mais c'est pas très bien => SPARQL 
+
+---
+#### Le SPARQL endpoint 
+<a href="img/sparql_results1.png"><img height="350" src="img/sparql_results1.png"></img></a>
+
+- SPARQL = SPARQL Protocol and RDF Query Language
+- Pour formuler des requêtes complexes à travers des bases de données LOD
+- https://query.mimotext.uni-trier.de 
+
+
+---
+#### Quelques exemples 
+
+- Requêtes simples
+  - [Liste des romans avec quelques informations de la BGRF](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20some%20data%20about%20the%20MiMoTextBase%20such%20as%20Authors%2C%20Novels%2C%20publicationyears%2C%20tonality%20etc.%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20DISTINCT%20%3Fbgrf%20%3Fitem%20%3Fauthorlabel%20%3FitemLabel%20%3Fyear%20%3Fnarrpers%20%3Ftonality%20%3Fpages%20%3Fnormalized%20WHERE%20%7B%0A%20%3Fitem%20wdt%3AP5%20%3Fauthor%3B%20%23%20who%20is%20the%20author%3F%0A%20%20%20%20%20%20%20wdt%3AP4%20%3Ftitle%3B%20%23%20what%20is%20the%20title%3F%0A%20%20%20%20%20%20%20wdt%3AP22%20%3Fbgrf%3B%20%20%23%20what%20is%20the%20identifier%20in%20the%20bibliographic%20metadata%3F%0A%20%20%20%20%20%20%20wdt%3AP9%20%3Fdate%3B%20%23%20what%20is%20the%20publication%20date%3F%0A%20OPTIONAL%20%7B%0A%20%20%20%3Fitem%20wdt%3AP27%20%3Fnarrpers%3B%20wdt%3AP31%20%3Ftonality%3B%20wdt%3AP25%20%3Fpages.%20%0A%20%7D%0A%20BIND%28YEAR%28%3Fdate%29%20as%20%3Fyear%29.%0A%20BIND%28if%28bound%28%3Fnarrpers%29%2C%20%3Fnarrpers%2C%20%22unbekannt%22%29%20as%20%3Fnormalized%29%0A%20%3Fauthor%20rdfs%3Alabel%20%3Fauthorlabel.%0A%20FILTER%28LANG%28%3Fauthorlabel%29%20%3D%20%22en%22%29%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2C%20fr%22.%20%7D%0A%7D%20ORDER%20BY%20%3Fyear) 
+  - [Le nombre d'ouvrages écrits par chaque auteur](https://query.mimotext.uni-trier.de/#%23%20Get%20the%20count%20of%20written%20novels%20per%20authors%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FauthorName%20%28count%20%28%3FauthorName%29%20as%20%3Fcount%29%0AWHERE%20%7B%0A%20%20%20%3Fwork%20wdt%3AP5%20%3Fauthor%20.%20%23%20work%20has%20author.%0A%20%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorName%20.%20%23%20get%20author%20label%20%28not%20only%20Link%20to%20author%29%0A%20%20%20FILTER%28LANG%28%3FauthorName%29%20%3D%20%22en%22%29%20%23%20other%20options%3A%20%22fr%22%2C%20%22de%22.%20Filter%20is%20needed%20as%20there%20is%20more%20than%20one%20label%20%28language%20dependent%29%0A%7D%0A%0Agroup%20by%20%3FauthorName%0Aorder%20by%20desc%20%28%3Fcount%29%0A%0A)
+  <br/><br/>
+- Requêtes avec visualisation
+  - [Nombre de romans publiés par année](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20the%20first%20publication%20dates%20of%20all%20French%20novels%201751-1800%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20%28str%28SAMPLE%28year%28%3Fdate%29%29%29%20as%20%3Fyear%29%20%28COUNT%28%2a%29%20AS%20%3Fcount%29%0AWHERE%20%7B%0A%20%20%20%3Fitem%20wdt%3AP9%20%3Fdate%20.%0A%7D%0AGROUP%20BY%20%3Fdate%0AORDER%20BY%20DESC%28%3Fdate%29)
+  - [Les auteurs de romans (par date de naissance, avec portraits)](https://query.mimotext.uni-trier.de/#%23%20show%20authors%2C%20their%20Wikidata%20match%2C%20their%20birth%20dates%20in%20a%20timeline%20%0A%23defaultView%3ATimeline%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%20is%20wd%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%20is%20wdt%0ASelect%20%3Fauthor%20%3FauthorLabel%20%3FwikiLink%20%3Fbirth%20%3Fimage%20%0A%7B%0A%20%20%3Fauthor%20wdt%3AP11%20%3Foccupation.%0A%20%20%3Fauthor%20wdt%3AP13%20%3FwikiLink.%0A%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorLabel%0A%20%20Filter%28lang%28%3FauthorLabel%29%20%3D%20%22en%22%29%0A%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FwikiLink%20widt%3AP569%20%3Fbirth.%20%0A%20OPTIONAL%7B%20%20%20%3FwikiLink%20widt%3AP18%20%3Fimage.%7D%0A%0A%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%0A%7D%0A)
+  - [La forme narrative des romans par quantité (Bubble chart)](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20the%20narrative%20perspectives%20of%20the%20novels.%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20%28count%28%3FnarrativePerspectiveLabel%29%20as%20%3Fcount%29%20%3FnarrativePerspectiveLabel%20%0AWHERE%0A%7B%0A%20%20%3Fwork%20wdt%3AP33%20%3FnarrativePerspective.%20%23%20work%20%28novel%29%20has%20property%20P33%20%28narrative%20perspective%29%0A%20%20%3FnarrativePerspective%20rdfs%3Alabel%20%3FnarrativePerspectiveLabel.%20%23%20using%20of%20rdfs%3Alabel%20to%20display%20labels%0A%20%20%0A%20%20FILTER%28lang%28%3FnarrativePerspectiveLabel%29%20%3D%20%22en%22%29%20%23%20filter%20is%20neccessary%20to%20display%20only%20one%20occurence.%20Other%20possibilites%20would%20be%20%22en%22%20or%20%22de%22.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2C%20en%22.%20%7D%0A%20%0A%7D%0A%0Agroup%20by%20%3FnarrativePerspectiveLabel%0A%23defaultView%3ABubbleChart)
+  - [Histoire du livre : formats par année](https://query.mimotext.uni-trier.de/#%23defaultView%3ABarChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASelect%20%20%28str%28SAMPLE%28year%28%3Fdate%29%29%29%20as%20%3Fyear%29%20%28count%28%3Fformat%29%20as%20%3Fcount%29%20%3Fformat%20%0A%20%20%20WHERE%7B%0A%20%20%20%3Fitem%20wdt%3AP26%20%3Fformat.%0A%20%20%20%3Fitem%20wdt%3AP9%20%3Fdate%20.%0A%20%20FILTER%28lang%28%3Fformat%29%20%3D%20%22fr%22%29%0A%20%20FILTER%28YEAR%28%3Fdate%29%20%3C%201799%29%20%23%20filter%20for%20the%20publication%20date%20of%20interest%0A%23%20FILTER%28lcase%28%3Fformat%29%20%3D%20%2212-in%22%40fr%29%0A%20%20%20%20%20%20Filter%20%28regex%28lcase%28%3Fformat%29%2C%20%22in-%5C%5Cd%2B%5B%5C%5Cs%5C%5CS%5D%22%29%29%0A%20%20%20BIND%28str%28year%28%3Fdate%29%29%20as%20%3Fyear%29%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22%7BAUTO_LANGUAGE%7D%22%2C%22fr%22%20.%7D%0A%20%20%7D%0A%0AGROUP%20BY%20%3Fformat%20%3Fyear%20%3Fcount%0A%23having%20%28%3Fcount%3E%202%29%0A)
+  <br/><br/>
+- Exemple d'une requête fédérée 
+  - [Les lieux de l'action de tous les romans (federated query, map)](https://query.mimotext.uni-trier.de/#%23defaultView%3AMap%7B%22hide%22%3A%20%5B%22%3Fnar_loc%22%5D%2C%20%22markercluster%22%3A%22true%22%7D%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20wd%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20wdt%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fnar_loc%20%3Fnar_locLabel%20%3FWikiDataEntity%20%3FcoordinateLocation%0AWHERE%20%7B%20%3Fitem%20wdt%3AP32%20%3Fnar_loc.%0A%20%20%3Fnar_loc%20wdt%3AP13%20%3FWikiDataEntity.%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FWikiDataEntity%20widt%3AP625%20%3FcoordinateLocation%0A%20%20%7D%20%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%20%7D%0A%7D%0A)
+  <br/><br/>
+- Comparer les informations de deux sources
+  - [Thèmes du topic modeling](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Topic%20Modeling%20(Q21)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ21.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q21%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A) vs. [Thèmes de la BGRF](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Bibliographie%20du%20genre%20romanesque%20fran%C3%A7ais%2C%201751-1800%20(Q1)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ1.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q1%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A)
 
 --
-## (5) Conclusion
-
----
-#### Wissensnetzwerk ('Knowledge Graph')
-<a href="img/network-of-information_CRETA.png"><img height="500" src="img/network-of-information_CRETA.png"></img></a>
-
-::
-- Kleiner Ausschnitt: Abgleich zwischen Bibliographie und Topic Modeling und NER: Themen, Handlungsorte - Abgleich hier (zuvor punktuell)
+## (5) Conclusion – <br/>Avantages et difficultés 
 
 
 ---
-#### Les apports de la science ouverte 
+#### Quelques difficultés rencontrées en chemin
 
-- Exemple central: les "requêtes fédérées" 
-- MiMoTextBase et Wikidata, ensemble
-
-
-
----
-#### Herausforderungen
-
-* Modellierung von "Meta-Tripeln" ('reification'; 'qualifier' etc.) <!-- .element: class="fragment" data-fragment-index="1" -->
-	* {Voltaire AUTHOR_OF Candide} SOURCE Köhler_1984 <!-- .element: class="fragment" data-fragment-index="2" -->
-	* {Candide LEGAL_STATUS censored} TEMPORAL_SCOPE 1759-1765 <!-- .element: class="fragment" data-fragment-index="3" -->
-	* {[Subject] PREDICATE [Object]} RELIABILITY (low | middle | high} <!-- .element: class="fragment" data-fragment-index="4" -->
-* wenig Konsens in/über Literaturgeschichte; tendenziell Entkoppelung von 'Theorie' und 'Praxis'<!-- .element: class="fragment" data-fragment-index="5" -->
-* Standardisierung am Anfang (kein "literaturhistorisches CIDOC-CRM")<!-- .element: class="fragment" data-fragment-index="6" --> 
-* Implementierung (über verschiedene Tools hinweg)<!-- .element: class="fragment" data-fragment-index="7" -->
-* Konkretisierung von Nutzungsszenarien<!-- .element: class="fragment" data-fragment-index="8" -->
-* Mehrsprachigkeit (z.B. NER Fachliteratur)<!-- .element: class="fragment" data-fragment-index="9" -->
-* Entwicklung kontrollierter Vokabulare (z.B. 'Themen'-Werte in Pilotprojekt)<!-- .element: class="fragment" data-fragment-index="10" -->
+- La modélisation des méta-assertions<br/>=> plus ou moins résolue <!-- .element: class="fragment" data-fragment-index="1" --> 
+- Manque de consensus sur les assertions fondamentales<br/>=> approche bottom-up <!-- .element: class="fragment" data-fragment-index="2" --> 
+- La modélisation et le besoin d'ontologies formels <br/>=> documentation, mais pas en OWL <!-- .element: class="fragment" data-fragment-index="3" --> 
+- La volonté du multilinguisme <br/>=> traduire les étiquettes, mais est-ce assez? <!-- .element: class="fragment" data-fragment-index="4" --> 
+- L'extraction automatique d'assertions de la littérature scientifique<br/>=> reste difficile <!-- .element: class="fragment" data-fragment-index="5" --> 
+- Réunir des informations est une chose, les utiliser, une autre<br/>=> thèse en cours <!-- .element: class="fragment" data-fragment-index="6" --> 
+- ... <!-- .element: class="fragment" data-fragment-index="6" --> 
 
 ---
-#### Chancen von Wissensnetzwerken für die Literaturgeschichtsschreibung
+#### Avantages d'une histoire littéraire en réseau
 
+- Permet de réunir des informations de sources hétérogènes <!-- .element: class="fragment" data-fragment-index="1" -->  
+- Permet de réunir et comparer des informations contradictoire  <!-- .element: class="fragment" data-fragment-index="2" --> 
+- Permet de rendre transparent le processus de construction du savoir (sources) <!-- .element: class="fragment" data-fragment-index="3" --> 
+- Permet d'utiliser des informations déjà en place ailleurs (requêtes fédérées) <!-- .element: class="fragment" data-fragment-index="4" --> 
+- Nous a permis, en tant qu'équipe, d'apprendre beaucoup de choses <!-- .element: class="fragment" data-fragment-index="5" --> 
+- ... <!-- .element: class="fragment" data-fragment-index="6" --> 
 
-* (1) Linked Open Data-Paradigma als Ansatz <!-- .element: class="fragment" data-fragment-index="1" -->
-	* Pluralität von Perspektiven, Heterogenität der Quellen <!-- .element: class="fragment" data-fragment-index="2" -->
-	* Referenzierung der Quellen ist möglich; gezieltere Suchoptionen in Abhängigkeit von Qualifiern insgesamt <!-- .element: class="fragment" data-fragment-index="3" -->
-	* unsichere Informationen können berücksichtigt werden (Zuverlässigkeitsgrad "qualifizierbar") <!-- .element: class="fragment" data-fragment-index="4" -->
-	* widersprüchliche, komplementäre Informationen können nebeneinander bestehen <!-- .element: class="fragment" data-fragment-index="5" -->
-* (2) Standardisierungsprozesse als Reflexionsanlass & Dialogpotential <!-- .element: class="fragment" data-fragment-index="6" -->
-	* viele Fragen: Was sind in einer Disziplin / Community die relevanten Entitäten und Relationen? Welche Aussagetypen sind (jenseits von Metadaten) notwendig? Welche könnten nützlich sein? <!-- .element: class="fragment" data-fragment-index="7" -->
-	* Metaperspektive auf disziplinären Diskurs <!-- .element: class="fragment" data-fragment-index="8" -->
-
-
-
----
-### Textanalysen reflektierend-rekursiv?
-<a href="img/mimotextanalysen2.png"><img height="400" src="img/mimotextanalysen2.png"></img></a>
-
+  
 
 ---
 #### Un grand merci! 
@@ -589,10 +596,11 @@ Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 <img height="60" data-src="img/basics/mimotext-logo.png">
 
 **Pour en savoir plus** 
-- Actualités du projet: https://mimotext.uni-trier.de/en
-- Tutoriel pour la MiMoTextBase: https://docs.mimotext.uni-trier.de
-- SPARQL endpoint: https://query.mimotext.uni-trier.de
-- MiMoTextBase: https://data.mimotext.uni-trier.de
+- Actualités du projet : https://mimotext.uni-trier.de/en
+- Tutoriel pour la MiMoTextBase : https://docs.mimotext.uni-trier.de
+- SPARQL endpoint : https://query.mimotext.uni-trier.de
+- MiMoTextBase : https://data.mimotext.uni-trier.de
+- MiMoText Ontology : https://github.com/MiMoText/ontology
 - Publication de référence: ['Smart Modeling for Digital Literary History'](https://www.euppublishing.com/doi/10.3366/ijhac.2022.0278)
 
 **Lien vers cette page**
