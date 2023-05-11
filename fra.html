@@ -104,109 +104,7 @@
 - Tout est entièrement ouvert: corpus, méthodes, publications, ressources, résultats. 
 
 
-<!-- 
 
----
-#### Qu'est-ce que l'historiographie littéraire ?
-
-- Objectifs  <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Collectionner et documenter des faits (?) sur l'histoire littéraire
-  - En déduire l'évolution de l'histoire littéraire 
-  - En déduire des explications pour cette évolution
-<br/><br/>    
-- Principes d'organisation  <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Nations / langues, périodes, mouvements, genres, auteurs
-  - Similarités et différences
-  - continuités et ruptures
-<br/><br/>    
-- Explications pour l'évolution littéraire <!-- .element: class="fragment" data-fragment-index="3" -->
-  - contexte culturel et socio-historique
-  - dynamique interne du système littéraire 
-  - production continue d'innovation / d'intérêt 
-   
-
-:: 
-- Question fondamentale, à laquelle nous revenons constamment
-- Expliquer les points sur les slides
-- Au final: très peu d'accord sur les principes 
-- Et surtout : très peu d'accord sur les informations fondamentalement pertinentes de l'histoire littéraire 
-- Alors, on se demande: 
-  - Quelles informations devrait-on relever ? 
-  - Quelles informations pouvons-nous relever ? 
-- Une source d'inspiration pourraient être d'autres projets similaires 
-
-
----
-#### Projet précurseur : la BDHL
-
-<img height="300" data-src="img/bdhl.png">
-
-- Henri Béhar (Paris III), à partir de 1985 (!)
-- 500 auteurs, 2000 oeuvres 
-- métadonnées, dont genres / sous-genres et canonicité
-
-::
-- Henri Béhar, pionnier des humanités numériques 
-- BDHL comme précurseur 
-  - auteurs, oeuvres, genres / sous-genres, thèmes, éditeurs, prix 
-  - interactif, statistique
-  - particularité: données sur la canonicité à travers les manuels scolaires et universitaires
-- Mais c'est aussi une sorte d'avertissement
-  - très focalisé sur les oeuvres canoniques (500 auteurs, 2000 oeuvres) 
-  - => comment assurer qu'une telle ressource reste pertinente par rapport aux études littéraires telles qu'elles évoluent ? 
-  - pas ouvert dans le sens du travail collaboratif
-  - => comment assurer que la base reste ouverte au contexte des données existants ailleurs (LOD, donnés d'autorité)
-  - n'est plus maintenu, plus fonctionnel
-  - => Comment intégrer la ressource dans des infrastructures plus générales
-
----
-#### Projets voisins : histoire du livre / de la littérature  
-
-<a href="img/mediate.png"><img height="300" data-src="img/mediate.png"></a>
-
-- MPCE: Mapping Print, Charting Enlightenment (Simon Burrows, Univ. of Sydney)
-- MEDIATE: Measuring Enlightenment. Disseminating Ideas, Authors and Texts in Europe, 1665-1830 (Alicia Montoya, Radboud University)
-- MODERN: Modelling Enlightenment. Reassembling Networks of Modernity through data-driven research (Glenn Roe, Paris-Sorbonne)
-
-::
-- projets très pertinents, axés plus sur l'histoire du livre, et l'époque des Lumières
-- mais développant bien sur des bases de données avec potentiellement beaucoup d'informations pertinentes pour MiMoText aussi. 
-- Cependant, pas vraiment pensés dans l'esprit de la science ouverte (plus pour MEDIATE que pour MPCE, peut-être) 
-- MPCE: tjs pas disponible; MEDIATE: version préliminaire, seulement avec un compte. 
-- et MODERN, bien sûr ! On verra bien ce qu'on pourrait faire ensemble. 
-
----
-#### Quelles informations sont pertinentes et disponibles ?
-
-- Ressources bibliographiques  <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Métadonnées : auteurs, oeuvres, éditeurs, etc. (histoire du livre)
-  - Mots-clés (dans la BGRF): lieu, thèmes, protagonistes, tonalité
-<br/><br/>    
-- Historiographie littéraire  <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Résumés portant sur l'histoire racontée, les thèmes
-  - Description / classements en terme de genre, période, style, etc.
-  - Déclarations sur les relations entre auteurs, entre oeuvres
-  - Jugements de valeur sur les auteurs et les oeuvres
-<br/><br/>    
-- Romans <!-- .element: class="fragment" data-fragment-index="3" -->
-  - la longeur des textes
-  - lieu de l'action (NER) 
-  - les noms des personnages (NER, réseaux)
-  - les thèmes (Topic Modeling)
-  - la tonalité (Sentiment Analysis)
-  - la proportion du discours direct des personnages (ML)
-  - la similarité entre les romans (stylométrie)
-  - etc. 
-
-::
-- Structuré selon les trois axes du projet 
-- Une certaine tension entre ce qui est pertinent et ce qui est possible
-- Cela devient intéressant, quant on a plusieurs sources d'informations pour le même type d'informations 
-- Exemples: 
-  - Thèmes selon publications scientifiques vs. Topic Modeling;
-  - lieux de l'action selon BGRF vs. Named Entity Recognition sur les romans
-
--->
 
 ---
 #### Objectifs du projet
@@ -272,9 +170,15 @@
   - ~58.000 pièces d'information (22 / roman)
 <br/><br/>
 - Autres informations disponibles <!-- .element: class="fragment" data-fragment-index="2" -->
-  - ~720 romans à la première personne
-  - ~920 romans à la troisième personne
-  - ~2210 entrées avec des informations sur le contenu (les mots-clés)
+  - forme narrative
+    - ~720 romans à la première personne
+    - ~920 romans à la troisième personne
+  - ~2210 entrées avec informations sur le contenu: 
+    - lieux
+    - protagonistes
+    - thèmes
+    - histoire
+    - tonalité
 
 
 ::
@@ -286,64 +190,31 @@
 
 
 ---
-### Axe 2 : Les textes littéraires (romans)
+#### Axe 2 : Les textes littéraires (romans)
+
+<img height="350" src="img/roman18.jpg"></img>
+
 - Corpus de romans français du dix-huitième siècle (1751-1800) <!-- .element: class="fragment" data-fragment-index="1" -->
   - Dirigée par Julia Röttgermann
+  - 200 roman en XML-TEI (schéma ELTeC)
   - Disponible en ligne: https://github.com/mimotext/roman18
-  <br/><br/>
-- Analyses du corpus <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Topic Modeling, pour obtenir les thèmes les plus pertinents de chaque roman
-  - Named Entity Recognition, pour obtenier les lieux de l'action 
-  - etc. 
 
 ::
 - Corpus établi par Julia Röttgermann. 
-- Source de 'statements' à travers plusieurs analyses 
-
-
-
----
-#### Le corpus de romans français du 18e siècle (1751-1800)
-
-<img height="400" src="img/roman18.jpg"></img>
-<br/><p>Corpus de romans français du dix-huitième siècle (1750-1800)<br/>dirigée par Julia Röttgermann. </p>
-
-::
 - Différentes sources, du TEI tout prêt au livre à scanner
 - Double keying pour un groupe de roman, modèle OCR adaptée pour OCR4all.
 - Disponible ouvertement sur Github et Zenodo 
-- Effort de suivre les principes FAIR 
-- Améliorations encore en cours, mais en principe, le corpus est prêt 
+- Source de 'statements' à travers plusieurs analyses 
 
 
 ---
-#### Topic Modeling - Quelques résultats
-<a href="img/pilot_mod200_fr_10_500_expStop.html"><img height="500" src="img/pyldavis.png"></img></a>
+#### Analyses du corpus de romans
 
-::
-- Quelques topics: famille, philosophie, amour, monarchie, sexualité, lire/écrire, mort, etc. 
-- Pour chaque roman, nous retenons les 5 topics avec la plus grande probabilité (c'est arbitraire, mais utile) 
-- Le modèle entier est aussi disponible en ligne, bien sûr.  
+- Topic Modeling, pour obtenir les thèmes les plus pertinents de chaque roman
+- Named Entity Recognition, pour obtenier les lieux de l'action 
+- Stilométrie, pour obtenir la similarité (stylistique) des romans
+- etc. 
 
-
----
-#### Deux topics majeurs
-<br/>
-"monarchie" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "amour"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<br/><img height="250" src="img/topic_002.png"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="250" src="img/topic_009.png"></img>
-
-- Pour chaque roman du corpus : les 5 topics principaux
-- Les étiquettes viennent d'un vocabulaire contrôlée multilingue
-
-::
-- Tout d'abord, il faudrait dire que les topics != thèmes 
-- Cependant, les topics expriment quand même les préoccupations thématiques des romans, y inclus le personnel, le setting etc. 
-- Chaque topic a besoin d'une étiquette, c'est un processus manuel 
-- L'attribution des étiquettes s'appuie sur un vocabulaire contrôlée de termes 
-- Le vocabulaire est dérivée du Dictionnaire européen des Lumières 
-- Nous l'avons complété et traduit en allemand et anglais (multilingue!)
-- En plus de l'étiquette, on peut voir les mots les plus probables de chaque topic;
-- Pour plus de transparende, le modèle entier est disponible aussi
 
 
 ---
@@ -364,23 +235,6 @@
 - les assertions annotéés peuvent être rentrés dans la Wikibase
 - mais elles doivent servir aussi comme données d'entraînement 
 - (C'est une étape sur laquelle on travaille encore)
-
-
----
-#### Exemple d'une annotation au niveau 'Named Entity' 
-<a href="img/inception_Candide-disambiguation.png"><img height="350" src="img/inception_Candide-disambiguation.png"></img></a>
-
-- Annotation des auteurs et des ouvrages (sujet ou objet dans les assertions)
-- Entités sont liés à des fichiers d'autorité (MiMoTextBase / Wikidata)
-
-
-::
-- L'annotation relie les entités aux fiches d'autorité 
-- (cela peut être notre instance Wikibase, ou bien Wikidata plus généralemnet)
-- elle contient les auteurs et oeuvres de la BGRF essentiellement
-- Cela permet, entre autres, de désambiguiser les entités. 
-
-
 
 
 ---
@@ -612,7 +466,7 @@ Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
 
 **Lien vers cette page**
 
-https://mimotext.github.io/lod-lithist/fra.html#/6/6
+https://mimotext.github.io/lod-lithist/fra.html#/6/3
 
 
  
@@ -732,6 +586,127 @@ https://mimotext.github.io/lod-lithist/fra.html#/6/6
 ---
 #### Wikibase: Referenzierung von Aussagen
 <a href="img/candide_statement_referenzierung.png"><img height="500" src="img/candide_statement_referenzierung.png"></img></a>
+
+
+---
+#### Qu'est-ce que l'historiographie littéraire ?
+
+- Objectifs  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Collectionner et documenter des faits (?) sur l'histoire littéraire
+  - En déduire l'évolution de l'histoire littéraire 
+  - En déduire des explications pour cette évolution
+<br/><br/>    
+- Principes d'organisation  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Nations / langues, périodes, mouvements, genres, auteurs
+  - Similarités et différences
+  - continuités et ruptures
+<br/><br/>    
+- Explications pour l'évolution littéraire <!-- .element: class="fragment" data-fragment-index="3" -->
+  - contexte culturel et socio-historique
+  - dynamique interne du système littéraire 
+  - production continue d'innovation / d'intérêt 
+   
+
+:: 
+- Question fondamentale, à laquelle nous revenons constamment
+- Expliquer les points sur les slides
+- Au final: très peu d'accord sur les principes 
+- Et surtout : très peu d'accord sur les informations fondamentalement pertinentes de l'histoire littéraire 
+- Alors, on se demande: 
+  - Quelles informations devrait-on relever ? 
+  - Quelles informations pouvons-nous relever ? 
+- Une source d'inspiration pourraient être d'autres projets similaires 
+
+
+---
+#### Projet précurseur : la BDHL
+
+<img height="300" data-src="img/bdhl.png">
+
+- Henri Béhar (Paris III), à partir de 1985 (!)
+- 500 auteurs, 2000 oeuvres 
+- métadonnées, dont genres / sous-genres et canonicité
+
+::
+- Henri Béhar, pionnier des humanités numériques 
+- BDHL comme précurseur 
+  - auteurs, oeuvres, genres / sous-genres, thèmes, éditeurs, prix 
+  - interactif, statistique
+  - particularité: données sur la canonicité à travers les manuels scolaires et universitaires
+- Mais c'est aussi une sorte d'avertissement
+  - très focalisé sur les oeuvres canoniques (500 auteurs, 2000 oeuvres) 
+  - => comment assurer qu'une telle ressource reste pertinente par rapport aux études littéraires telles qu'elles évoluent ? 
+  - pas ouvert dans le sens du travail collaboratif
+  - => comment assurer que la base reste ouverte au contexte des données existants ailleurs (LOD, donnés d'autorité)
+  - n'est plus maintenu, plus fonctionnel
+  - => Comment intégrer la ressource dans des infrastructures plus générales
+
+---
+#### Projets voisins : histoire du livre / de la littérature  
+
+<a href="img/mediate.png"><img height="300" data-src="img/mediate.png"></a>
+
+- MPCE: Mapping Print, Charting Enlightenment (Simon Burrows, Univ. of Sydney)
+- MEDIATE: Measuring Enlightenment. Disseminating Ideas, Authors and Texts in Europe, 1665-1830 (Alicia Montoya, Radboud University)
+- MODERN: Modelling Enlightenment. Reassembling Networks of Modernity through data-driven research (Glenn Roe, Paris-Sorbonne)
+
+::
+- projets très pertinents, axés plus sur l'histoire du livre, et l'époque des Lumières
+- mais développant bien sur des bases de données avec potentiellement beaucoup d'informations pertinentes pour MiMoText aussi. 
+- Cependant, pas vraiment pensés dans l'esprit de la science ouverte (plus pour MEDIATE que pour MPCE, peut-être) 
+- MPCE: tjs pas disponible; MEDIATE: version préliminaire, seulement avec un compte. 
+- et MODERN, bien sûr ! On verra bien ce qu'on pourrait faire ensemble. 
+
+---
+#### Quelles informations sont pertinentes et disponibles ?
+
+- Ressources bibliographiques  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Métadonnées : auteurs, oeuvres, éditeurs, etc. (histoire du livre)
+  - Mots-clés (dans la BGRF): lieu, thèmes, protagonistes, tonalité
+<br/><br/>    
+- Historiographie littéraire  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Résumés portant sur l'histoire racontée, les thèmes
+  - Description / classements en terme de genre, période, style, etc.
+  - Déclarations sur les relations entre auteurs, entre oeuvres
+  - Jugements de valeur sur les auteurs et les oeuvres
+<br/><br/>    
+- Romans <!-- .element: class="fragment" data-fragment-index="3" -->
+  - la longeur des textes
+  - lieu de l'action (NER) 
+  - les noms des personnages (NER, réseaux)
+  - les thèmes (Topic Modeling)
+  - la tonalité (Sentiment Analysis)
+  - la proportion du discours direct des personnages (ML)
+  - la similarité entre les romans (stylométrie)
+  - etc. 
+
+::
+- Structuré selon les trois axes du projet 
+- Une certaine tension entre ce qui est pertinent et ce qui est possible
+- Cela devient intéressant, quant on a plusieurs sources d'informations pour le même type d'informations 
+- Exemples: 
+  - Thèmes selon publications scientifiques vs. Topic Modeling;
+  - lieux de l'action selon BGRF vs. Named Entity Recognition sur les romans
+
+
+
+
+---
+#### Exemple d'une annotation au niveau 'Named Entity' 
+<a href="img/inception_Candide-disambiguation.png"><img height="350" src="img/inception_Candide-disambiguation.png"></img></a>
+
+- Annotation des auteurs et des ouvrages (sujet ou objet dans les assertions)
+- Entités sont liés à des fichiers d'autorité (MiMoTextBase / Wikidata)
+
+
+::
+- L'annotation relie les entités aux fiches d'autorité 
+- (cela peut être notre instance Wikibase, ou bien Wikidata plus généralemnet)
+- elle contient les auteurs et oeuvres de la BGRF essentiellement
+- Cela permet, entre autres, de désambiguiser les entités. 
+
+
+
 
 
 </textarea>
