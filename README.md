@@ -2,7 +2,8 @@
 Linked Open Data und Literary History (MiMoText)
 
 
-## Version francaise (4/2023)
+## Versions 
 
-- Online: https://mimotext.github.io/lod-lithist/fra.html#/
-- In the repository: fra.html
+- fra (4/2023): https://mimotext.github.io/lod-lithist/fra.html#/
+- eng (7/2023): https://mimotext.github.io/lod-lithist/eng.html#/
+- ger: https://mimotext.github.io/lod-lithist/
