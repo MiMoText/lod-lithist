@@ -26,11 +26,11 @@
 <!-- ============ BEGINNING OF SLIDE CONTENT =========== -->
 
 <textarea data-template>
-# Towards an ontology for literary history: issues of complexity and scale when constructing the MiMoTextBase 
+## Towards an ontology for literary history: issues of complexity and scale when constructing the MiMoTextBase 
 <img height="60" data-src="img/basics/mimotext-logo.png">
 <br/>
 <hr/>
-<p>Christof Schöch and Maria Hinzmann<br/>, with Julia Röttgermann, Tinghui Duan, Anne Klee, Moritz Steffes</p>
+<p>Christof Schöch and Maria Hinzmann<br/>, with Julia Röttgermann, Tinghui Duan, Anne Klee, Moritz Bremm</p>
 <br/>
 <p><a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a></p>
 <p><strong><emph>Ontologies for Narrative and Fiction, Groningen</emph> | July 3-4, 2023</strong></p>
@@ -49,45 +49,23 @@
 
 --
 ## Structure
-1. [Introduction – L'histoire littéraire en réseau](#/2)
-2. [Mining – L'extraction d'informations](#/3)
-3. [Modeling – La représentation des informations](#/4)
-4. [Exemples – Navigation et requêtes](#/5)
-5. [Conclusion – Avantages et difficultés](#/6)
+1. [Mining and Modeling Text: Linked Open Literary History](#/2)
+2. [MiMoText: Design, implementation, use of ontologies](#/3)
+5. [Conclusion](#/4)
 
 
 ::
-- Je commence par une introduction au projet et un peu de contexte
-- Mining: comment nous obtenons les informations à partir des sources 
-- Modeling: comment nous représentons les informations, 
-- dans le but de les mettre en réseau, de les relier entr-eux
-- "Mining" et "Modeling" se passent cependant en parallèle, pas l'un après l'autre
-
+- Happy to be here
+- Collaborative project, thanks to the whole team 
+- Aim: to provide some background on the project
+- Then, focus on the role of the design and use of ontologies in the project
+- I will do the first part, Maria Hinzmann the second
 
 --
-## (1) Introduction – <br/>L'histoire littéraire en réseau
+## (1) Mining and Modeling Text:<br/>Linked Open Literary History
 
 ---
-#### Contexte: Trier Center for Digital Humanities
-<a href="https://tcdh.uni-trier.de/en"><img height="320" data-src="img/tcdh.png"></a>
-
-- Centre de recherche en humanités numériques fondé en 1998
-- Trois domaines de recherche 
-  - Édition de textes et lexicographie numériques
-  - Infrastructures et outils de recherche 
-  - Études littéraires et culturelles computationelles
-- En savoir plus: https://tcdh.uni-trier.de/en
-
-:: 
-- Projet est mené au TCDH
-- TCDH: Fondée en 1998, par Kurt Gärtner; 
-- Dirigé par Claudine Moulin depuis 2003; avec moi depuis 2017. 
-- Les trois domaines de recherche principaux
-- Environ 30 chercheuses et chercheurs 
-- Bien plus de cent projets menés à bien 
-
----
-#### MiMoText: première approche 
+#### MiMoText in a nutshell 
 <a href="img/overview_eng.jpg"><img height="450" data-src="img/overview_eng.jpg"></a>
 <br/><a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a>
 
@@ -121,269 +99,8 @@
   - Facilitér des scénarios d'analyse poussés  
   
 
-::
-- Le challenge : comment obtenir et relier ces informations? 
-- Pour réaliser ces objectifs ? 
-- Nous le verrons maintenant
-  - obtenir => Mining
-  - relier => Modeling
-
-  
-
---
-## (2) Mining - <br/>L'extraction d'informations
-
 ---
-### Axe 1 : La _Bibliographie du genre romanesque français_ 
-<a href="img/bgrf-Candide.png"><img height="400" src="img/bgrf-Candide.png"></img></a>
-
-- Martin / Mylne / Frautschi: <em>Bibliographie<br/> du genre romanesque français, 1751-1800</em>, 1977
-- Version en RDF: https://doi.org/10.5281/zenodo.3401428 (2019)
-
-
-::
-- Bibliographie presque exhaustive, établie sur plusieurs années 
-- L'image montre une entrée parmi les 2500 entrées; Candide de Voltaire
-- (Cet ouvrage va revenir plusieurs fois dans la suite de la présentation)
-- On voit un peu quelles informations sont contenues dans la bibliographie 
-  - métadonnées bibliographiques
-  - informations sur le contenu: protagonistes, lieux, thèmes, histoire, tonalité.  
-  - histoire éditoriale: rééditions
-
----
-#### La BGRF en RDF 
-<a href="img/bgrf-Candide-RDF.png"><img height="500" src="img/bgrf-Candide-RDF.png"></img></a>
-
-
-::
-- On a numérisé et modélisé tout cela en RDF en 2019 (Andreas Lüschow). 
-- Processus de OCR, puis annotation partielle, puis machine learning 
-- Puis modélisation: chaque morceau d'information est liée à un élément dans une Ontologie 
-- Différents modules de la famille des ontologies SPAR. 
-- Maintenant : tout est transféré dans notre instance Wikibase  
-
----
-#### Combien d'informations se trouvent dans la BGRF ?  
-* Quelques statistiques (sur base de notre version en RDF) <!-- .element: class="fragment" data-fragment-index="1" -->
-  - ~1100 auteur(e)s différent(e)s
-  - ~2600 entrées (romans)
-  - ~58.000 pièces d'information (22 / roman)
-<br/><br/>
-- Autres informations disponibles <!-- .element: class="fragment" data-fragment-index="2" -->
-  - forme narrative
-    - ~720 romans à la première personne
-    - ~920 romans à la troisième personne
-  - ~2210 entrées avec informations sur le contenu: 
-    - lieux
-    - protagonistes
-    - thèmes
-    - histoire
-    - tonalité
-
-
-::
-- Expliquer d'abord les statistiques 
-- Quelques remarques supplémentaires 
-  - La bibliographie représente la fondation du projet: les auteurs et les ouvrages. 
-  - C'est une bibliographie exhaustive: pas de limitations qui dépendent du prestige ou de la notoriété des auteurs (autre que le processus historique)
-- Quand nous relevons d'autres informations, elles sont toujours reliées à ces auteurs et ouvrages; le coeur du réseau, en quelque sorte
-
-
----
-#### Axe 2 : Les textes littéraires (romans)
-
-<img height="350" src="img/roman18.jpg"></img>
-
-- Corpus de romans français du dix-huitième siècle (1751-1800) <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Dirigée par Julia Röttgermann
-  - 200 roman en XML-TEI (schéma ELTeC)
-  - Disponible en ligne: https://github.com/mimotext/roman18
-
-::
-- Corpus établi par Julia Röttgermann. 
-- Différentes sources, du TEI tout prêt au livre à scanner
-- Double keying pour un groupe de roman, modèle OCR adaptée pour OCR4all.
-- Disponible ouvertement sur Github et Zenodo 
-- Source de 'statements' à travers plusieurs analyses 
-
-
----
-#### Analyses du corpus de romans
-
-- Topic Modeling, pour obtenir les thèmes les plus pertinents de chaque roman
-- Named Entity Recognition, pour obtenier les lieux de l'action 
-- Stilométrie, pour obtenir la similarité (stylistique) des romans
-- etc. 
-
-
-
----
-### Axe 3: L'historiographie littéraire
-
-- Objectif : obtenir des assertions pertinentes de l'historiographie littéraire  <!-- .element: class="fragment" data-fragment-index="1" -->
-- Dans une première étape : des chapitres / panoramas sur le roman du 18e  <!-- .element: class="fragment" data-fragment-index="2" -->
-- Une approche qui allie annotation manuelle et machine learning  <!-- .element: class="fragment" data-fragment-index="3" -->
-  - Des guides d'annotation (en lien avec le modèle de données)
-  - Une annotation manuelle (assertions + données d'entraînement)
-  - En s'appuyant sur une instance INCEPTION reliée à la Wikibase 
-  - (Ensuite : entraînement d'un algorithme de reconnaissance automatique)
-
-::
-- on voit ici un peu la complexité de la tâche 
-- le guide d'annotation dépend du modèle des données 
-- mais le modèle des données dépend aussi de l'experience d'annotation 
-- les assertions annotéés peuvent être rentrés dans la Wikibase
-- mais elles doivent servir aussi comme données d'entraînement 
-- (C'est une étape sur laquelle on travaille encore)
-
-
----
-#### Annotation au niveau 'Predicate' 
-<a href="img/inception_genre.png"><img height="350" src="img/inception_genre.png"></img></a>
-
-- Dans l'exemple, c'est le prédicat "hasGenre" qui est utilisé
-- Sujet: Bélisaire (Wikidata: Q5005038)
-* Objet: "novel / roman" (Wikidata: Q8261)
-
-::
-- "hasGenre" est un prédicat défini dans notre propre ontologie
-- Dans Wikidata, il y bien "genre" (Q483394) et "literary genre" (Q223393), mais c'est une entité, pas un prédicat 
-- Mais on s'approche de plus en plus de la question de la modélisation des données 
-- Autant en parler explicitement. 
-
-
-
-
-
-
-
---
-## (3) Modélisation – <br/>La mise en réseau des données 
-
-
----
-#### Approche de modélisation : Linked Open Data (LOD)
-<img height="400" data-src="img/rdf11-primer-example-graph.jpg">
-	
-Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
-
-::
-- On voit des entités, comme des personnes, des oeuvres, etc. 
-- Et on voit des liens entre les entités, comme "is interested in" ou "is a friend of"
-- C'est le principe des Linked Open Data 
-- C'est aussi à la base de Wikidata, le pendant côté données de Wikipédia. 
-
-
----
-#### Modélisation S-P-O dans MiMoText
-<a href="img/candide_S-P-O.png"><img height="500" src="img/candide_S-P-O.png"></img></a>
-
-
-
----
-#### Quelques principes de la modélisation
-- Linked Open Data <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Un grand nombre d'assertions simples 
-  - Une structure en triplets: sujet, prédicat, objet 
-  - Un inventaire d'entités, mais surtout un inventaire de prédicats
-<br/><br/>
-- Les entités (sujets) fondamentaux en histoire littéraire <!-- .element: class="fragment" data-fragment-index="2" -->
-  - les personnes (auteurs, éditeurs, imprimeurs, etc.)
-  - les publications (littérature primaire, littérature scientifique)
-  - les événements (naissance, mort, publication, réception) 
-  - plus compliqué: les entités objets (e.g. genres, styles) et les prédicats 
-
-:: 
-- Simplement expliquer les points sur le slide.
-
-
----
-#### Quelques exigences du LOD 
-
-- Fiches d'autorité / standards  <!-- .element: class="fragment" data-fragment-index="1" --> 
-  - Wikidata IDs, principalement
-  - Mais aussi : BGRF, GND, Getty TGN, etc. 
-  - Standards comme RDF, XML-TEI, etc. 
-  <br/><br/>
-- Ontologies de prédicats et d'objets  <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Vocabulaire + structure pour assertions thématiques
-  - Vocabulaire + structure pour assertions sur forme narrative
-  - 11 modules, voir : https://github.com/MiMoText/ontology
-  <br/><br/>
-- Un esprit d'ouverture et de transparence   <!-- .element: class="fragment" data-fragment-index="3" -->
-  - Usage exclusif de logiciels libres (OCR4all, Inception, Wikibase, etc.)
-  - Mises en ligne continuelles ("release early, release often") 
-  - Les sources des assertions sont indiquées 
-  - Tout est amplement documenté (Tutoriel, etc.)
-
-::
-- (Simplement expliquer les points.)
-
-
----
-#### Patrons d'assertions (1): simples / bibliographiques 
-
-- {person} _author_of_ {publication} 
-<br/><br/>
-- {publication} _place_of_publication_ {place} 
-<br/><br/>
-- {publication} _publication_date_ {year}
-<br/><br/>
-- {publication} _instance_of_ "literary work" (Q2)
-
-:: 
-- simples métadonnées bibliographiques
-- peu de discussion sur l'ontologie 
-
----
-#### Patrons d'assertions (2) : simples, analytiques 
-
-- {publication} _narrative_location_ {place}, {place}, {place}, ... 
-<br/><br/>
-- {publication} _characters_string_ {string de la BGRF}
-<br/><br/>
-- {publication} _full_work_available_at_ {lien vers texte dans notre corpus}  
-
-
-::
-- Simples, parce que le prédicat est clair, et l'objet peut être dérivé de la source 
-  
-
----
-#### Patrons d'assertions (3) : interprétatifs 
-
-- {publication} _narrative_form_ {autodiegetic | homodiegetic | heterodiegetic | epistolary | dialogue | mixed}
-<br/><br/>
-- {publication} _about_ {thème du vocabulaire thématique}, {thème}, {thème}, ...
-<br/><br/>
-
-
-:: 
-- Compliqueés, avant tout parce que l'objet demande une ontologie ou un vocabulaire contrôlé
-- Aussi, parce qu'il faut appliquer le vocabulaire aux informations que nous avons
-- Une sorte de diversity paradox
-- Le multilinguisme des vocabulaires et les difficultés de la traduction
-
-
----
-#### Méta-assertions : sources 
-<img height="400" src="img/mimotextbase_sources.png"></img>
-
-- [ {publication} _about_ {thème} ] _stated_in_ {source}
-
-::
-- Pour beaucoup d'assertions, il y a une source 
-- BGRF, un topic model spécifique, une analyse NER, etc. 
-- Souvent : passage de la source et une abstraction modélisée  
-- C'est souvent intéressant de comparer les informations sur un point donnée mais venant de différentes sources (assertions, pas "faits"!)
-
-
-
---
-## (4) Illustration – Navigation<br/> et requêtes dans la MiMoTextBase  
-
----
-#### La MiMoTextBase
+#### Result: the MiMoTextBase
 <a href="http://data.mimotext.uni-trier.de/wiki/Main_Page"><img height="450" src="img/mimotextbase.png"></img></a>
 
 - http://data.mimotext.uni-trier.de
@@ -426,7 +143,7 @@ Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
   - [Thèmes de la BGRF (string, label, Q1) vs. du topic modeling (label, Q21)](https://query.mimotext.uni-trier.de/index.html#prefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0APREFIX%20p%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%3Fwork%20%3FworkLabel%20%3FthemeString%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%20%0AWHERE%20%7B%0A%20%20%3Fwork%20wdt%3AP2%20wd%3AQ2%20%3B%20%23%20instance%20of%20literary%20work%0A%20%20%20%20%20%20%20%20wdt%3AP21%20%3FfullTextURL%20%3B%20%23%20work%20is%20part%20of%20%22roman18%22%20(github.com%2FMiMoText%2Froman18)%0A%20%20%20%20%20%20%20%20wdt%3AP36%20%3FthemeItem%20.%20%23%20narrative%20location%20with%20item%20%0A%20%20%3Fwork%20wdt%3AP30%20%3FthemeString%20.%20%23%20narrative%20location%20with%20string%0A%20%20OPTIONAL%20%7B%20%0A%20%20%20%20%3FthemeItem%20rdfs%3Alabel%20%3FthemeItemLabel.%20FILTER(LANG(%3FthemeItemLabel)%20%3D%20%22fr%22)%20%0A%20%20%20%20%3FthemeItemStatement%20ps%3AP36%20%3FthemeItem.%0A%20%20%20%20%3FthemeItemStatement%20prov%3AwasDerivedFrom%20%3Frefnode.%0A%20%20%20%20%3Frefnode%20pr%3AP18%20%3FsourceItem.%0A%20%20%20FILTER(%3FsourceItem%20%3D%20wd%3AQ1%20%7C%7C%20%3FsourceItem%20%3D%20wd%3AQ21)%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22fr%22%20%7D%0A%7D%0AGROUP%20BY%20%3FworkLabel%20%3Fwork%20%3FthemeString%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%0AORDER%20BY%20ASC%20(%3FworkLabel))
 
 --
-## (5) Conclusion – <br/>Avantages et difficultés 
+## (3) Conclusion 
 
 
 ---
@@ -453,21 +170,21 @@ Source: <br/><a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR
   
 
 ---
-#### Un grand merci! 
+#### Many thanks! 
 
 <img height="60" data-src="img/basics/mimotext-logo.png">
 
-**Pour en savoir plus** 
-- Actualités du projet : https://mimotext.uni-trier.de/en
-- Tutoriel pour la MiMoTextBase : https://docs.mimotext.uni-trier.de
-- SPARQL endpoint : https://query.mimotext.uni-trier.de
-- MiMoTextBase : https://data.mimotext.uni-trier.de
-- MiMoText Ontology : https://github.com/MiMoText/ontology
-- Publication de référence: ['Smart Modeling for Digital Literary History'](https://www.euppublishing.com/doi/10.3366/ijhac.2022.0278)
+**To learn more** 
+- News about the project: https://mimotext.uni-trier.de/en
+- Tutorial for the MiMoTextBase: https://docs.mimotext.uni-trier.de
+- SPARQL endpoint: https://query.mimotext.uni-trier.de
+- MiMoTextBase: https://data.mimotext.uni-trier.de
+- MiMoText Ontology: https://github.com/MiMoText/ontology
+- Reference publication: ['Smart Modeling for Digital Literary History'](https://www.euppublishing.com/doi/10.3366/ijhac.2022.0278)
 
-**Lien vers cette page**
+**Link to this page**
 
-https://mimotext.github.io/lod-lithist/fra.html#/6/3
+https://mimotext.github.io/lod-lithist/eng.html#/4/3
 
 
  
