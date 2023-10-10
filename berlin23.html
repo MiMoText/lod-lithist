@@ -187,6 +187,9 @@ In this overview of our project “Mining and Modeling Text” you see that we b
 --
 ## (4) MiMoTextBase & Wikidata
 
+::
+Thanks Maria for the introduction to the project and the modeling part. Now I will talk about the MiMoTextBase and its connection with Wikidata.
+
 ---
 #### Why using Wikibase?
 <br><br>
@@ -196,13 +199,32 @@ In this overview of our project “Mining and Modeling Text” you see that we b
 - Easily linkable to other Wikibase-instances <!-- .element: class="fragment" data-fragment-index="4" -->
 - Multilingualism <!-- .element: class="fragment" data-fragment-index="5" -->
 
+::
+- Why did we choose Wikibase as our infrastructure?
+- First of all, it’s a FOSS, so we can use it for free and we can also contribute to the development of the software.
+- Second, it has a flexible data model, which allows us to model our data in a way that is suitable for our project.
+- Third, it has a user-friendly interface and different import possibilities, which makes it easy to import data from different sources.
+- Fourth, it’s easily linkable to other Wikibase-instances, which makes it possible to create federated queries.
+- And last but not least, it’s multilingual, which is very important for us, because we have a lot of data in French and German.
+
 ---
 ### Wikibase as infrastructure
 <img height="450" style="box-shadow: none;" data-src="img/wikibasesuite.png">
 
+::
+#explaine the core components of the Wikibase suite
+- Wikibase is a suite of free and open-source software projects that allow for the creation, display and editing of structured, linked, and machine-readable data on the web.
+- The Wikibase suite consists of several components, which can be used together or separately.
+- The core components are client, repositoy and sparql query Service.
 ---
 ### Some example instances of Wikibase
 <img height="450" style="box-shadow: none;" data-src="img/wikibase_instances.png">
+
+::
+- Wikidata is the biggest Wikibase instance. It’s a free and open knowledge base that can be read and edited by both humans and machines.
+- Factgrid is a Wikibase instance that is used to collect and manage data about historical facts.
+- Rhizome Artbase is a Wikibase instance that is used to collect and manage data about digital art.
+- The MiMoTextBase is a Wikibase instance that is used to collect and manage data about French Enlightenment novels and authors.
 
 ---
 #### Multilingualism facilitates international colaboration
@@ -212,6 +234,11 @@ In this overview of our project “Mining and Modeling Text” you see that we b
 #### MiMoTextBase as part of the Wikibase ecosystem
 <img height="450" data-src="img/wikibase_ecosystem.png">
 <p style="line-height: 1.2; font-size: 16px; ">A view of the MiMoTextBase within the Wikimedia Linked Open Data web.<br>Credit original visualization: <a href="https://blogs.tib.eu/wp/tib/2021/11/05/tib-at-wikidatacon-part-1/">Dan Shick (WMDE)</a> / CC-BY-SA 4.0</p>
+
+::
+- The MiMoTextBase is part of the Wikibase ecosystem, which means that it’s possible to use data from the MiMoTextBase in other Wikibase instances and vice versa.
+- The MiMoTextBase is linked to Wikidata, which means that it’s possible to use data from Wikidata in the MiMoTextBase and vice versa.
+- The MiMoTextBase is linked to other Wikibase instances, which means that it’s possible to use data from other Wikibase instances in the MiMoTextBase and vice versa.
 
 ---
 #### Connecting MiMoTextBase & Wikidata
@@ -227,6 +254,14 @@ Fig.: Connecting MiMoTextBase - the [roman18 corpus](https://github.com/MiMoText
 - [The narrative locations in all novels (map)](https://query.mimotext.uni-trier.de/#%23defaultView%3AMap%7B%22hide%22%3A%20%5B%22%3Fnar_loc%22%5D%2C%20%22markercluster%22%3A%22true%22%7D%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20wd%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20wdt%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fnar_loc%20%3Fnar_locLabel%20%3FWikiDataEntity%20%3FcoordinateLocation%0AWHERE%20%7B%20%3Fitem%20wdt%3AP32%20%3Fnar_loc.%0A%20%20%3Fnar_loc%20wdt%3AP13%20%3FWikiDataEntity.%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FWikiDataEntity%20widt%3AP625%20%3FcoordinateLocation%0A%20%20%7D%20%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%20%7D%0A%7D%0A)
 - [Linking relations between authors via 'influenced by'](https://query.mimotext.uni-trier.de/#%23title%3AInfluence%20networks%20of%20authors%20via%20%27federated%20query%27%0A%23defaultView%3AGraph%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20entity%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20property%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Finfluencedby%20%3Fimage%20%3Fname%0AWHERE%20%7B%0A%20%20%20%20%20%20%3Fitem%20mmdt%3AP5%20%3Fauthor.%0A%20%20%20%20%20%20%3Fauthor%20mmdt%3AP13%20%3FWikidataEntity.%20%20%23exact%20match%0A%20%20%20%20%20%20%0A%23Federated%20Query%20-%3E%20Wikidata%0A%20%20%20%20%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%09%20%3FWikidataEntity%20wdt%3AP737%2Fwdt%3AP737%20%3Finfluencedby.%0A%20%20%20%20%20%09%20%23%20%3Finfluencedby%20widt%3AP734%20%3Fname.%20%20%0A%20%20%09%09%20OPTIONAL%20%7B%20%20%3Finfluencedby%20wdt%3AP18%20%3Fimage.%7D%0A%20%20%20%20%20%20%7D%20%20%20%20%20%0A%20%09%09%20%0A%20%20%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%09%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%20%20%20%20%7D%0A%7D%0A%0A)
 - [Linking with catalogue data via 'BNF identifier'](https://query.mimotext.uni-trier.de/#%23%20MiMoText%20novels%20with%20URL%20to%20Biblioth%C3%A8que%20nationale%20de%20France%20%0A%23defaultView%3AImageGrid%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%20is%20wd%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%20is%20wdt%0A%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fwikidata%20%3Fbnfurl%20%3Fimage%20%0AWHERE%20%7B%0A%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2.%0A%20%20%3Fitem%20mmdt%3AP13%20%3Fwikidata.%0A%20%20%3Fitem%20rdfs%3Alabel%20%3FitemLabel%20.%0A%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22en%22%29%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Fwikidata%20wdt%3AP268%20%3Fbnfid.%0A%20%20%20%20OPTIONAL%7B%20%3Fwikidata%20wdt%3AP18%20%3Fimage.%7D%0A%20%20%20OPTIONAL%7B%20wd%3AP268%20wdt%3AP1630%20%3Fformatterurl.%7D%0A%20%20%20BIND%28IRI%28REPLACE%28%3Fbnfid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3Fformatterurl%29%29%20AS%20%3Fbnfurl%29.%0A%20%20%7D%20%20%20%20%20%20%20%20%20%0A%7D%0A%0A)
+
+---
+#### Contribution of MiMoText to Wikidata 
+<br><br>
+<br><br>
+- Adding new Items to Wikidata
+- MiMoText ID as a new property in Wikidata
+- Linking Novels on Wikidata to Fulltext on Github
 
 --
 ## (5) Examples
