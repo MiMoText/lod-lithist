@@ -33,12 +33,11 @@
 <img height="50" style="box-shadow:none;" data-src="img/basics/logo_institution.png">
 
 ::
-- Hello and welcome to our talk
-- We're very happy to be here 
-- Our topic is how we used ontologies in the process of building a resource based on linked open data for French literary history
-- We would like to share our experiences regarding this issue in the project "Mining and Modeling Text"
-- Maria Hinzmann and me are the main coordinators of "Mining and Modeling Text", run at the Trier Center for Digital Humanities
-- The funding for this 4-year-project, set to run out at the end of the year, comes from the state of Rhineland-Palatinate, where Trier is located. 
+- Hello and welcome to our talk and thanks to the organizers for inviting us to this great workshop!
+- We're very happy to talk about “MiMoText. Everything we present in the following was created in teamwork. 
+- The project is based at the Trier Center for DH and is funded by the Rhineland-Palatinate Research Initiative.
+- My colleague Tinghui Duan and I would like to give you a brief overview of the project and show how we have built up our project-specific wikibase instance, the mimotextbase, and how it can be used by queries. In the context of our workshop today and tomorrow, federated queries seem particularly relevant.
+
 
 --
 ## Structure
@@ -49,9 +48,10 @@
 5. [Examples](#/6)
 
 ::
-- Our plan ist to first provide some background on the project
-- Then, we will focus on the role of the design and use of ontologies in the project
-- I will present the first part, Maria Hinzmann will present the second part
+- So after a short introduction I will talk about the "mining" part of our project, then briefly say continue with the "modeling". 
+- In the second part Tinghui will say something about our project-specific wikibase instance, the MiMoTextBase and the connection with Wikidata. 
+- At the end we would like to illustrate its use with some example queries.
+
 
 --
 ## (1) Introduction
@@ -65,17 +65,10 @@
 </small>
 
 ::
-- The object of study in our project is the French novel of the second half of the eighteenth century 
-- In order to collect information about this domain, we use three sources of information
-  - Bibliographic metadata, in our case mainly the "Bibliographie du genre romanesque francais, 1751-1800", by Martin, Mylne and Frautschi 
-  - Knowledge compiled by in literary historiography, notably a number of book chapters summarizing the history of the French novel at the time
-  - And, characteristics of the relevant novels themselves, through a corpus of 200 such novels. 
-- The general aim: 
-  - Automatically extract relevant information from these sources
-  - Model this information as LOD and linking them as much as possible
-  - Analyse this information in order to learn more about the period's literature, but also on literary historiography. 
-  - This also means: turning heterogeneous sources into a homogeneous dataset
-  - This also implies explicitly modeling everything, and of course that is where controlled vocabularies, taxonomies, ontologies and their implementation and usage come into play.
+- The aim of the project Mining and Modeling Text is to establish a Linked Open Data knowledge network for the humanities. 
+- We have focused on one specific domain, which is the French Enlightenment novel but we think that our approach in general is transferable to other disciplines and domains.
+In this overview of our project “Mining and Modeling Text” you see that we build up our knowledge network with information extracted from three different types of sources:
+- 1. bibliographic metadata, 2. Textual features from primary sources, 3. Statements from scholarly publications.
 
 ---
 #### Aims of the project
@@ -93,10 +86,11 @@
   
 
 ::
+- Our goal was a kind of “wikidata for literary history”, so an information system for literary history, which would be LOD-based with an exploratory interface and a SPARQL-endpoint. 
+- Our approach can be described as a kind of “atomization of literary history”, so the idea is to atomize information of a complex domain into many small statements, to hold them together by taxonomies, ontologies and authority data and to gain new perspectives on the domain by querying this network.
+- Important to note that we don't collect facts, but rather statements or perspectives. And of course, we don't provide one overarching narrative or thesis, but a lot of raw but linked and contextualized information
+- Compared to wikidata this information system is much more focused on one domain, which is the French novel in the 2nd half of the 18th century. We have a better coverage for this specific domain and a higher density of assertions and everything is based on explicit and rather stable data modelling.
 - Both built on data, and enabling literary studies based on data
-- Important to note that we don't collect facts, but rather statements or perspectives
-- And of course, we don't provide one overarching narrative or thesis, but a lot of raw but linked and contextualized information
-
 
 --
 ## (2) Mining
@@ -106,6 +100,10 @@
 <a href="img/bgrf-Candide.png"><img height="400" src="img/bgrf-Candide.png"></img></a>
 <p>Martin / Mylne / Frautschi: <em>Bibliographie<br/> du genre romanesque français, 1751-1800</em>, 1977</p>
 
+::
+- For our domain, the Bibliographie du genre romanesque français 1751-1800 is central, as it defines the population of about 2000 French Enlightenment novels. 
+- We could extract basic information like the publication place from this source. But beside this, the bibliography provides particularly rich metadata from keywords about – as you see here italicized – narrative form, narrative locations, characters, themes, style.
+
 ---
 ### Source type 2: Primary literature (novels)
 * corpus of 205 french novels (1750-1800) 
@@ -114,19 +112,23 @@
 <img height="300" src="img/roman18.jpg"></img>
 <br/><p>Collection of Eighteenth-Century French Novels (1750-1800)</p>
 
+::
+- In a subproject we built up The Collection of Eighteenth-Century French Novels with about 200 novels encoded in TEI with metadata, following the schema of the European Literary Text Collection. 
+- Among the quantitative methods we applied to generate statements were topic modeling, named entity recognition, and stylometry.
+
 ---
 ### Source type 3: Scholarly publications
 <a href="img/inception_Candide-disambiguation.png"><img height="250" src="img/inception_Candide-disambiguation.png"></img></a>
 
-* linking annotation tool INCEpTION with Wikidata and MiMoTextBase -> disambiguation via identifier
-* manual annotation (e.g. statements about themes) and pipeline (export INCEpTION annotations => import Wikibase statements)
+* manual annotation (e.g. statements about themes)
+* annotation tool INCEpTION linked with Wikidata and MiMoTextBase 
+* pipeline (export INCEpTION annotations => import Wikibase statements)
 
 ::
+- With regard to the scholarly publication, we have not yet been able to extract statements automatically. However, we realized manual annotation of quite a lot of statements in the semantic annotation tool INCEpTION, which we use linked with Wikidata and the MiMoTextBase.
+- Via the connection between INCEpTION and the two knowledge bases, strings can be disambiguated directly during annotation. 
+- Afterwards, a pipeline allows us to automatically convert the data exported from INCEpTION into statements, which we can then import into the MiMoTextBase.
 
-Plan: 3 elements of automated statement extraction 
-* annotation guidelines (based on data model)  
-* manual annotation: generation of training data  
-* training: machine learning (in Python)  
 
 --
 ## (3) Modeling
@@ -149,17 +151,38 @@ Plan: 3 elements of automated statement extraction
 	
  (https://github.com/MiMoText/ontology)
 
+- We have structured our data model or ontology into 11 (or now 12) modules. The modules provide different 'entry points', which we hope will strengthen transparency and reusability.
+- Since we couldn't do everything at once, we pragmatically focused primarily on an alignment and mapping with Wikidata.
+- An ontology is not an ontology as long as it is only used in one project. We therefore see it rather as a “proposal for elements of an ontology” which has to be discussed with scholars and agents from all related disciplines and fields. 
+
+::
+- We have structured our data model or ontology into 11 (or now 12) modules. The modules provide different 'entry points', which we hope will strengthen transparency and reusability.
+- Since we couldn't do everything at once, we pragmatically focused primarily on an alignment and mapping with Wikidata.
+- An ontology is not an ontology as long as it is only used in one project. We therefore see it rather as a “proposal for elements of an ontology” which has to be discussed with scholars and agents from all related disciplines and fields. 
+
 ---
 #### Reification (1)
 <a href="img/mimotextbase_sources.png"><img height="450" data-src="img/mimotextbase_sources.png"></a>
+
+::
+- Statements in the RDF can themselves become the subject of other triples, creating 'statements about statements' or metatriples. This concept of ‘reification’ is very important because knowledge in humanities represents perspectives rather than facts. 
+- Reification in Wikibase is realized in that way that every ‘core triple’ or ‘claim’ can be ‘referenced’, ‘qualified’ and ‘ranked’, a feature that is very useful in terms of transparency, comprehensibility and comparability.
+- You see here an examples of such metatriples, it refers to a literary work that is about two subjects what is referenced by four different sources via the property “stated in”. 
 
 ---
 #### Reification (2)
 <a href="img/module7_referencing.png"><img height="450" data-src="img/module7_referencing.png"></a>
 
+::
+- You can find further information in our Module on Referencing. In this module in particular, we reuse all properties directly from Wikidata, since consistent and overarching standards in referencing practices seem to be very important. As they depend on the way to model metastatements they vary depending on the infrastructure.
+
 ---
 #### Alignment with Wikidata: enabling ‘federated queries’
 <a href="img/federated-queries_new.png"><img height="450" data-src="img/federated-queries_new.png"></a>
+
+::
+- We reuse Wikidata Properties and classes whenever it seems consistent. But even more important seems to be the alignment or mapping of our vocabulary items with the corresponding wikidata items. This makes it possible to create federated queries as Tinghui will show you in the second part.
+- [An important example from our context is the alignment of the spatial vocabulary. We have matched the elements of our spatial vocabulary with Wikidata items via the property "exact match" and can thus reuse the data stored as values of the property "coordinate location". This allows us for example to visualize 'narrative locations'.]
 
 --
 ## (4) MiMoTextBase & Wikidata
@@ -323,6 +346,19 @@ Fig.: Property data types in the MiMoTextBase (red)
 - Lack of consensus on fundamental assertions<br>=> need to coordinate broadly <!-- .element: class="fragment" data-fragment-index="2" --> 
 - Modeling and need for formal ontologies<br>=> Documentation, but not in OWL <!-- .element: class="fragment" data-fragment-index="3" --> 
 - ... <!-- .element: class="fragment" data-fragment-index="4" --> 
+
+
+---
+#### MiMoTextBase - overview
+- 331671 Triple
+- 1750 literary works written by 622 authors
+- 1178 elements in different controlled vocabularies => 919 ‘exact’ or ‘close’ matches to Wikidata-Items (query: https://tinyurl.com/26zkbn9j)
+
+---
+#### Combining data from different sources (narrative locations)
+<a href="img/figure_modeling_narr-loc_new_matching.png"><img height="450" data-src="img/figure_modeling_narr-loc_new_matching.png"></a>
+
+
 
 --
 ## Back Matter
