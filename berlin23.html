@@ -48,9 +48,9 @@
 5. [Examples](#/6)
 
 ::
-- So after a short introduction I will talk about the "mining" part of our project, then briefly say continue with the "modeling". 
-- In the second part Tinghui will say something about our project-specific wikibase instance, the MiMoTextBase and the connection with Wikidata. 
-- At the end we would like to illustrate its use with some example queries.
+- So after a short introduction I will talk about the "mining" part of our project, then briefly continue with the "modeling". 
+- In the second part Tinghui will present the MiMoTextBase and its connection with Wikidata. 
+- At the end we would like to illustrate the use of the MiMoTextBase with some example queries.
 
 
 --
@@ -67,8 +67,7 @@
 ::
 - The aim of the project Mining and Modeling Text is to establish a Linked Open Data knowledge network for the humanities. 
 - We have focused on one specific domain, which is the French Enlightenment novel but we think that our approach in general is transferable to other disciplines and domains.
-In this overview of our project “Mining and Modeling Text” you see that we build up our knowledge network with information extracted from three different types of sources:
-- 1. bibliographic metadata, 2. Textual features from primary sources, 3. Statements from scholarly publications.
+- In this overview of our project you see that we build up our knowledge network with information extracted from three different types of sources: 1. bibliographic metadata, 2. Textual features from primary sources, 3. Statements from scholarly publications.
 
 ---
 #### Aims of the project
@@ -86,10 +85,9 @@ In this overview of our project “Mining and Modeling Text” you see that we b
   
 
 ::
-- Our goal was a kind of “wikidata for literary history”, so an information system for literary history, which would be LOD-based with an exploratory interface and a SPARQL-endpoint. 
+ 
 - Our approach can be described as a kind of “atomization of literary history”, so the idea is to atomize information of a complex domain into many small statements, to hold them together by taxonomies, ontologies and authority data and to gain new perspectives on the domain by querying this network.
 - Important to note that we don't collect facts, but rather statements or perspectives. And of course, we don't provide one overarching narrative or thesis, but a lot of raw but linked and contextualized information
-- Compared to wikidata this information system is much more focused on one domain, which is the French novel in the 2nd half of the 18th century. We have a better coverage for this specific domain and a higher density of assertions and everything is based on explicit and rather stable data modelling.
 - Both built on data, and enabling literary studies based on data
 
 --
@@ -125,7 +123,7 @@ In this overview of our project “Mining and Modeling Text” you see that we b
 * pipeline (export INCEpTION annotations => import Wikibase statements)
 
 ::
-- With regard to the scholarly publication, we have not yet been able to extract statements automatically. However, we realized manual annotation of quite a lot of statements in the semantic annotation tool INCEpTION, which we use linked with Wikidata and the MiMoTextBase.
+- We have not yet been able to extract statements automatically. However, we realized manual annotation of quite a lot of statements in the semantic annotation tool INCEpTION, which we linked with Wikidata and the MiMoTextBase.
 - Via the connection between INCEpTION and the two knowledge bases, strings can be disambiguated directly during annotation. 
 - Afterwards, a pipeline allows us to automatically convert the data exported from INCEpTION into statements, which we can then import into the MiMoTextBase.
 
@@ -161,7 +159,7 @@ In this overview of our project “Mining and Modeling Text” you see that we b
 <a href="img/mimotextbase_sources.png"><img height="450" data-src="img/mimotextbase_sources.png"></a>
 
 ::
-- Statements in the RDF can themselves become the subject of other triples, creating 'statements about statements' or metatriples. This concept of ‘reification’ is very important because knowledge in humanities represents perspectives rather than facts. 
+- The concept of ‘reification’ is very important because knowledge in humanities represents perspectives rather than facts. 
 - Reification in Wikibase is realized in that way that every ‘core triple’ or ‘claim’ can be ‘referenced’, ‘qualified’ and ‘ranked’, a feature that is very useful in terms of transparency, comprehensibility and comparability.
 - You see here an examples of such metatriples, it refers to a literary work that is about two subjects what is referenced by four different sources via the property “stated in”. 
 
@@ -170,7 +168,7 @@ In this overview of our project “Mining and Modeling Text” you see that we b
 <a href="img/module7_referencing.png"><img height="450" data-src="img/module7_referencing.png"></a>
 
 ::
-- You can find further information in our Module on Referencing. In this module in particular, we reuse all properties directly from Wikidata, since consistent and overarching standards in referencing practices seem to be very important. As they depend on the way to model metastatements they vary depending on the infrastructure.
+- You can find further information in our Module on Referencing. In this module in particular, we reuse all properties directly from Wikidata, since consistent and overarching standards in referencing practices seem to be very important. 
 
 ---
 #### Alignment with Wikidata: enabling ‘federated queries’
