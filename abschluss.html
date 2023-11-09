@@ -36,69 +36,12 @@
 
 --
 ## Gliederung
-1. [Strukturbildung und Vernetzung durch MiMoText](#/2)
-2. ['Mining' und 'Modeling' für die Literaturgeschichte](#/3)
+2. ['Mining' und 'Modeling' für die Literaturgeschichte](#/2)
+1. [Strukturbildung und Vernetzung durch MiMoText](#/3)
 3. [MiMoText als Linked Open Data-Projekt](#/4)
 
 ::
 
---
-## Strukturbildung und Vernetzung durch MiMoText
-
----
-#### MiMoText in verschiedenen Facetten
-
-- Zusammenarbeit in verschiedenen Konstellationen
- - ... als Forschungsprojekt-Team
- - ... als Forschungsverbund
- - ... in verschiedenen institutionsübergreifenden Kooperationen
-- Rückblick auf Aktivitäten in drei Rollen
- - ... als innovatives Forschungsprojekt
- - ... als Teil des Forschungsbereichs 3 des TCDH ("Digitale Literatur- und Kulturwissenschaften)
- - ....als universitätsweite, strukturbildende Maßnahme 
-
-
----
-#### MiMoText als strukturbildende Maßnahme an der UT
-
-- Kooperation mit Patterns-Verbund (gemeinsame Workshops, Beitrag zu Sammelband, Vernetzung über Nachwuchscolloquium)
-- Kooperation mit Graduiertenzentrum der UT (Workshops im Bereich von Open Science zu Zotero und Open Peer Review)
-- Kooperation mit Rechtswissenschaften: Urheberrecht und Textformate 
- - Workshop-Reihe 2022 + 5 Publikationen + div. Handreichungen
- - Masterarbeiten aus CL und Dh zu Textformaten
- - Textformate (und Wörterbücher) als Thema in der NFDI (Text+) 
-- Kooperation Germanistik & Romanistik: Physiognomische Figurenbeschreibung
- - Aktivitäten: Romanistiktag 2021, Workshop im November 2023
- - Vorbereitung DFG-Antrag
-- Trier als DH-Standort (DHd2023)
-
-
----
-#### MiMoText zum Ausbau der CLS
-
-- Auswahl diverser Drittmittelaktivitäten (Folgeantrag Zeta, Frühromantik-Korrespondenzen in Kooperation mit Marburg, Mainz)
-- Etablierung des Forschungsbereichs "Digitale Literatur- und Kulturwissenschaften"
- - Projekte: COST Action, Weinetiketten, CLS Infra, Text+, NFDI
- - Journal of Computational Literary Studies (Trier, Potsdam, Darmstadt)
- - Mitgliedschaft im Steering Board von NFDI4Culture (für DHd)
-- interdisziplinäres Forschungscolloquim am TCDH
-- Kooperation im Rahmen internationaler Fellowships
-- Vernetzung der Forschungsbereiche am TCDH (u.a. über Linked Open Data)
-- Vernetzung im Bereich der Ontologie-Entwicklung für die Literaturgeschichte / Geisteswissenschaften
-- Kompetenzaufbau am TCDH (bes. im Bereich Linked Open Data)
-
----
-#### MiMoText als Forschungsprojekt
-
-- Vortragsaktivitäten (Auswahl): Graphs & Networks 2022, DHd 2022 & DHd 2023, DH 2022 & DH 2023, viele weitere Vorträge
-- Publikationen
- - 1 publiziertes Referenzpaper im "International Journal for Arts and Humanities" ("Smart Modeling for Literary History")
- - 1 angenommenes Referenzpapier im Publikationsprojekt des Patterns-Verbunds ("Patterns in modeling and querying a knowledge graph for literary history")
- - diverse weitere Publikationen und Disseminationsaktivitäten (u.a. Blogartikel "Café Voltaire", Podcast-Beitrag etc.)
-- Diverse Workshops, teilweise in Kooperation (u.a. mehrere SPARQL-Workshops) 
-- Aufbau eines SPARQL-Tutorials:  https://docs.mimotext.uni-trier.de
-- => hohe nationale und internationale Sichtbarkeit und Vernetzung
-- => hohes Anschlusspotential für weitere Projekte
 
 --
 ## Mining & Modeling im Forschungsprojekt 'MiMoText'
@@ -227,6 +170,72 @@ Wikibase instance enables us to query it as a graph.
 - Vergleich von Quellen
   - [Themen abgeleitet aus Topic Modeling  wurden](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Topic%20Modeling%20(Q21)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ21.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q21%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A) verglichen mit [Themen laut BGRF](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Bibliographie%20du%20genre%20romanesque%20fran%C3%A7ais%2C%201751-1800%20(Q1)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ1.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q1%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A)
   - [Kombiniert: Themen der BGRF vs. Themen des Topic Modeling](https://query.mimotext.uni-trier.de/index.html#prefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0APREFIX%20p%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%3Fwork%20%3FworkLabel%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%20%0AWHERE%20%7B%0A%20%20%3Fwork%20wdt%3AP2%20wd%3AQ2%20%3B%20%23%20instance%20of%20literary%20work%0A%20%20%20%20%20%20%20%20wdt%3AP21%20%3FfullTextURL%20%3B%20%23%20work%20is%20part%20of%20%22roman18%22%20%28github.com%2FMiMoText%2Froman18%29%0A%20%20%20%20%20%20%20%20wdt%3AP36%20%3FthemeItem%20.%20%23%20narrative%20location%20with%20item%20%0A%20%20%3Fwork%20wdt%3AP30%20%3FthemeString%20.%20%23%20narrative%20location%20with%20string%0A%20%20OPTIONAL%20%7B%20%0A%20%20%20%20%3FthemeItem%20rdfs%3Alabel%20%3FthemeItemLabel.%20FILTER%28LANG%28%3FthemeItemLabel%29%20%3D%20%22en%22%29%20%0A%20%20%20%20%3FthemeItemStatement%20ps%3AP36%20%3FthemeItem.%0A%20%20%20%20%3FthemeItemStatement%20prov%3AwasDerivedFrom%20%3Frefnode.%0A%20%20%20%20%3Frefnode%20pr%3AP18%20%3FsourceItem.%0A%20%20%20FILTER%28%3FsourceItem%20%3D%20wd%3AQ1%20%7C%7C%20%3FsourceItem%20%3D%20wd%3AQ21%29%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20%7D%0A%7D%0AGROUP%20BY%20%3FworkLabel%20%3Fwork%20%3FthemeString%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%0AORDER%20BY%20ASC%20%28%3FworkLabel%29)
+
+
+
+
+
+
+
+--
+## Strukturbildung und Vernetzung durch MiMoText
+
+---
+#### MiMoText in verschiedenen Facetten
+
+- Zusammenarbeit in verschiedenen Konstellationen
+ - ... als Forschungsprojekt-Team
+ - ... als Forschungsverbund
+ - ... in verschiedenen institutionsübergreifenden Kooperationen
+- Rückblick auf Aktivitäten in drei Rollen
+ - ... als innovatives Forschungsprojekt
+ - ... als Teil des Forschungsbereichs 3 des TCDH ("Digitale Literatur- und Kulturwissenschaften)
+ - ....als universitätsweite, strukturbildende Maßnahme 
+
+
+---
+#### MiMoText als strukturbildende Maßnahme an der UT
+
+- Kooperation mit Patterns-Verbund (gemeinsame Workshops, Beitrag zu Sammelband, Vernetzung über Nachwuchscolloquium)
+- Kooperation mit Graduiertenzentrum der UT (Workshops im Bereich von Open Science zu Zotero und Open Peer Review)
+- Kooperation mit Rechtswissenschaften: Urheberrecht und Textformate 
+ - Workshop-Reihe 2022 + 5 Publikationen + div. Handreichungen
+ - Masterarbeiten aus CL und Dh zu Textformaten
+ - Textformate (und Wörterbücher) als Thema in der NFDI (Text+) 
+- Kooperation Germanistik & Romanistik: Physiognomische Figurenbeschreibung
+ - Aktivitäten: Romanistiktag 2021, Workshop im November 2023
+ - Vorbereitung DFG-Antrag
+- Trier als DH-Standort (DHd2023)
+
+
+---
+#### MiMoText zum Ausbau der CLS
+
+- Auswahl diverser Drittmittelaktivitäten (Folgeantrag Zeta, Frühromantik-Korrespondenzen in Kooperation mit Marburg, Mainz)
+- Etablierung des Forschungsbereichs "Digitale Literatur- und Kulturwissenschaften"
+ - Projekte: COST Action, Weinetiketten, CLS Infra, Text+, NFDI
+ - Journal of Computational Literary Studies (Trier, Potsdam, Darmstadt)
+ - Mitgliedschaft im Steering Board von NFDI4Culture (für DHd)
+- interdisziplinäres Forschungscolloquim am TCDH
+- Kooperation im Rahmen internationaler Fellowships
+- Vernetzung der Forschungsbereiche am TCDH (u.a. über Linked Open Data)
+- Vernetzung im Bereich der Ontologie-Entwicklung für die Literaturgeschichte / Geisteswissenschaften
+- Kompetenzaufbau am TCDH (bes. im Bereich Linked Open Data)
+
+---
+#### MiMoText als Forschungsprojekt
+
+- Vortragsaktivitäten (Auswahl): Graphs & Networks 2022, DHd 2022 & DHd 2023, DH 2022 & DH 2023, viele weitere Vorträge
+- Publikationen
+ - 1 publiziertes Referenzpaper im "International Journal for Arts and Humanities" ("Smart Modeling for Literary History")
+ - 1 angenommenes Referenzpapier im Publikationsprojekt des Patterns-Verbunds ("Patterns in modeling and querying a knowledge graph for literary history")
+ - diverse weitere Publikationen und Disseminationsaktivitäten (u.a. Blogartikel "Café Voltaire", Podcast-Beitrag etc.)
+- Diverse Workshops, teilweise in Kooperation (u.a. mehrere SPARQL-Workshops) 
+- Aufbau eines SPARQL-Tutorials:  https://docs.mimotext.uni-trier.de
+- => hohe nationale und internationale Sichtbarkeit und Vernetzung
+- => hohes Anschlusspotential für weitere Projekte
+
+
 
 
 --
