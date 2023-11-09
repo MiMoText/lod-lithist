@@ -60,12 +60,13 @@
 #### Projektziele
 
 - Idee: "Wikidata für die Literaturgeschichte" <!-- .element: class="fragment" data-fragment-index="1" -->
-  - ein literaturgeschichtliches Informationssystem auf LOD-Basis mit explorativen Interface und SPARQL-Endpunkt
-  - Ansatz einer "Atomisierung" der Literaturgeschichte in reduzierte Aussagen 
+  - Ein literaturgeschichtliches Informationssystem auf LOD-Basis
+  - Mit explorativen Interface und SPARQL-Endpunkt
+  - Ansatz einer "Atomisierung" der Literaturgeschichte
   - Verknüpfung mit anderen Wissenssystemen (Taxonomien, Normdaten, Ontologien)
 - Im Vergleich zu Wikidata: <!-- .element: class="fragment" data-fragment-index="2" -->
-  - fokussiert auf eine Domäne (Französischer Roman, 1750-1800)
-  - bessere Abdeckung / höhere Aussagedichte für diese Domäne 
+  - Fokussiert auf eine Domäne (frz. Roman, 1750-1800)
+  - Bessere Abdeckung / höhere Aussagedichte
   - Entwicklung einer systematischen Ontologie
 
 ---
@@ -160,7 +161,7 @@ Wikibase instance enables us to query it as a graph.
 - Abfragen mit Visualisierung
   - [Anzahl der Romane pro Jahr](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20the%20first%20publication%20dates%20of%20all%20French%20novels%201751-1800%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20%28str%28SAMPLE%28year%28%3Fdate%29%29%29%20as%20%3Fyear%29%20%28COUNT%28%2a%29%20AS%20%3Fcount%29%0AWHERE%20%7B%0A%20%20%20%3Fitem%20wdt%3AP9%20%3Fdate%20.%0A%7D%0AGROUP%20BY%20%3Fdate%0AORDER%20BY%20DESC%28%3Fdate%29)
   - [Autor:innen (nach Geburtsdatum, mit Portrait)](https://query.mimotext.uni-trier.de/#%23%20show%20authors%2C%20their%20Wikidata%20match%2C%20their%20birth%20dates%20in%20a%20timeline%20%0A%23defaultView%3ATimeline%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%20is%20wd%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%20is%20wdt%0ASelect%20%3Fauthor%20%3FauthorLabel%20%3FwikiLink%20%3Fbirth%20%3Fimage%20%0A%7B%0A%20%20%3Fauthor%20wdt%3AP11%20%3Foccupation.%0A%20%20%3Fauthor%20wdt%3AP13%20%3FwikiLink.%0A%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorLabel%0A%20%20Filter%28lang%28%3FauthorLabel%29%20%3D%20%22en%22%29%0A%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FwikiLink%20widt%3AP569%20%3Fbirth.%20%0A%20OPTIONAL%7B%20%20%20%3FwikiLink%20widt%3AP18%20%3Fimage.%7D%0A%0A%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%0A%7D%0A)
-  - [Erzählform der Romane (and deren Häufigkeit)](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20the%20narrative%20perspectives%20of%20the%20novels.%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20%28count%28%3FnarrativePerspectiveLabel%29%20as%20%3Fcount%29%20%3FnarrativePerspectiveLabel%20%0AWHERE%0A%7B%0A%20%20%3Fwork%20wdt%3AP33%20%3FnarrativePerspective.%20%23%20work%20%28novel%29%20has%20property%20P33%20%28narrative%20perspective%29%0A%20%20%3FnarrativePerspective%20rdfs%3Alabel%20%3FnarrativePerspectiveLabel.%20%23%20using%20of%20rdfs%3Alabel%20to%20display%20labels%0A%20%20%0A%20%20FILTER%28lang%28%3FnarrativePerspectiveLabel%29%20%3D%20%22en%22%29%20%23%20filter%20is%20neccessary%20to%20display%20only%20one%20occurence.%20Other%20possibilites%20would%20be%20%22en%22%20or%20%22de%22.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2C%20en%22.%20%7D%0A%20%0A%7D%0A%0Agroup%20by%20%3FnarrativePerspectiveLabel%0A%23defaultView%3ABubbleChart)
+  - [Erzählform der Romane (über die Zeit)](https://query.mimotext.uni-trier.de/#%23title%3AChange%20of%20narrative%20forms%20over%205-year%20periods%0A%23defaultView%3ABarChart%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%0ASELECT%20%28str%28SAMPLE%28%3FperiodStart%29%29%20AS%20%3Fperiod%29%20%28COUNT%28%3FformLabel%29%20AS%20%3Fcount%29%20%3FformLabel%20%0AWHERE%20%7B%0A%20%20%20%20%3Fitem%20mmdt%3AP33%20%3Fform.%0A%20%20%20%20%3Fform%20rdfs%3Alabel%20%3FformLabel%20.%0A%20%20%20%20%3Fitem%20mmdt%3AP9%20%3Fdate%20.%0A%20%20%20%20FILTER%28lang%28%3FformLabel%29%20%3D%20%22en%22%29%0A%20%20%20%20%0A%20%20%20%20%23%20Calculating%20the%205-year%20period%20start%20year%20without%20using%20MOD%0A%20%20%20%20BIND%28%28year%28%3Fdate%29%20-%20%28year%28%3Fdate%29%20-%20xsd%3Ainteger%28floor%28xsd%3Adecimal%28year%28%3Fdate%29%29%20%2F%205%29%20%2a%205%29%29%29%20AS%20%3FperiodStart%29%0A%20%20%20%20%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22fr%22.%7D%0A%7D%0AGROUP%20BY%20%3FperiodStart%20%3FformLabel%20%0AORDER%20BY%20%3FperiodStart%20%3FformLabel%20%0A)
   - [Buchgeschichte: Formate pro Jahr](https://query.mimotext.uni-trier.de/#%23defaultView%3ABarChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASelect%20%20%28str%28SAMPLE%28year%28%3Fdate%29%29%29%20as%20%3Fyear%29%20%28count%28%3Fformat%29%20as%20%3Fcount%29%20%3Fformat%20%0A%20%20%20WHERE%7B%0A%20%20%20%3Fitem%20wdt%3AP26%20%3Fformat.%0A%20%20%20%3Fitem%20wdt%3AP9%20%3Fdate%20.%0A%20%20FILTER%28lang%28%3Fformat%29%20%3D%20%22fr%22%29%0A%20%20FILTER%28YEAR%28%3Fdate%29%20%3C%201799%29%20%23%20filter%20for%20the%20publication%20date%20of%20interest%0A%23%20FILTER%28lcase%28%3Fformat%29%20%3D%20%2212-in%22%40fr%29%0A%20%20%20%20%20%20Filter%20%28regex%28lcase%28%3Fformat%29%2C%20%22in-%5C%5Cd%2B%5B%5C%5Cs%5C%5CS%5D%22%29%29%0A%20%20%20BIND%28str%28year%28%3Fdate%29%29%20as%20%3Fyear%29%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22%7BAUTO_LANGUAGE%7D%22%2C%22fr%22%20.%7D%0A%20%20%7D%0A%0AGROUP%20BY%20%3Fformat%20%3Fyear%20%3Fcount%0A%23having%20%28%3Fcount%3E%202%29%0A)
 - Federated queries 
   - [Die Erzählorte aller Romane (Karte)](https://query.mimotext.uni-trier.de/#%23defaultView%3AMap%7B%22hide%22%3A%20%5B%22%3Fnar_loc%22%5D%2C%20%22markercluster%22%3A%22true%22%7D%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20wd%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20wdt%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fnar_loc%20%3Fnar_locLabel%20%3FWikiDataEntity%20%3FcoordinateLocation%0AWHERE%20%7B%20%3Fitem%20wdt%3AP32%20%3Fnar_loc.%0A%20%20%3Fnar_loc%20wdt%3AP13%20%3FWikiDataEntity.%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FWikiDataEntity%20widt%3AP625%20%3FcoordinateLocation%0A%20%20%7D%20%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%20%7D%0A%7D%0A)
@@ -189,38 +190,9 @@ Wikibase instance enables us to query it as a graph.
  - ... in verschiedenen institutionsübergreifenden Kooperationen
 - Rückblick auf Aktivitäten in drei Rollen
  - ... als innovatives Forschungsprojekt
- - ... als Teil des Forschungsbereichs 3 des TCDH ("Digitale Literatur- und Kulturwissenschaften)
+ - ... als Komponente im Ausbau der CLS in Trier
  - ....als universitätsweite, strukturbildende Maßnahme 
 
-
----
-#### MiMoText als strukturbildende Maßnahme an der UT
-
-- Kooperation mit Patterns-Verbund (gemeinsame Workshops, Beitrag zu Sammelband, Vernetzung über Nachwuchscolloquium)
-- Kooperation mit Graduiertenzentrum der UT (Workshops im Bereich von Open Science zu Zotero und Open Peer Review)
-- Kooperation mit Rechtswissenschaften: Urheberrecht und Textformate 
- - Workshop-Reihe 2022 + 5 Publikationen + div. Handreichungen
- - Masterarbeiten aus CL und Dh zu Textformaten
- - Textformate (und Wörterbücher) als Thema in der NFDI (Text+) 
-- Kooperation Germanistik & Romanistik: Physiognomische Figurenbeschreibung
- - Aktivitäten: Romanistiktag 2021, Workshop im November 2023
- - Vorbereitung DFG-Antrag
-- Trier als DH-Standort (DHd2023)
-
-
----
-#### MiMoText zum Ausbau der CLS
-
-- Auswahl diverser Drittmittelaktivitäten (Folgeantrag Zeta, Frühromantik-Korrespondenzen in Kooperation mit Marburg, Mainz)
-- Etablierung des Forschungsbereichs "Digitale Literatur- und Kulturwissenschaften"
- - Projekte: COST Action, Weinetiketten, CLS Infra, Text+, NFDI
- - Journal of Computational Literary Studies (Trier, Potsdam, Darmstadt)
- - Mitgliedschaft im Steering Board von NFDI4Culture (für DHd)
-- interdisziplinäres Forschungscolloquim am TCDH
-- Kooperation im Rahmen internationaler Fellowships
-- Vernetzung der Forschungsbereiche am TCDH (u.a. über Linked Open Data)
-- Vernetzung im Bereich der Ontologie-Entwicklung für die Literaturgeschichte / Geisteswissenschaften
-- Kompetenzaufbau am TCDH (bes. im Bereich Linked Open Data)
 
 ---
 #### MiMoText als Forschungsprojekt
@@ -234,6 +206,38 @@ Wikibase instance enables us to query it as a graph.
 - Aufbau eines SPARQL-Tutorials:  https://docs.mimotext.uni-trier.de
 - => hohe nationale und internationale Sichtbarkeit und Vernetzung
 - => hohes Anschlusspotential für weitere Projekte
+
+	
+
+---
+#### MiMoText zum Ausbau der CLS
+
+- Drittmittelaktivitäten (Beyond Words, Frühromantik-Korrespondenzen)
+- Etablierung des Forschungsbereichs "Digitale Literatur- und Kulturwissenschaften"
+ - Projekte: COST Action, Weinetiketten, CLS INFRA, Text+ (NFDI)
+ - Journal of Computational Literary Studies (Trier, Potsdam, Darmstadt)
+ - Mitgliedschaft im Steering Board von NFDI4Culture (für DHd)
+- Interdisziplinäres Forschungscolloquim am TCDH
+- Internationale Vernetzung: u.a. Fellowships
+- Vernetzung der Forschungsbereiche am TCDH (u.a. über Linked Open Data)
+- Vernetzung im Bereich der Ontologie-Entwicklung für die Literaturgeschichte / Geisteswissenschaften
+- Kompetenzaufbau am TCDH (Linked Open Data, SPARQL, IR uvm.)
+
+
+---
+#### MiMoText als strukturbildende Maßnahme an der UT
+
+- Kooperation mit Patterns (Workshops, Sammelband, Nachwuchscolloquium)
+- Kooperation mit GUT (Workshops zu Open Science: Zotero, Open Peer Review)
+- Kooperation mit Rechtswissenschaften: Urheberrecht und Textformate 
+ - Workshop-Reihe 2022 + 5 Publikationen + div. Handreichungen
+ - Masterarbeiten aus CL und DH zu Textformaten
+ - Textformate (und Wörterbücher) als Thema in der NFDI (Text+) 
+- Kooperation Germanistik & Romanistik: Physiognomische Figurenbeschreibung
+ - Aktivitäten: Romanistiktag 2021, Workshop im November 2023
+ - Vorbereitung DFG-Antrag
+- Trier als DH-Standort (DHd2023)
+
 
 
 
