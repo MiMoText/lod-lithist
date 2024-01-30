@@ -28,7 +28,7 @@
 <p style="line-height: 1.1; font-size:24px;"><a href="https://mimotext.uni-trier.de">https://mimotext.uni-trier.de</a></p>
 <!--<p style="line-height: 1.1;"><strong><emph>Netzwerk Offenes Mittelalter – #5 Methodenkritik, Stuttgart</emph> | 04. Oktober 2023</strong></p>
 -->
-<P style="line-height: 1.1; font-size:24px;">Colloquium Frühe Neuzeit interdisziplinär. Neue Forschungsbeiträge aus Trier<br>31. Jan. 2024, Stuttgart</P>
+<P style="line-height: 1.1; font-size:24px;">Colloquium Frühe Neuzeit interdisziplinär. Neue Forschungsbeiträge aus Trier<br>Trier, 31. Jan. 2024</P>
 <img height="50" style="box-shadow:none;" data-src="img/basics/logo_institution.png">
 
 ::
@@ -56,6 +56,59 @@
 --
 ## (1) Einführung
 
+
+--- 
+#### Ausgangspunkt 
+
+- Verfügbarkeit von literaturhistorischem Wissen <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Sehr viel Wissen konnte akkumuliert werden
+  - Aber es ist heterogen, unverbunden und... nicht maschinenlesbar 
+  - [Exkurs 1](#/2/3)
+- Das "Linked Open Data"-Paradigma gewinnt an Fahrt <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Hier wird Wissen in Form von einfachen Statements (Subjekt, Prädikat, Objekt) modelliert 
+  - Es kann dadurch 'semantisch' kodiert und vernetzt werden
+  - [Exkurs 2](#/2/4)
+- Ziel des Vorhabens war, beides zusammenzubringen <!-- .element: class="fragment" data-fragment-index="3" -->
+  - Literaturhistorisches Wissen mit LOD maschinenlesbar zu machen
+  - Wissen aus heterogenen Quellen miteinander zu verbinden
+  - Spezielle Wissensbestände mit vorhandenen Ressourcen zu verbinden
+
+
+#### Exkurs (2): Literaturgeschichte
+
+- Ziele <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Sammeln und Dokumentieren literaturgeschichtlicher Fakten
+  - Liefern von Erklärungen für die Entwicklung von Literatur
+- Organisationsprinzipien <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Nationen, Perioden, Bewegungen/Strömungen, Genres
+  - Ähnlichkeiten und Unterschiede
+  - Kontinuitäten und Wandel
+- Funktionen <!-- .element: class="fragment" data-fragment-index="3" -->
+  - Erklärungen für literarische Entwicklungen
+  - kultureller oder soziohistorischer Kontext
+  - innere Dynamiken des literarischen Systems
+
+
+--- 
+#### Exkurs (1): Linked Open Data
+
+<img height="450" data-src="img/rdf11-primer-example-graph.jpg">
+<br>
+<small>
+  Quelle: <a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
+</small>
+
+::
+- Wie funktioniert überhaupt "Linked Open Data"? 
+- Es gibt Subjekte, Prädikate und Objekte 
+- Subjekte sind Entitäten wie Autoren oder Werke
+- Objekte sind weitere Entitäten, aber auch Themen, Orte, uvm. 
+- Die Prädikate verbinden Subjekt und Objekt, wie ein Verb
+- So entstehen sehr einfache Aussagen 
+- Erst bei einer großen Menge einfacher Aussagen entfaltet sich das Potential von LOD
+- Es entsteht ein Wissensgraph, der Teil des sogenannten "Semantic Web" wird
+
+
 ---
 #### MiMoText: Projektüberblick 
 <img height="450" data-src="img/mimotext-overview.png">
@@ -65,26 +118,27 @@
 </small>
 
 ::
-- The object of study in our project is the French novel of the second half of the eighteenth century 
-- In order to collect information about this domain, we use three sources of information
-  - Bibliographic metadata, in our case mainly the "Bibliographie du genre romanesque francais, 1751-1800", by Martin, Mylne and Frautschi 
-  - Knowledge compiled by in literary historiography, notably a number of book chapters summarizing the history of the French novel at the time
-  - And, characteristics of the relevant novels themselves, through a corpus of 200 such novels. 
-- The general aim: 
-  - Automatically extract relevant information from these sources
-  - Model this information as LOD and linking them as much as possible
-  - Analyse this information in order to learn more about the period's literature, but also on literary historiography. 
-  - This also means: turning heterogeneous sources into a homogeneous dataset
-  - This also implies explicitly modeling everything, and of course that is where controlled vocabularies, taxonomies, ontologies and their implementation and usage come into play.
+- Dieses Ziel, also literaturhistorisches Wissen zu sammeln, maschinenlesbar zu machen und zu vernetzen, anhand von LOD, das hat eben das Projekt MiMoText verfolgt
+- Wir nutzen hierfür drei unterschiedliche Informationsquellen
+  - Bibliographische Metadaten; vor allem die "Bibliographie du genre romanesque francais, 1751-1800", von Martin, Mylne und Frautschi 
+  - Wissen aus der Literaturgeschichtsschreiung, vor allem Überblickskapitel aus Handbüchern
+  - Und Eigenschaften von Primärtexten, in unserem Fall auf der Grundlage eines Korpus von 200 französischen Romanen der Zeit 1751-1800
+- Arbeitsziele
+  - Automatisches Extrahieren relevanter Informationen aus diesen Quellen
+  - Diese Informationen als LOD modellieren und sie so weit wie möglich miteinander verknüpfen
+  - Analyse dieser Informationen, um mehr über die Literatur der Epoche, aber auch über die Literaturgeschichtsschreibung zu erfahren. 
+  - Das bedeutet auch: Heterogene Quellen in einen homogenen Datensatz verwandeln
+  - Das bedeutet auch, alles explizit zu modellieren, und hier kommen natürlich kontrollierte Vokabulare, Taxonomien, Ontologien und deren Implementierung und Verwendung ins Spiel.
+
 
 ---
-#### Projektziele
+#### Wikidata für die Literaturgeschichte
 
 - Idee: "Wikidata für die Literaturgeschichte" <!-- .element: class="fragment" data-fragment-index="1" -->
   - ein literaturgeschichtliches Informationssystem auf LOD-Basis mit explorativen Interface und SPARQL-Endpunkt
   - Ansatz einer "Atomisierung" der Literaturgeschichte in reduzierte Aussagen 
   - Verknüpfung mit anderen Wissenssystemen (Taxonomien, Normdaten, Ontologien)
-- Im Vergleich zu Wikidata: <!-- .element: class="fragment" data-fragment-index="2" -->
+- Im Vergleich zu Wikidata, dem derzeit größten Wissensgraphen (1.5 Milliarden Aussagen): <!-- .element: class="fragment" data-fragment-index="2" -->
   - fokussiert auf eine Domäne (Französischer Roman, 1750-1800)
   - bessere Abdeckung / höhere Aussagedichte für diese Domäne 
   - Entwicklung einer systematischen Ontologie
@@ -260,7 +314,7 @@ Wikibase instance enables us to query it as a graph.
 - Überblick Visualisierungen: [mimotext.github.io/MiMoTextBase_Tutorial/visualizations.html](https://mimotext.github.io/MiMoTextBase_Tutorial/visualizations.html)
 	
 **Link auf diese Seite**
-https://mimotext.github.io/lod-lithist/NOM.html#/7/3
+https://mimotext.github.io/lod-lithist/deu.html#/7/3
 
 --
 ## Bonus-Folien
@@ -415,7 +469,7 @@ kein Konsens, viel Theoretisierung, wenig praktische Gedanken über Qualitäten 
 <br><br>
 <hr>
 <small>
-Slides: <a href="https://mimotext.github.io/lod-lithist/NOM.html">https://mimotext.github.io/lod-listhist/NOM.html</a>
+Slides: <a href="https://mimotext.github.io/lod-lithist/NOM.html">https://mimotext.github.io/lod-listhist/deu.html</a>
 <br>
 Project: <a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a>
 <br>
