@@ -72,6 +72,7 @@
   - Literaturhistorisches Wissen mit LOD maschinenlesbar zu machen
   - Wissen aus heterogenen Quellen miteinander zu verbinden
   - Spezielle Wissensbestände mit vorhandenen Ressourcen zu verbinden
+  - [Ergebnis](#/2/4)
 
 
 ---
@@ -133,6 +134,21 @@
 
 
 ---
+#### Literaturgeschichtliches Wissen als LOD
+
+- Spezifische Bausteine <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Subjekte, u.a. Personen (Autor:in, etc.) und Werke (Primärtext, Fachliteratur etc.)
+  - Objekte, u.a Werke, aber auch Themen, Handlungsorte, Protagonisten, lit. Gattung etc.
+  - Prädikate, je nach Bedarf, u.a.: has, is, sameAs etc.  
+  - Qualifikationen, u.a.: Quelle (mit Typ, Datum, URL) 
+- Einige beispielhafte Aussage-Typen  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Bibliographisch: [person] has_created [work]
+  - Inhaltlich: [work] about [thematic_concept] 
+  - Formal: [work] has_narrative_form [type] 
+  - uvm.
+
+
+---
 #### Wikidata für die Literaturgeschichte
 
 - Idee: "Wikidata für die Literaturgeschichte" <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -140,19 +156,18 @@
   - Auf LOD-Basis mit explorativen Interface und SPARQL-Endpunkt
   - Ansatz einer "Atomisierung" des lit.hist. Wissens
   - Verknüpfung mit anderen Wissenssystemen (Taxonomien, Normdaten, Ontologien)
-- Im Vergleich zu Wikidata (Wissensgraph mit 1.5 Mill. Aussagen): <!-- .element: class="fragment" data-fragment-index="2" -->
+- Im Vergleich zu Wikidata: <!-- .element: class="fragment" data-fragment-index="2" -->
   - fokussiert auf eine Domäne (Französischer Roman, 1750-1800)
   - bessere Abdeckung / höhere Aussagedichte für diese Domäne 
   - Entwicklung einer systematischen Ontologie
-- Spezifische Bausteine
-  - Subjekte, u.a. Personen (Autor:in, etc.) und Werke (Primärtext, Fachliteratur etc.)
-  - Objekte, u.a Werke, aber auch Themen, Handlungsorte, Protagonisten, lit. Gattung etc.
-  - Prädikate, je nach Bedarf, u.a.: has, is, sameAs etc.  
-  - Qualifikationen, u.a.: Quelle (mit Typ, Datum, URL) 
+  - viel kleiner: 300k vs. 1.5 Milliarden Aussagen
+
+
+
 
 
 --
-## (2) Mining
+## (2) Mining: Datenerhebung
 
 ---
 ### Säule 1: Bibliographie du genre romanesque français 
@@ -161,31 +176,31 @@
 
 ---
 ### Säule 2: Primärliteratur (Romane)
-* Korpus von 205 französische Romanen (1750-1800) 
+* Korpus von 200 französischen Romanen (1750-1800) 
 * Kodierung: in XML-TEI, mit Metadaten, nach ELTeC-Schema 
-* Analyseverfahren: Topic Modeling, NER, Stilometrie u.a.
+* Analyseverfahren: Topic Modeling, Named Entity Recognition, Stilometrie u.a.
 <img height="300" src="img/roman18.jpg"></img>
-<br/><p>Collection of Eighteenth-Century French Novels (1750-1800)</p>
+<br/>
+<small>
+  <p>Collection of Eighteenth-Century French Novels (1750-1800), hg. Julia Röttgermann</p>
+</small>
+
 
 ---
-### Säule 3: Sekundärliteratur (literaturwiss. Fachtexte)
-
-Plan: 3 Elemente automatisierter Aussagenextraktion 
-* Annotationsguidelines (basierend auf Datenmodell)  
-* manuelle Annotation: Generierung von Traingsdaten  
-* Training: Machine Learning (in Python)  
-
----
-#### Säule 3: Annotationen in INCEpTION
+#### Säule 3: Forschungsliteratur
 <a href="img/inception_Candide-disambiguation.png"><img height="350" src="img/inception_Candide-disambiguation.png"></img></a>
 
-Realität: manuelle Annotation und Pipeline (INCEpTION-Wikibase)
-* Verknüpfung von INCEpTION mit MiMoTextBase und Wikidata -> Disambiguierung über IDs
-* Annotation von Aussagen über Werke (z.B. Themen)
+- Annotationsguidelines (basierend auf Datenmodell)  
+- manuelle Annotationen (mit Hilfe des Tools INCEpTION)
+- Verknüpfung von INCEpTION mit MiMoTextBase und Wikidata -> Disambiguierung über IDs
+- Annotation von Aussagen über Werke (z.B. Themen)
+
+
+
 
 
 --
-## (3) Modeling
+## (3) Modeling: Datenmodellierung
 
 ---
 #### Ontologie
@@ -205,6 +220,11 @@ Realität: manuelle Annotation und Pipeline (INCEpTION-Wikibase)
 	
  (https://github.com/MiMoText/ontology)
 
+
+---
+#### Beispiel: Die Teildomäne "Theme"
+<a href="img/module1_theme.png"><img height="450" data-src="img/module1_theme.png"></a>
+
 ---
 #### Meta-Aussagen 
 <a href="img/mimotextbase_sources.png"><img height="450" data-src="img/mimotextbase_sources.png"></a>
@@ -212,6 +232,9 @@ Realität: manuelle Annotation und Pipeline (INCEpTION-Wikibase)
 ---
 #### Verknüpfung mit Wikidata für ‘federated queries’
 <a href="img/federated-queries_new.png"><img height="450" data-src="img/federated-queries_new.png"></a>
+
+
+
 
 --
 ## (4) MiMoTextBase & Wikidata
@@ -228,8 +251,11 @@ Realität: manuelle Annotation und Pipeline (INCEpTION-Wikibase)
 Verknüpfung über die Property "MiMoText ID" (https://www.wikidata.org/wiki/Property:P12047)
 
 
+
+
+
 --
-## (5)  Beispiele
+## (5)  Ergebnis: Anwendungsbeispiele
 
 ---
 #### Ergebnis: die MiMoTextBase
@@ -301,6 +327,10 @@ Wikibase instance enables us to query it as a graph.
 - Mehrsprachigkeit (viele Vorteile, aber auch Dominanz des Englischen, Aufwand im Vokabularaufbau etc.) <!-- .element: class="fragment" data-fragment-index="2" --> 
 - Modellierung von Meta-Aussagen (Perspektiven, nicht Fakten) => sehr unterschiedliche Lösungen in verschiedenen Infrastrukturen & Standards (RDF* etc.) <!-- .element: class="fragment" data-fragment-index="3" --> 
 - Austausch in Communities (Domänenspezifisch, DH, 'Wikiversum') => ist essentiell und entsteht über LOD & Ontologie-Entwicklung <!-- .element: class="fragment" data-fragment-index="4" --> 
+- Es gibt noch viel zu tun! => Wir führen den Ansatz in LODinG (Linked Open Data in den Geisteswissenschaften) weiter <!-- .element: class="fragment" data-fragment-index="5" --> 
+
+
+
 
 ---
 #### Vielen Dank! 
@@ -318,13 +348,17 @@ Wikibase instance enables us to query it as a graph.
 **Link auf diese Seite**
 https://mimotext.github.io/lod-lithist/deu.html#/7/3
 
+
+
+
+
 --
 ## Bonus-Folien
 
 
 ---
 #### MiMoTextBase - Überblick
-- 331671 Tripel
+- 331.671 Tripel
 - 1750 literarische Werke geschrieben von 622 Autor:innen
 - 1178 Elemente aus verschiedenen Vokabularen => 919 ‘exact’ oder ‘close’ matches zu Wikidata-Items (query: https://tinyurl.com/26zkbn9j)
 
