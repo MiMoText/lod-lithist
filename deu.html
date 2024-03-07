@@ -26,31 +26,34 @@
 <p style="font-size:28px;">Christof Schöch</p>
 <p style="line-height: 1.1; font-size:24px;">mit Maria Hinzmann, Matthias Bremm, Tinghui Duan, Anne Klee<br> Johanna Konstanciak und Julia Röttgermann</p>
 <p style="line-height: 1.1; font-size:24px;"><a href="https://mimotext.uni-trier.de">https://mimotext.uni-trier.de</a></p>
-<P style="line-height: 1.1; font-size:24px;">Les Jeudis de l'Institut historique allemand. <br>Paris, 7 mars 2024</P>
+<P style="line-height: 1.1; font-size:24px;">Les Jeudis de l'Institut historique allemand<br>Paris, 7 mars 2024</P>
 <img height="50" style="box-shadow:none;" data-src="img/basics/logo_institution.png">
 
 ::
-- Hallo und willkommen zu unserem Vortrag 
-- Wir sind sehr froh, hier zu sein.  
-- Mein Thema ist die Verwendung von Linked Open Data beim Aufbau einer literaturhistorischen Ressource  zur französischen Literaturgeschichte. 
-- Wir möchten unsere Erfahrungen zu diesem Thema im Rahmen des Projekts "Mining and Modeling Text" teilen. 
-- Maria Hinzmann und ich sind die Hauptkoordinatoren von "Mining and Modeling Text", das am Trier Center for Digital Humanities durchgeführt wird.
-- Die Finanzierung dieses 4-Jahres-Projekts, das Ende des Jahres ausläuft, kommt vom Land Rheinland-Pfalz, in dem Trier liegt.
+- Guten Abend. 
+- Es freut mich sehr, hier zu sein  
+- Mein Thema ist die Verwendung von Linked Open Data beim Aufbau einer Ressource zur französischen Literaturgeschichte. 
+- Ich möchte heute zeigen, inwiefern unser Ansatz zur Literaturgeschichtsschreibung programmatisch digital, mehrsprachig, kollaborativ und offen ist. 
+- Diesen Ansatz haben wir im Rahmen des Projekts "Mining and Modeling Text" (kurz: MiMoText) entwickelt und umgesetzt; 
+- "Mining and Modeling Text" ist ein Verbundprojekt, das von 2019 bis Ende 2023 vom "Trier Center for Digital Humanities" durchgeführt wurde. 
+- Die Finanzierung des Vorhabens kam vom Land Rheinland-Pfalz. 
+- An so einem Projekt sind viele viele Personen beteiligt, für die ich heute nur stellvertretend spreche. 
+- Die Mitarbeitenden sind hier genannt, aber viele weitere Personen waren ebenfalls beteiligt. 
 
 
 --
 ## Gliederung
-1. [Einführung: MiMoText](#/2)
+1. [Einführung: MiMoText und Linked Open Data](#/2)
 2. [Mining: Datenerhebung](#/3)
 3. [Modeling: Datenmodellierung](#/4)
 4. [Ergebnis: Anwendungsbeispiele](#/5)
 6. [Fazit](#/6)
 
 ::
-- Ich möchte zunächst einige Hintergrundinformationen über das Projekt zu geben.
-- Dann über die "Datenquellen" und die Erhebung von Infromationen aus ihnen sprechen 
+- Ich möchte zunächst einige Hintergrundinformationen über das Projekt geben.
+- Dann werde ich über die "Datenquellen" und die Erhebung von Infromationen aus ihnen sprechen 
 - Dann werde ich etwas zum Datenmodell und der Verwendung von Ontologien im Projekt sagen
-- Und abschließend ein paar Perspektiven auf mögliche Fragen an den entstanden Datensatz anbieten
+- Und abschließend ein paar Perspektiven auf Fragen geben, die man an die so entstandene Ressource stellen kann. 
 
 
 --
@@ -71,7 +74,7 @@
 - Ziel des Vorhabens war, beides zusammenzubringen <!-- .element: class="fragment" data-fragment-index="3" -->
   - Literaturhistorisches Wissen mit LOD maschinenlesbar zu machen
   - Wissen aus heterogenen Quellen miteinander zu verbinden
-  - Spezielle Wissensbestände mit vorhandenen Ressourcen zu verbinden
+  - Spezielle Wissensbestände mit bereits vorhandenen Ressourcen zu verbinden
   - [Ergebnis](#/2/5)
 
 
@@ -79,16 +82,16 @@
 #### Exkurs (1): Literaturgeschichte
 
 - Ziele <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Sammeln und Dokumentieren literaturgeschichtlicher Fakten
+  - Sammeln und Dokumentieren literaturgeschichtlichen Wissens 
   - Liefern von Erklärungen für die Entwicklung von Literatur
 - Organisationsprinzipien <!-- .element: class="fragment" data-fragment-index="2" -->
   - Nationen, Perioden, Bewegungen/Strömungen, Genres
-  - Ähnlichkeiten und Unterschiede
-  - Kontinuitäten und Wandel
+  - Autor:innen und Werke
+  - Ähnlichkeiten und Unterschiede, Kontinuitäten und Wandel
 - Funktionen <!-- .element: class="fragment" data-fragment-index="3" -->
   - Erklärungen für literarische Entwicklungen
-  - kultureller oder soziohistorischer Kontext
-  - innere Dynamiken des literarischen Systems
+  - (a) kultureller oder soziohistorischer Kontext
+  - (b) innere Dynamiken des literarischen Systems
 
 
 ---
@@ -146,12 +149,12 @@
 - Spezifische Bausteine <!-- .element: class="fragment" data-fragment-index="1" -->
   - Subjekte, u.a. Personen (Autor:in, etc.) und Werke (Primärtext, Fachliteratur etc.)
   - Objekte, u.a Werke, aber auch Themen, Handlungsorte, Protagonisten, lit. Gattung etc.
-  - Prädikate, je nach Bedarf, u.a.: has, is, sameAs etc.  
+  - Prädikate, je nach Bedarf, u.a.: author_of, about, sameAs etc.  
   - Qualifikationen, u.a.: Quelle (mit Typ, Datum, URL) 
 - Einige beispielhafte Aussage-Typen  <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Bibliographisch: [person] has_created [work]
+  - Bibliographisch: [person] author_of [work]
   - Inhaltlich: [work] about [thematic_concept] 
-  - Formal: [work] has_narrative_form [type] 
+  - Formal: [work] narrative_form [type] 
   - uvm.
 
 
@@ -162,8 +165,8 @@
   - literaturgeschichtliches Informationssystem 
   - Auf LOD-Basis mit explorativen Interface und SPARQL-Endpunkt
   - Ansatz einer "Atomisierung" des lit.hist. Wissens
-  - Verknüpfung mit anderen Wissenssystemen (Taxonomien, Normdaten, Ontologien)
-- Im Vergleich zu Wikidata: <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Verknüpfung mit anderen Wissenssystemen (Taxonomien, Normdaten, Wissensbasen)
+- Im Vergleich zu Wikidata <!-- .element: class="fragment" data-fragment-index="2" -->
   - fokussiert auf eine Domäne (Französischer Roman, 1750-1800)
   - bessere Abdeckung / höhere Aussagedichte für diese Domäne 
   - Entwicklung einer systematischen Ontologie
@@ -185,13 +188,12 @@
 ### Säule 2: Primärliteratur (Romane)
 * Korpus von 200 französischen Romanen (1750-1800) 
 * Kodierung: in XML-TEI, mit Metadaten, nach ELTeC-Schema 
-* Analyseverfahren: Topic Modeling, Named Entity Recognition, Stilometrie u.a.
+* Analyseverfahren: Topic Modeling, NER, Stilometrie u.a.
 
 <img height="300" src="img/roman18.jpg"></img>
 
-<br/>
 <small>
-  <p>Collection of Eighteenth-Century French Novels (1750-1800), hg. Julia Röttgermann</p>
+  <p><em>Collection de romans francais du dix-huitième siècle (1750-1800)</em>, ed. Julia Röttgermann</p>
 </small>
 
 
@@ -212,7 +214,7 @@
 ## (3) Modeling: Datenmodellierung
 
 ---
-#### Ontologie
+#### Modulares Datenmodell
 
 - Überblick
  - Modul 1: Thema
@@ -257,12 +259,13 @@
 - http://data.mimotext.uni-trier.de
 
 :: 
-- Having all our data triples on French Enlightenment novels and authors stored in our
-Wikibase instance enables us to query it as a graph. 
-- Start with some examples from the Wikibase "wiki view"
-- Author: not a lot of information, but: "exact_match" (!) => Wikidata 
-- Title: a lot more information, both modeled and as strings, from various sources; meta-assertions / references
-- One can do searches here as well, but not in a very targeted manner => SPARQL
+- Weil alle Aussagen in unserer Wikibase-Instanz vorliegen, können wir dieses Wissensnetz nun auch durchsuchen und abfragen
+- Ich zeige zunächst ein paar Beispiele aus der explorativen Ansicht, ähnlich eines Wikis.
+- Author: Nicht sehr viele Informationen, aber: "exact_match" (!) => Wikidata 
+- Werke: viel mehr Informationen, sowohl als kurze Texte, als auch nach dem Datenmodell formalisiert und standardisiert
+- Diese Informationen kommen aus diversen Quellen, daher gibt es eben auch Meta-Aussagen
+- Man kann hier auch Suchen, aber nicht auf eine sehr präzise Weise => SPARQL
+
 
 ---
 #### SPARQL Endpunkt
@@ -272,16 +275,17 @@ Wikibase instance enables us to query it as a graph.
 - Verwendung zur Formulierung von Abfragen
 - https://query.mimotext.uni-trier.de 
 
-::
-- The DockerWikibaseQueryService interface provides numerous visualization options that allow exploration and analysis of data at different levels of granularity
-- Currently, we have almost 370.000 triples, so this already opens up many possiblities
 
+::
+- Der Wikibase Query Service erlaubt sehr flexible Abfragen 
+- Es gibt auch eine Menge Visualisierungs-Optionen, die man direkt ohne weitere Entwicklungsarbeit nutzen kann
+- Unsere Wikibas-Instanz enthält inzwischen weit über 300.000 Aussagen, sodass die Möglichkeiten recht breit sind. 
+- Man muss sich allerdings mit der Abfrage-Sprache auseinandersetzen. 
+- Daher bieten wir aber auch ein Tutorial und sehr viele Beispiel-Queries an
 
 
 ---
-#### Einige Beispiel-Abfragen
-
-<small>
+#### Einige Beispiel-Abfragen (1)
 
 - Einfache Abfragen
   - [Liste der Romane mit Informationen der BGRF](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20some%20data%20about%20the%20MiMoTextBase%20such%20as%20Authors%2C%20Novels%2C%20publicationyears%2C%20tonality%20etc.%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20DISTINCT%20%3Fbgrf%20%3Fitem%20%3Fauthorlabel%20%3FitemLabel%20%3Fyear%20%3Fnarrpers%20%3Ftonality%20%3Fpages%20%3Fnormalized%20WHERE%20%7B%0A%20%3Fitem%20wdt%3AP5%20%3Fauthor%3B%20%23%20who%20is%20the%20author%3F%0A%20%20%20%20%20%20%20wdt%3AP4%20%3Ftitle%3B%20%23%20what%20is%20the%20title%3F%0A%20%20%20%20%20%20%20wdt%3AP22%20%3Fbgrf%3B%20%20%23%20what%20is%20the%20identifier%20in%20the%20bibliographic%20metadata%3F%0A%20%20%20%20%20%20%20wdt%3AP9%20%3Fdate%3B%20%23%20what%20is%20the%20publication%20date%3F%0A%20OPTIONAL%20%7B%0A%20%20%20%3Fitem%20wdt%3AP27%20%3Fnarrpers%3B%20wdt%3AP31%20%3Ftonality%3B%20wdt%3AP25%20%3Fpages.%20%0A%20%7D%0A%20BIND%28YEAR%28%3Fdate%29%20as%20%3Fyear%29.%0A%20BIND%28if%28bound%28%3Fnarrpers%29%2C%20%3Fnarrpers%2C%20%22unbekannt%22%29%20as%20%3Fnormalized%29%0A%20%3Fauthor%20rdfs%3Alabel%20%3Fauthorlabel.%0A%20FILTER%28LANG%28%3Fauthorlabel%29%20%3D%20%22en%22%29%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2C%20fr%22.%20%7D%0A%7D%20ORDER%20BY%20%3Fyear) 
@@ -292,6 +296,11 @@ Wikibase instance enables us to query it as a graph.
   - [Erzählform der Romane über die Zeit (Jahrzehnte)](https://query.mimotext.uni-trier.de/index.html#%23title%3AChange%20of%20narrative%20forms%20over%205-year%20periods%0A%23defaultView%3ABarChart%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%0ASELECT%20%28str%28SAMPLE%28%3FperiodStart%29%29%20AS%20%3Fperiod%29%20%28COUNT%28%3FformLabel%29%20AS%20%3Fcount%29%20%3FformLabel%20%0AWHERE%20%7B%0A%20%20%20%20%3Fitem%20mmdt%3AP33%20%3Fform.%0A%20%20%20%20%3Fform%20rdfs%3Alabel%20%3FformLabel%20.%0A%20%20%20%20%3Fitem%20mmdt%3AP9%20%3Fdate%20.%0A%20%20%20%20FILTER%28lang%28%3FformLabel%29%20%3D%20%22en%22%29%0A%20%20%20FILTER%28YEAR%28%3Fdate%29%20%3C%201800%29%20%23%20filter%20for%20the%20publication%20date%20of%20interest%0A%20%20%20%20%0A%20%20%20%20%23%20Calculating%20the%205-year%20period%20start%20year%20without%20using%20MOD%0A%20%20%20%20BIND%28%28year%28%3Fdate%29%20-%20%28year%28%3Fdate%29%20-%20xsd%3Ainteger%28floor%28xsd%3Adecimal%28year%28%3Fdate%29%29%20%2F%2010%29%20%2a%2010%29%29%29%20AS%20%3FperiodStart%29%0A%20%20%20%20%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22fr%22.%7D%0A%7D%0AGROUP%20BY%20%3FperiodStart%20%3FformLabel%20%0AORDER%20BY%20%3FperiodStart%20%3FformLabel%20%0A)
   - [Buchgeschichte: Formate über die Zeit (je 5 Jahre)](https://query.mimotext.uni-trier.de/#%23defaultView%3ABarChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASelect%20%20%28str%28SAMPLE%28%3FperiodStart%29%29%20AS%20%3Fperiod%29%20%28count%28%3Fformat%29%20as%20%3Fcount%29%20%3Fformat%20%0A%20%20%20WHERE%7B%0A%20%20%20%3Fitem%20wdt%3AP26%20%3Fformat.%0A%20%20%20%3Fitem%20wdt%3AP9%20%3Fdate%20.%0A%20%20FILTER%28lang%28%3Fformat%29%20%3D%20%22fr%22%29%0A%20%20FILTER%28YEAR%28%3Fdate%29%20%3C%201800%29%20%23%20filter%20for%20the%20publication%20date%20of%20interest%0A%23%20FILTER%28lcase%28%3Fformat%29%20%3D%20%2212-in%22%40fr%29%0A%20%20%20%20%20%20Filter%20%28regex%28lcase%28%3Fformat%29%2C%20%22in-%5C%5Cd%2B%5B%5C%5Cs%5C%5CS%5D%22%29%29%0A%0A%20%20%20%20%23%20Calculating%20the%205-year%20period%20start%20year%20without%20using%20MOD%0A%20%20%20%20BIND%28%28year%28%3Fdate%29%20-%20%28year%28%3Fdate%29%20-%20xsd%3Ainteger%28floor%28xsd%3Adecimal%28year%28%3Fdate%29%29%20%2F%205%29%20%2a%205%29%29%29%20AS%20%3FperiodStart%29%20%0A%20%20%20%20%23%20BIND%28str%28year%28%3Fdate%29%29%20as%20%3Fyear%29%0A%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22%7BAUTO_LANGUAGE%7D%22%2C%22fr%22%20.%7D%0A%20%20%7D%0A%0AGROUP%20BY%20%3Fformat%20%3FperiodStart%20%3Fcount%0Ahaving%20%28%3Fcount%3E%204%29%0A)
   - [Verknüpfung mit Katalogdaten über 'BNF identifier'](https://query.mimotext.uni-trier.de/#%23%20MiMoText%20novels%20with%20URL%20to%20Biblioth%C3%A8que%20nationale%20de%20France%20%0A%23defaultView%3AImageGrid%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%20is%20wd%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%20is%20wdt%0A%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fwikidata%20%3Fbnfurl%20%3Fimage%20%0AWHERE%20%7B%0A%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2.%0A%20%20%3Fitem%20mmdt%3AP13%20%3Fwikidata.%0A%20%20%3Fitem%20rdfs%3Alabel%20%3FitemLabel%20.%0A%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22en%22%29%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Fwikidata%20wdt%3AP268%20%3Fbnfid.%0A%20%20%20%20OPTIONAL%7B%20%3Fwikidata%20wdt%3AP18%20%3Fimage.%7D%0A%20%20%20OPTIONAL%7B%20wd%3AP268%20wdt%3AP1630%20%3Fformatterurl.%7D%0A%20%20%20BIND%28IRI%28REPLACE%28%3Fbnfid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3Fformatterurl%29%29%20AS%20%3Fbnfurl%29.%0A%20%20%7D%20%20%20%20%20%20%20%20%20%0A%7D%0A%0A)
+
+
+---
+#### Einige Beispiel-Abfragen (2)
+  
 - Federated queries 
   - [Die Erzählorte aller Romane (Karte)](https://query.mimotext.uni-trier.de/#%23defaultView%3AMap%7B%22hide%22%3A%20%5B%22%3Fnar_loc%22%5D%2C%20%22markercluster%22%3A%22true%22%7D%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20wd%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20wdt%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fnar_loc%20%3Fnar_locLabel%20%3FWikiDataEntity%20%3FcoordinateLocation%0AWHERE%20%7B%20%3Fitem%20wdt%3AP32%20%3Fnar_loc.%0A%20%20%3Fnar_loc%20wdt%3AP13%20%3FWikiDataEntity.%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FWikiDataEntity%20widt%3AP625%20%3FcoordinateLocation%0A%20%20%7D%20%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%20%7D%0A%7D%0A)
   - [Autor:innen (nach Geburtsdatum, mit Portrait)](https://query.mimotext.uni-trier.de/#%23%20show%20authors%2C%20their%20Wikidata%20match%2C%20their%20birth%20dates%20in%20a%20timeline%20%0A%23defaultView%3ATimeline%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%20is%20wd%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%20is%20wdt%0ASelect%20%3Fauthor%20%3FauthorLabel%20%3FwikiLink%20%3Fbirth%20%3Fimage%20%0A%7B%0A%20%20%3Fauthor%20wdt%3AP11%20%3Foccupation.%0A%20%20%3Fauthor%20wdt%3AP13%20%3FwikiLink.%0A%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorLabel%0A%20%20Filter%28lang%28%3FauthorLabel%29%20%3D%20%22en%22%29%0A%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FwikiLink%20widt%3AP569%20%3Fbirth.%20%0A%20OPTIONAL%7B%20%20%20%3FwikiLink%20widt%3AP18%20%3Fimage.%7D%0A%0A%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%0A%7D%0A)
@@ -303,10 +312,10 @@ Wikibase instance enables us to query it as a graph.
   - [Themen aus Topic Modeling  wurden](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Topic%20Modeling%20(Q21)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ21.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q21%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A) verglichen mit [Themen laut BGRF](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Bibliographie%20du%20genre%20romanesque%20fran%C3%A7ais%2C%201751-1800%20(Q1)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ1.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q1%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A)
   - [Themen der BGRF vs. Topic Modeling](https://query.mimotext.uni-trier.de/index.html#prefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0APREFIX%20p%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%3Fwork%20%3FworkLabel%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%20%0AWHERE%20%7B%0A%20%20%3Fwork%20wdt%3AP2%20wd%3AQ2%20%3B%20%23%20instance%20of%20literary%20work%0A%20%20%20%20%20%20%20%20wdt%3AP21%20%3FfullTextURL%20%3B%20%23%20work%20is%20part%20of%20%22roman18%22%20%28github.com%2FMiMoText%2Froman18%29%0A%20%20%20%20%20%20%20%20wdt%3AP36%20%3FthemeItem%20.%20%23%20narrative%20location%20with%20item%20%0A%20%20%3Fwork%20wdt%3AP30%20%3FthemeString%20.%20%23%20narrative%20location%20with%20string%0A%20%20OPTIONAL%20%7B%20%0A%20%20%20%20%3FthemeItem%20rdfs%3Alabel%20%3FthemeItemLabel.%20FILTER%28LANG%28%3FthemeItemLabel%29%20%3D%20%22en%22%29%20%0A%20%20%20%20%3FthemeItemStatement%20ps%3AP36%20%3FthemeItem.%0A%20%20%20%20%3FthemeItemStatement%20prov%3AwasDerivedFrom%20%3Frefnode.%0A%20%20%20%20%3Frefnode%20pr%3AP18%20%3FsourceItem.%0A%20%20%20FILTER%28%3FsourceItem%20%3D%20wd%3AQ1%20%7C%7C%20%3FsourceItem%20%3D%20wd%3AQ21%29%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20%7D%0A%7D%0AGROUP%20BY%20%3FworkLabel%20%3Fwork%20%3FthemeString%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%0AORDER%20BY%20ASC%20%28%3FworkLabel%29)
 
-</small>
 
 --
 ## (6) Fazit
+
 
 
 ---
@@ -321,15 +330,13 @@ Wikibase instance enables us to query it as a graph.
   - Interoperabilität (Spannung 'Wikiversum' vs. OWL-Standard)
 
 
----
-### Zugleich Chance & Herausforderung - Lessons Learned?
 
-- Federated queries: <!-- .element: class="fragment" data-fragment-index="1" --> 
+---
+### Lessons Learned
+
+- Federated queries <!-- .element: class="fragment" data-fragment-index="1" --> 
   - zentrales Element der LOD-Vision 
-  - => aber Realisierung nicht trivial (Datenmodell-Kenntnis, techn. Umsetzung)
-- Mehrsprachigkeit <!-- .element: class="fragment" data-fragment-index="2" --> 
-  - viele Vorteile
-  - aber auch Dominanz des Englischen, Aufwand im Vokabularaufbau etc.
+  - => aber Realisierung nicht trivial <br/>(Datenmodell-Kenntnis, techn. Umsetzung)
 - Modellierung von Meta-Aussagen <!-- .element: class="fragment" data-fragment-index="3" --> 
   -  Perspektiven, nicht Fakten 
   - => sehr unterschiedliche Lösungen in verschiedenen Infrastrukturen
@@ -338,12 +345,21 @@ Wikibase instance enables us to query it as a graph.
   - => ist essentiell und entsteht über LOD & Ontologie-Entwicklung 
 - Es gibt noch viel zu tun! <!-- .element: class="fragment" data-fragment-index="5" --> 
   - => Wir führen den Ansatz in LODinG (Linked Open Data in den Geisteswissenschaften) weiter
+  - Siehe: [https://tcdh.uni-trier.de/de/projekt/loding](https://tcdh.uni-trier.de/de/projekt/loding)
 
+
+---
+### Digital, mehrsprachig, kollaborativ, offen 
+
+- Digital: algorithmische Methoden; online verfügbar; von Menschen und Maschinen lesbar  <!-- .element: class="fragment" data-fragment-index="1" -->
+- Mehrsprachig: durch semantische Modellierung  <!-- .element: class="fragment" data-fragment-index="2" -->
+- Kollaborativ: notwendig interdisziplinär; vernetzt mit anderen Ressourcen  <!-- .element: class="fragment" data-fragment-index="3" -->
+- Offen: frei verfügbare Software; alle Daten und Ressourcen frei verfügbar; auch schon im Prozess  <!-- .element: class="fragment" data-fragment-index="4" -->
 
 
 
 ---
-#### Un grand merci ! 
+#### Vielen Dank! / un grand merci ! 
 
 <img height="40" data-src="img/basics/mimotext-logo.png">
 
@@ -352,8 +368,11 @@ Wikibase instance enables us to query it as a graph.
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-  **Zur Vertiefung**
 - Tutorial: https://docs.mimotext.uni-trier.de
 - SPARQL endpoint: https://query.mimotext.uni-trier.de
 - MiMoTextBase: https://data.mimotext.uni-trier.de
@@ -361,8 +380,9 @@ Wikibase instance enables us to query it as a graph.
 - Referenzartikel: ['Smart Modeling for Digital Literary History'](https://www.euppublishing.com/doi/10.3366/ijhac.2022.0278)
 - Überblick Visualisierungen: [mimotext.github.io/MiMoTextBase_Tutorial/visualizations.html](https://mimotext.github.io/MiMoTextBase_Tutorial/visualizations.html)
 	
-**Link auf diese Seite**
-https://mimotext.github.io/lod-lithist/deu.html#/6/3
+**Link auf diese Seite**: https://mimotext.github.io/lod-lithist/deu.html#/6/3
+
+**Präsentation auf Französisch**: https://mimotext.github.io/lod-lithist/fra.html#/
 
 </small>
 
