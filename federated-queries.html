@@ -31,7 +31,7 @@
 <br/>
 <hr/>
 <p>Maria Hinzmann and Julia Röttgermann<br/> with Tinghui Duan, Anne Klee, Johanna Konstancziak, Matthias Bremm, Christof Schöch und Joëlle Weis</p>
-<p><a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a></p>
+<p>Slides: <a href="https://mimotext.github.io/lod-lithist/federated-queries.html">https://mimotext.github.io/lod-lithist/federated-queries.html</a></p>
 <p><strong><emph>LOD and Literary Studies, Berlin</emph> | November 19-20, 2024</strong></p>
 <hr/>
 <img height="50" data-src="img/basics/tcdh-slim.png">&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/uni-trier.png">&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/mwrlp.svg">
@@ -57,22 +57,7 @@
 More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278)), Hinzmann et al. ([2024](https://doi.org/10.5281/zenodo.12080340)) 
 
 ---
-#### Aims of the project
-
-- Idea: Create a "Wikidata for literary history" <!-- .element: class="fragment" data-fragment-index="1" -->
-  - information system for literary history
-  - LOD-based, with exploratory interface and SPARQL-endpoint
-  - approach of an "atomization" of literary history historical knowledge
-  - held together by taxonomies, ontologies, authority files
-- Compared to Wikidata: <!-- .element: class="fragment" data-fragment-index="2" -->
-  - focused on one domain (French novel 1750-1800)
-  - better coverage and higher density of assertions for this domain 
-  - based on explicit data modeling (towards a systematic ontology)
-
-
-
----
-#### Result: the MiMoTextBase
+#### The MiMoTextBase
 <a href="http://data.mimotext.uni-trier.de/wiki/Main_Page"><img height="450" src="img/mimotextbase.png"></img></a>
 
 - http://data.mimotext.uni-trier.de
@@ -83,28 +68,24 @@ More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278
 <a href="img/sparql_results1.png"><img height="350" src="img/sparql_results1.png"></img></a>
 
 - SPARQL = SPARQL Protocol and RDF Query Language
-- Used to formulate complex queries on LOD
-- https://query.mimotext.uni-trier.de 
-
---
-## (2) Steps towards federation: <br/>Background and process of linking the MiMoTextBase and Wikidata
+- used to formulate queries on LOD
+- query interface: https://query.mimotext.uni-trier.de 
 
 ---
-#### Complimentarity of MiMoTextBase and Wikidata
+#### Aims of the project
 
-- Wikidata Knowledge Graph:  
- - approx. 16 billion triples: [https://w.wiki/6Piz](https://w.wiki/6Piz)
- - user interface: https://query.wikidata.org/: https://query.wikidata.org/
- - cross domain
-
-- MiMoTextBase
- - approx. 367,000 triples [https://tinyurl.com/2lapn3a6](https://tinyurl.com/2lapn3a6)
- - user interface: [https://query.mimotext.uni-trier.de](https://query.mimotext.uni-trier.de)
- - domain-specific
-
-- => federation connects advantages of both data bases
- - Wikidata users can retrieve more specific data via federation with the MiMoTextBase.
- - MiMoTextBase user can get more general information via federation with Wikidata.
+- Idea: Create a "Wikidata for literary history"   <!-- .element: class="fragment" data-fragment-index="1" -->
+  - information system for literary history
+  - LOD-based, with exploratory interface and SPARQL-endpoint
+  - approach of an "atomization" of literary history historical knowledge
+- Compared to Wikidata: <!-- .element: class="fragment" data-fragment-index="2" -->
+  - focused on one domain (French novel 1750-1800)
+  - better coverage and higher density of assertions for this domain 
+  - based on explicit data modeling (towards a systematic [ontology](https://github.com/MiMoText/ontology)
+  - smaller (approx. (340,000 triples)[https://tinyurl.com/2lapn3a6]) (versus (16 billion Wikidata triples)[https://w.wiki/6Piz])
+- Federation with Wikidata  <!-- .element: class="fragment" data-fragment-index="3" -->
+  - complimentarity of both knowledge graphs: MiMoTextBase (domain-specific) and Wikidata (cross-domain)
+  - bidirectional federation to connect advantages of both data bases
 
 ---
 #### MiMoTextBase as part of the Wikibase ecosystem
@@ -113,27 +94,39 @@ More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278
 A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit original visualization: [[Manuel Merz](https://commons.wikimedia.org/wiki/File:Linked-open-data-web.png) / CC-BY-SA 4.0](https://blogs.tib.eu/wp/tib/2021/11/05/tib-at-wikidatacon-part-1/)
 
 
----
-#### Linking MiMoTextBase and Wikidata
-<a href="img/federated-queries_new.png"><img height="450" data-src="img/federated-queries_new.png"></a>
+--
+## (2) Steps towards federation: <br/>Background and process
 
-- (reconciliation via OpenRefine and manually)
-
----
-#### Basic structure of federated queries (?)
-
-- definition of prefixes
-- definition of 2nd endpoint
-[visualization patterns paper?]
 
 
 ---
-#### Linking Wikidata and MiMoTextBase
+#### Linking both knowledge graphs
 
-- 
-- 
-- 
-=> see for more details regarding the process our [documentation](https://github.com/MiMoText/ontology/blob/main/module13_federation/federation_mimotextbase_wikidata.md)
+<a href="img/federation-bidirectional_overview.png"><img height="450" data-src="img/federation-bidirectional_overview.png"></a>
+
+
+---
+#### Process overview
+
+- Linking MiMoTextBase with Wikidata  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - reconciliation with OpenRefine 
+  - manual corrections
+- Definition of a subset to share with Wikidata  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - subcorpus of 200 fulltexts (collection “roman 18”)
+  - definition of relevance criteria to add further novels
+  - => in total: about 800 novels (out of about 2000) 
+- Linking Wikidata with the MiMoTextBase <!-- .element: class="fragment" data-fragment-index="3" -->
+  - proposition of the MiMoText ID to Wikidata 
+  - creation of new novels in Wikidata and linking them (& already existing novels) to MiMoText novels (using QuickStatement / tool chain with OpenRefine)
+  - only selection of statements added to Wikidata, more specific statements in the MiMoTextBase
+- For more information see <!-- .element: class="fragment" data-fragment-index="4" -->
+  - [MiMoText interview with Christos Varvantakis (Wikimedia Deutschland)](https://tech-news.wikimedia.de/2024/06/28/modeling-the-enlightenment-novel-an-interview-with-the-mimotext-team/) 
+  - [our documentation](https://github.com/MiMoText/ontology/blob/main/module13_federation/federation_mimotextbase_wikidata.md)
+
+---
+#### The query syntax
+
+<a href="img/query-syntax-federated-query.png"><img height="450" data-src="img/query-syntax-federated-query.png"></a>
 
 --
 ## (3) Federated Queries (I): MiMoTextBase -> Wikidata
