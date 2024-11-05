@@ -1,0 +1,477 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>MiMoText</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/simple.css" id="theme">
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+<body>
+	<div class="reveal">
+	<div class="slides">
+
+<section data-markdown=""
+         data-separator="^\n--\n" 
+         data-separator-vertical="^\n---\n" 
+         data-separator-notes="^::" 
+         data-charset="utf-8" 
+         data-background-image="img/basics/uni-trier_icon2.png" 
+         data-background-size="70px" 
+         data-background-position="right 10px top 10px">
+
+<!-- ============ BEGINNING OF SLIDE CONTENT =========== -->
+
+<textarea data-template>
+#### Atomizing Literary History <br/> in the Linked Open Data Paradigm
+<img height="60" data-src="img/basics/mimotext-logo.png">
+<br/>
+<hr/>
+<p>Maria Hinzmann<br/> with Matthias Bremm, Tinghui Duan, Anne Klee, Johanna Konstanciak, Julia Röttgermann, Christof Schöch und Joëlle Weis</p>
+<p>Slides: <a href="https://mimotext.github.io/lod-lithist/atomization.html">https://mimotext.github.io/lod-lithist/atomization.html</a></p>
+<p><strong><emph>Modeling Literary History, Würzburg</emph> | November 6, 2024</strong></p>
+<hr/>
+<img height="50" data-src="img/basics/tcdh-slim.png">&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/uni-trier.png">&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/mwrlp.svg">
+
+::
+
+--
+## Overview
+1. [Introduction](#/2)
+2. [Atomization as a way of operationalization](#/3)
+3. [Literary history and literary historiography](#/4)
+4. [Modeling in the LOD paradigm](#/5)
+5. [Example Queries](#/6)
+6. [Outlook and conclusion](#/7)
+
+--
+## (1) Introduction
+
+---
+#### MiMoText in a nutshell 
+<a href="img/overview_eng.jpg"><img height="450" data-src="img/overview_eng.jpg"></a>
+<br/><a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a>
+
+More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278)), Hinzmann et al. ([2024](https://doi.org/10.5281/zenodo.12080340)) 
+
+---
+#### The MiMoTextBase
+<a href="http://data.mimotext.uni-trier.de/wiki/Main_Page"><img height="450" src="img/mimotextbase.png"></img></a>
+
+- [data.mimotext.uni-trier.de](https://data.mimotext.uni-trier.de)
+
+
+---
+#### The SPARQL endpoint 
+<a href="img/sparql-interface-ex-queries2.png"><img height="400" src="img/sparql-interface-ex-queries2.png"></img></a>
+  - SPARQL = SPARQL Protocol and RDF Query Language
+  - Query interface: [query.mimotext.uni-trier.de](https://query.mimotext.uni-trier.de)
+  - Tutorial: [docs.mimotext.uni-trier.de](https://docs.mimotext.uni-trier.de)
+
+---
+#### Aims of the project
+
+- Idea: Create a "Wikidata for literary history"   <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Information system for literary history
+  - LOD-based, with exploratory interface and SPARQL-endpoint
+  - Approach of an "atomization" of literary history historical knowledge
+- Compared to Wikidata: <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Focused on one domain (French novel 1750-1800)
+  - Better coverage and higher density of assertions for this domain 
+  - Based on explicit data modeling (towards a systematic [ontology](https://github.com/MiMoText/ontology)
+  - Smaller (approx. [340,000 triples](https://tinyurl.com/2lapn3a6)) (versus [16 billion Wikidata triples](https://w.wiki/6Piz))
+- Federation with Wikidata  <!-- .element: class="fragment" data-fragment-index="3" -->
+  - Complimentarity of both knowledge graphs: MiMoTextBase (domain-specific) and Wikidata (cross-domain)
+  - Bidirectional federation to connect advantages of both data bases
+
+
+--
+## (2) Atomization as a way of operationalization
+
+---
+#### Atomization: decomposing into simple triples
+<a href="img/candide_S-P-O_new.png"><img height="450" data-src="img/candide_S-P-O_new.png"></a>
+
+---
+#### Meta-statements
+<a href="img/reification-new.png"><img height="400" data-src="img/reification-new.png"></a>
+
+---
+#### Atomization as open / 'non-directed' operationalization
+
+- Atomization and Operationalization   <!-- .element: class="fragment" data-fragment-index="1" -->
+  - approaches of decomposing complex concepts, relations or systems into observable, measurable units or elements
+- Operationalization <!-- .element: class="fragment" data-fragment-index="2" -->
+ -“core activity” (Pichler / Reiter 2022) of the Digital Humanities
+ - starting point:  “one or more (theoretical) concepts which are traced back to phenomena on the - text’s surface via potentially several intermediate steps” (Pichler & Reiter 2022: 7) 
+ - aim: “development of a measurement for a given concept”  (Pichler & Reiter 2022: 4)
+ - focused on limited research questions depending on the concept(s)
+- Atomization <!-- .element: class="fragment" data-fragment-index="3" -->
+ - starting point:  decomposing a knowledge domain into its relevant statements (in the LOD paradigm: RDF triples)
+ - aim: flexibility, multiplicity of different usage scenarios based on numerous possibilities of combination of ‘atoms’ in queries
+ - open with regard to research questions that users can work on with the queryable data
+
+--
+## (3) Literary history and literary historiography
+
+---
+#### (Theory of?) Literary Historiography
+<img height="300" data-src="img/hollier.jpg">
+<br/><small>
+
+* Jan-Dirk Müller, "Literaturgeschichte / Literaturgeschichtsschreibung" (1982)
+* Claus Uhlig, "Current Models and Theories of Literary Historiography" (1987)
+* David Hollier, *A New History of French Literature* (1989)
+* David Perkins, *Is Literary History Possible?* (1992)
+* Jan Borkowski and Philipp David Heine, "Ziele der Literaturgeschichtsschreibung" (2013)
+* Nicolas Paige, *Technologies of the Novel: Quantitative Data and the Evolution of Literary Systems* (2020)
+
+
+</small>
+
+---
+#### Defining a knowledge domain: between literary history and literary historiography
+
+<a href="img/lit-hist-as-knowledge-domain.jpg"><img height="450" data-src="img/lit-hist-as-knowledge-domain.jpg"></a>
+
+
+---
+#### How Does Literary Historiography Work?
+* Goals <!-- .element: class="fragment" data-fragment-index="1" -->
+  * Recover and document the facts of literary history
+  * Provide explanations for the evolution of literature
+* Sources <!-- .element: class="fragment" data-fragment-index="2" -->
+  * literary works (and other  primary sources)
+  * scholarly publications; above all: literary histories
+* Organizing principles <!-- .element: class="fragment" data-fragment-index="3" -->
+  * countries, periods, movements, genres
+  * similarities and dissimilarities
+  * continuity and change
+* Explanation of literary evolution <!-- .element: class="fragment" data-fragment-index="4" -->
+  * Changing cultural and socio-historical context
+  * Inner dynamics of the literary system
+ 
+
+---
+#### How could digital literary historiography (in the LOD paradigm) work?
+
+
+- Data-driven literary historiography <!-- .element: class="fragment" data-fragment-index="1" -->
+ - Reconstruct atoms about literature / literary history
+ - Reconstruct statements from literary historiography
+ Coherence through modeling
+- Join all statements in a shared data model <!-- .element: class="fragment" data-fragment-index="2" -->
+ - Coherence as an emergent property
+- Overcoming data silos in the LOD paradigm via federation <!-- .element: class="fragment" data-fragment-index="3" -->
+ - community-based ontology development: building a shared cross-project data model (community: literary studies / CLS)
+ - federation with domain-specific data bases, humanities databases (e.g. history / book history) and general knowledge ressources (e.g. Wikidata),
+
+--
+## (4) Modeling in the Linked Open Data paradigm
+
+
+---
+####  Different levels
+
+- distinction for data modeling in general between conceptual, logical (or formal) and physical level (Jannidis 2017)
+- within the LOD paradigm: => levels are closely intertwined, but separation is useful to describe interdependencies
+
+---
+#### Conceptual level 
+
+Competency questions as starting point for ontology development
+- What are the most common themes in novels of a given period?
+- To what extent can we identify connections between narrative locations and themes in the French Enlightenment novel?
+- Can specific changes (in themes, narrative locations, or tonalities of the novels) be detected since the French Revolution or since other striking events?
+
+---
+#### Logical / formal level: Overview MiMoText modules
+
+- Module 1: theme
+- Module 2: space
+- Module 3: narrative form
+- Module 4: literary work
+- Module 5: author
+- Module 6: mapping
+- Module 7: referencing
+- Module 8: versioning & publication
+- Module 9: terminology
+- Module 10: bibliography
+- Module 11: scholarly work
+- Module 12: literary work analysis
+- Modul 13: federation
+	
+[Overview Visualizations Modules 1-13](https://github.com/MiMoText/ontology/blob/main/Modules%20overview.md)
+
+
+---
+#### Logical / formal level: Module 12 "Literary work analysis" (domain-specific)
+
+<a href="img/module12_lit-work-analysis.png"><img height="450" data-src="img/module12_lit-work-analysis.png"></a>
+
+---
+#### Logical / formal level: Module 7 "Referencing" (cross-domain)
+
+<a href="img/module7_referencing.png"><img height="450" data-src="img/module7_referencing.png"></a>
+
+
+---
+#### Physical / infrastructural level: Wikibase ecosystem
+<a href="img/wikibase_ecosystem_neu.png"><img height="450" data-src="img/wikibase_ecosystem_neu.png"></a>
+
+A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit original visualization: [[Manuel Merz](https://commons.wikimedia.org/wiki/File:Linked-open-data-web.png) / CC-BY-SA 4.0](https://blogs.tib.eu/wp/tib/2021/11/05/tib-at-wikidatacon-part-1/)
+
+
+---
+#### Physical / infrastructural level: SPARQL representation in Wikibase data model
+
+<a href="img/SPARQL_data_representation.png"><img height="450" data-src="img/SPARQL_data_representation.png"></a>
+
+
+
+---
+#### Linking MiMoTextBase and Wikidata
+
+<a href="img/federation-bidirectional_overview.png"><img height="450" data-src="img/federation-bidirectional_overview.png"></a>
+
+--
+## (5) Example Queries
+
+
+---
+#### Some example queries
+
+- Simple queries
+  - [List of novels with information from BGRF](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20some%20data%20about%20the%20MiMoTextBase%20such%20as%20Authors%2C%20Novels%2C%20publicationyears%2C%20tonality%20etc.%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20DISTINCT%20%3Fbgrf%20%3Fitem%20%3Fauthorlabel%20%3FitemLabel%20%3Fyear%20%3Fnarrpers%20%3Ftonality%20%3Fpages%20%3Fnormalized%20WHERE%20%7B%0A%20%3Fitem%20wdt%3AP5%20%3Fauthor%3B%20%23%20who%20is%20the%20author%3F%0A%20%20%20%20%20%20%20wdt%3AP4%20%3Ftitle%3B%20%23%20what%20is%20the%20title%3F%0A%20%20%20%20%20%20%20wdt%3AP22%20%3Fbgrf%3B%20%20%23%20what%20is%20the%20identifier%20in%20the%20bibliographic%20metadata%3F%0A%20%20%20%20%20%20%20wdt%3AP9%20%3Fdate%3B%20%23%20what%20is%20the%20publication%20date%3F%0A%20OPTIONAL%20%7B%0A%20%20%20%3Fitem%20wdt%3AP27%20%3Fnarrpers%3B%20wdt%3AP31%20%3Ftonality%3B%20wdt%3AP25%20%3Fpages.%20%0A%20%7D%0A%20BIND%28YEAR%28%3Fdate%29%20as%20%3Fyear%29.%0A%20BIND%28if%28bound%28%3Fnarrpers%29%2C%20%3Fnarrpers%2C%20%22unbekannt%22%29%20as%20%3Fnormalized%29%0A%20%3Fauthor%20rdfs%3Alabel%20%3Fauthorlabel.%0A%20FILTER%28LANG%28%3Fauthorlabel%29%20%3D%20%22en%22%29%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2C%20fr%22.%20%7D%0A%7D%20ORDER%20BY%20%3Fyear) 
+  - [The number of works written by each author (first 25)](https://query.mimotext.uni-trier.de/#%23%20Get%20the%20count%20of%20written%20novels%20per%20authors%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FauthorName%20%28count%20%28%3FauthorName%29%20as%20%3Fcount%29%0AWHERE%20%7B%0A%20%20%20%3Fwork%20wdt%3AP5%20%3Fauthor%20.%20%23%20work%20has%20author.%0A%20%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorName%20.%20%23%20get%20author%20label%20%28not%20only%20Link%20to%20author%29%0A%20%20%20FILTER%28LANG%28%3FauthorName%29%20%3D%20%22en%22%29%20%23%20other%20options%3A%20%22fr%22%2C%20%22de%22.%20Filter%20is%20needed%20as%20there%20is%20more%20than%20one%20label%20%28language%20dependent%29%0A%7D%0A%0Agroup%20by%20%3FauthorName%0Aorder%20by%20desc%20%28%3Fcount%29%0ALIMIT%2025%0A%0A)
+  - [The themes of the novels, in French](https://query.mimotext.uni-trier.de/index.html#%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20%3FtopLabel%20%28count%28%2a%29%20as%20%3Fcount%29%0AWHERE%20%7B%0A%20%3Fitem%20wdt%3AP36%20%3Ftop%20.%0A%20%3Ftop%20rdfs%3Alabel%20%3FtopLabel%20.%0A%20filter%28lang%28%3FtopLabel%29%20%3D%20%22fr%22%29%0A%7D%0AGROUP%20BY%20%3FtopLabel%0AORDER%20BY%20desc%28%3Fcount%29) and in [English](https://query.mimotext.uni-trier.de/index.html#%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20%3FtopLabel%20%28count%28%2a%29%20as%20%3Fcount%29%0AWHERE%20%7B%0A%20%3Fitem%20wdt%3AP36%20%3Ftop%20.%0A%20%3Ftop%20rdfs%3Alabel%20%3FtopLabel%20.%0A%20filter%28lang%28%3FtopLabel%29%20%3D%20%22en%22%29%0A%7D%0AGROUP%20BY%20%3FtopLabel%0AORDER%20BY%20desc%28%3Fcount%29) 
+    <br/><br/>
+- Queries with visualization
+  - [Number of novels published per year](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20the%20first%20publication%20dates%20of%20all%20French%20novels%201751-1800%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASELECT%20%28str%28SAMPLE%28year%28%3Fdate%29%29%29%20as%20%3Fyear%29%20%28COUNT%28%2a%29%20AS%20%3Fcount%29%0AWHERE%20%7B%0A%20%20%20%3Fitem%20wdt%3AP9%20%3Fdate%20.%0A%7D%0AGROUP%20BY%20%3Fdate%0AORDER%20BY%20DESC%28%3Fdate%29)
+  - [The authors (by date of birth, with portrait)](https://query.mimotext.uni-trier.de/#%23%20show%20authors%2C%20their%20Wikidata%20match%2C%20their%20birth%20dates%20in%20a%20timeline%20%0A%23defaultView%3ATimeline%0APREFIX%20wid%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20widt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%20is%20wd%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%20is%20wdt%0ASelect%20%3Fauthor%20%3FauthorLabel%20%3FwikiLink%20%3Fbirth%20%3Fimage%20%0A%7B%0A%20%20%3Fauthor%20wdt%3AP11%20%3Foccupation.%0A%20%20%3Fauthor%20wdt%3AP13%20%3FwikiLink.%0A%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorLabel%0A%20%20Filter%28lang%28%3FauthorLabel%29%20%3D%20%22en%22%29%0A%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FwikiLink%20widt%3AP569%20%3Fbirth.%20%0A%20OPTIONAL%7B%20%20%20%3FwikiLink%20widt%3AP18%20%3Fimage.%7D%0A%0A%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%0A%7D%0A)
+  - [The narrative form of the novels (and their prevalence)](https://query.mimotext.uni-trier.de/#%23%20Query%20to%20retrieve%20the%20narrative%20perspectives%20of%20the%20novels.%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0Aprefix%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20%28count%28%3FnarrativePerspectiveLabel%29%20as%20%3Fcount%29%20%3FnarrativePerspectiveLabel%20%0AWHERE%0A%7B%0A%20%20%3Fwork%20wdt%3AP33%20%3FnarrativePerspective.%20%23%20work%20%28novel%29%20has%20property%20P33%20%28narrative%20perspective%29%0A%20%20%3FnarrativePerspective%20rdfs%3Alabel%20%3FnarrativePerspectiveLabel.%20%23%20using%20of%20rdfs%3Alabel%20to%20display%20labels%0A%20%20%0A%20%20FILTER%28lang%28%3FnarrativePerspectiveLabel%29%20%3D%20%22en%22%29%20%23%20filter%20is%20neccessary%20to%20display%20only%20one%20occurence.%20Other%20possibilites%20would%20be%20%22en%22%20or%20%22de%22.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2C%20en%22.%20%7D%0A%20%0A%7D%0A%0Agroup%20by%20%3FnarrativePerspectiveLabel%0A%23defaultView%3ABubbleChart)
+  - [Book history: formats per year](https://query.mimotext.uni-trier.de/#%23defaultView%3ABarChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0ASelect%20%20%28str%28SAMPLE%28year%28%3Fdate%29%29%29%20as%20%3Fyear%29%20%28count%28%3Fformat%29%20as%20%3Fcount%29%20%3Fformat%20%0A%20%20%20WHERE%7B%0A%20%20%20%3Fitem%20wdt%3AP26%20%3Fformat.%0A%20%20%20%3Fitem%20wdt%3AP9%20%3Fdate%20.%0A%20%20FILTER%28lang%28%3Fformat%29%20%3D%20%22fr%22%29%0A%20%20FILTER%28YEAR%28%3Fdate%29%20%3C%201799%29%20%23%20filter%20for%20the%20publication%20date%20of%20interest%0A%23%20FILTER%28lcase%28%3Fformat%29%20%3D%20%2212-in%22%40fr%29%0A%20%20%20%20%20%20Filter%20%28regex%28lcase%28%3Fformat%29%2C%20%22in-%5C%5Cd%2B%5B%5C%5Cs%5C%5CS%5D%22%29%29%0A%20%20%20BIND%28str%28year%28%3Fdate%29%29%20as%20%3Fyear%29%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22%7BAUTO_LANGUAGE%7D%22%2C%22fr%22%20.%7D%0A%20%20%7D%0A%0AGROUP%20BY%20%3Fformat%20%3Fyear%20%3Fcount%0A%23having%20%28%3Fcount%3E%202%29%0A)
+  <br/><br/>
+- Compare information from two sources
+  - [Themes derived from topic modeling](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Topic%20Modeling%20(Q21)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ21.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q21%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A) compared to [themes according to BGRF](https://query.mimotext.uni-trier.de/embed.html#%23%20Topics%20referenced%20by%20Bibliographie%20du%20genre%20romanesque%20fran%C3%A7ais%2C%201751-1800%20(Q1)%0A%23defaultView%3ABubbleChart%0Aprefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0ASELECT%20%3FthemeLabel%0A%20%20%20%20%20%20%20%20(count(*)%20as%20%3Fcount)%20%0AWHERE%0A%7B%0A%20%20%20%20%3Fstatement%20ps%3AP36%20%3Ftheme.%20%23statement%20has%20property%20'about'%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%20%3Frefnode.%20%23statement%20has%20a%20reference%0A%20%20%20%20%3Frefnode%20%20%20pr%3AP18%20wd%3AQ1.%20%23reference%20statement%20uses%20'P18'%3Dstated%20in%3B%20stated%20in%3A%20Q1%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D%0AGROUP%20BY%20%3FthemeLabel%0AORDER%20BY%20%3Fname%0A)
+  - [Combined: themes by BGRF (string, label, Q1) vs. from topic modeling (label, Q21)](https://query.mimotext.uni-trier.de/index.html#prefix%20wd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20wdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%0Aprefix%20ps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20pr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0APREFIX%20p%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%3Fwork%20%3FworkLabel%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%20%0AWHERE%20%7B%0A%20%20%3Fwork%20wdt%3AP2%20wd%3AQ2%20%3B%20%23%20instance%20of%20literary%20work%0A%20%20%20%20%20%20%20%20wdt%3AP21%20%3FfullTextURL%20%3B%20%23%20work%20is%20part%20of%20%22roman18%22%20%28github.com%2FMiMoText%2Froman18%29%0A%20%20%20%20%20%20%20%20wdt%3AP36%20%3FthemeItem%20.%20%23%20narrative%20location%20with%20item%20%0A%20%20%3Fwork%20wdt%3AP30%20%3FthemeString%20.%20%23%20narrative%20location%20with%20string%0A%20%20OPTIONAL%20%7B%20%0A%20%20%20%20%3FthemeItem%20rdfs%3Alabel%20%3FthemeItemLabel.%20FILTER%28LANG%28%3FthemeItemLabel%29%20%3D%20%22en%22%29%20%0A%20%20%20%20%3FthemeItemStatement%20ps%3AP36%20%3FthemeItem.%0A%20%20%20%20%3FthemeItemStatement%20prov%3AwasDerivedFrom%20%3Frefnode.%0A%20%20%20%20%3Frefnode%20pr%3AP18%20%3FsourceItem.%0A%20%20%20FILTER%28%3FsourceItem%20%3D%20wd%3AQ1%20%7C%7C%20%3FsourceItem%20%3D%20wd%3AQ21%29%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20%7D%0A%7D%0AGROUP%20BY%20%3FworkLabel%20%3Fwork%20%3FthemeString%20%3FthemeItem%20%3FthemeItemLabel%20%3FsourceItem%0AORDER%20BY%20ASC%20%28%3FworkLabel%29)
+   <br/><br/>
+- Querying over multiple knowledge graphs
+	- [*Link with catalogue data from French National Library (using BNF id)](https://query.mimotext.uni-trier.de/#%23title%3AMiMoText%20novels%20with%20URL%20to%20Biblioth%C3%A8que%20nationale%20de%20France%20%0A%23defaultView%3AImageGrid%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%0A%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fwikidata%20%3Fbnfurl%20%3Fimage%20%0AWHERE%20%7B%0A%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2.%0A%20%20%3Fitem%20mmdt%3AP13%20%3Fwikidata.%0A%20%20%3Fitem%20rdfs%3Alabel%20%3FitemLabel%20.%0A%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22en%22%29%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Fwikidata%20wdt%3AP268%20%3Fbnfid.%0A%20%20%20%20OPTIONAL%7B%20%3Fwikidata%20wdt%3AP18%20%3Fimage.%7D%0A%20%20%20OPTIONAL%7B%20wd%3AP268%20wdt%3AP1630%20%3Fformatterurl.%7D%0A%20%20%20BIND%28IRI%28REPLACE%28%3Fbnfid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3Fformatterurl%29%29%20AS%20%3Fbnfurl%29.%0A%20%20%7D%20%20%20%20%20%20%20%20%20%0A%7D)
+
+---
+#### Example Queries: MiMoTextBase => Wikidata
+- [*Narrative locations of novels (map)](https://query.mimotext.uni-trier.de/#%23title%3ANarrative%20locations%20of%20the%20MiMoText%20novels%20on%20a%20map%0A%23defaultView%3AMap%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20property%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20property%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fnarr_loc%20%3Fnarr_locLabel%20%3FWikiDataEntity%20%3FcoordinateLocation%0AWHERE%20%7B%20%3Fitem%20mmdt%3AP32%20%3Fnarr_loc.%20%23%20item%20-%3E%20has%20narrative%20location%20-%3E%20spatial%20concept%20item%20of%20narrative%20location%0A%20%20%3Fnarr_loc%20mmdt%3AP13%20%3FWikiDataEntity.%20%23%20spatial%20concept%20item%20of%20narrative%20location%20-%3E%20has%20exact%20match%20-%3E%20corresponding%20wikidata%20item%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%09%3FWikiDataEntity%20wdt%3AP625%20%3FcoordinateLocation%0A%20%20%7D%20%20%20%20%20%20%09%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%20%7D%0A%7D)
+- [Narrative Location of novels about "travel"](https://query.mimotext.uni-trier.de/#%23title%3ANarrative%20Location%20of%20novels%20about%20%22travel%22%0A%23defaultView%3AMap%7B%22hide%22%3A%20%5B%22%3Fnar_loc%22%2C%20%22%3Ftopic%22%5D%2C%20%22layer%22%3A%20%22%3FthemeLabel%22%7D%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20property%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20property%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FnarrLoc%20%3FnarrLocLabel%20%3FwikidataEntityLink%20%3FcoordinateLocation%20%3Ftheme%20%3FthemeLabel%20WHERE%20%7B%0A%20%20%3Fitem%20mmdt%3AP36%20mmd%3AQ3126.%20%20%23%20work%20item%20is%20about%20travel%0A%20%20%3Fitem%20mmdt%3AP36%20%3Ftheme.%20%20%20%20%23%20work%20is%20about%20themes%0A%20%20%3Fitem%20mmdt%3AP32%20%3FnarrLoc.%20%20%23%20work%20has%20narrative%20location%0A%20%20%3FnarrLoc%20mmdt%3AP13%20%3FWikiLink.%20%20%23%20narrative%20location%20has%20exact%20match%20with%20Wikidata%20ID%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FWikiLink%20wdt%3AP625%20%3FcoordinateLocation%20.%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%7D%0A%7D%0A)
+- [Authors by birth year, with portrait](https://query.mimotext.uni-trier.de/#%23%20show%20authors%2C%20their%20Wikidata%20match%2C%20their%20birth%20dates%20in%20a%20timeline%20%0A%23defaultView%3ATimeline%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0Aprefix%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%20%0Aprefix%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%20%0ASelect%20%3Fauthor%20%3FauthorLabel%20%3FwikiLink%20%3Fbirth%20%3Fimage%20%0A%7B%0A%20%20%3Fauthor%20mmdt%3AP11%20%3Foccupation.%0A%20%20%3Fauthor%20mmdt%3AP13%20%3FwikiLink.%0A%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorLabel%0A%20%20Filter%28lang%28%3FauthorLabel%29%20%3D%20%22en%22%29%0A%20%20%20%20%20%20%20%20%20%20%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FwikiLink%20wdt%3AP569%20%3Fbirth.%20%0A%20OPTIONAL%7B%20%20%20%3FwikiLink%20wdt%3AP18%20%3Fimage.%7D%0A%0A%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%0A%7D%0A)
+- [*Alternative author names from Wikidata infobox](https://query.mimotext.uni-trier.de/#%23title%3AAlternative%20Labels%20of%20author%20names%20via%20%E2%80%98federated%E2%80%99%20queries%E2%80%99%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0A%0ASELECT%20DISTINCT%20%3Fauthor%20%3FauthorLabel%20%3FwikidataEntity%20%3Faltname%0AWHERE%20%7B%0A%09%20%3Fitem%20mmdt%3AP5%20%3Fauthor.%0A%20%20%20%20%20%20%3Fauthor%20mmdt%3AP13%20%3FwikidataEntity.%20%20%23author%20-%3E%20has%20exact%20match%20-%3E%20with%20corresponding%20wikidata%20item%0A%20%0A%20%20%20%20%20%20%23Federated%20Query%20-%3E%20Wikidata%0ASERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%09%20%3FwikidataEntity%20skos%3AaltLabel%20%3Faltname%0A%20%20%20%20%20%20%7D%20%20%20%20%20%0A%20%09%09%20%0A%20%20%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%09%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%20%20%20%20%7D%0A%7D%0ALIMIT%201000%0A)
+- [Network of influences between authors (using ‘influenced by’)](https://query.mimotext.uni-trier.de/#%23title%3AInfluence%20networks%20of%20authors%20via%20%27federated%20query%27%0A%23defaultView%3AGraph%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20entity%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20property%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20property%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Finfluencedby%20%3Fimage%20%0AWHERE%20%7B%0A%20%20%20%20%20%20%3Fitem%20mmdt%3AP5%20%3Fauthor.%0A%20%20%20%20%20%20%3Fauthor%20mmdt%3AP13%20%3FWikidataEntity.%20%20%23exact%20match%0A%20%20%20%20%20%20%0A%23Federated%20Query%20-%3E%20Wikidata%0A%20%20%20%20%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%09%20%3FWikidataEntity%20wdt%3AP737%2Fwdt%3AP737%20%3Finfluencedby.%0A%20%20%09%09%20OPTIONAL%20%7B%20%20%3Finfluencedby%20wdt%3AP18%20%3Fimage.%7D%0A%20%20%20%20%20%20%7D%20%20%20%20%20%0A%20%09%09%20%0A%20%20%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%09%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%20%20%20%20%7D%0A%7D%0A)
+
+---
+#### Example Queries: Wikdata => MiMoTextBase
+-  [*Tones](https://query.wikidata.org/#%23title%3A%20Query%20on%20Wikidata%20regarding%20narrative%20location%20of%20novels%20by%20given%20author%20%0A%0A%23%20For%20a%20given%20author%20present%20on%20Wikidata%2C%20which%20novels%20has%20he%2Fshe%20written%20according%20to%20MiMoText%2C%20and%20where%20does%20the%20narration%20take%20place%2C%20again%20according%20to%20MiMoText%3F%20%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FauthorLabel%20%3Fwikidataitem%20%3FmimotextitemLabel%20%3Fmimotextitem%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FnarrlocLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Fnarrative_locations_MiMoText%29%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FtoneLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Ftones%29%0A%0AWHERE%20%7B%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor%3B%0A%20%20%20%20%20%23%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20wd%3AQ3157878%20.%20%23%20Q3157878%20%3D%20R%C3%A9v%C3%A9roni%20Saint-Cyr%20%7C%20Q361456%20%3D%20Dorat%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20rdfs%3Alabel%20%3FmimotextitemLabel.%0A%20%20FILTER%28lang%28%3FmimotextitemLabel%29%20%3D%20%22fr%22%29%0A%20%20%3Fmimotextitem%20mmdt%3AP32%20%3Fnarrloc.%0A%20%20%3Fnarrloc%20rdfs%3Alabel%20%3FnarrlocLabel.%0A%20%20FILTER%28lang%28%3FnarrlocLabel%29%20%3D%20%22fr%22%29%0A%20%20OPTIONAL%20%7B%20%3Fmimotextitem%20mmdt%3AP38%20%3Ftone.%20%0A%20%20%3Ftone%20rdfs%3Alabel%20%3FtoneLabel.%20%0A%20%20FILTER%28lang%28%3FtoneLabel%29%20%3D%20%22fr%22%29%20%7D%0A%7D%0A%7D%0AGROUP%20BY%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3Fwikidataitem%20%3FauthorLabel%0A)
+- [*Stylometric distances](https://query.wikidata.org/#%23title%3A%20Which%20work%20is%20close%20in%20stylometric%20similarity%3F%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0APREFIX%20mmpq%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fqualifier%2F%3E%0APREFIX%20mmps%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0APREFIX%20mmp%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%20%3FauthorLabel%20%3Fwikidataitem%20%3FitemLabel%20%3Fitem%20%3FsimilarLabel%20%3FdataLabel%20%3Fval%0AWHERE%20%7B%20%0A%20%20%23%20Query%20for%20MiMoTextBase%20novels%20and%20similar%20novels%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor.%0A%20%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fitem%29.%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%20%20SELECT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fdata%20%3FdataLabel%20%3FsimilarLabel%20%3Fval%20%0A%20%20%20%20WHERE%20%7B%0A%20%20%20%20%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20%20%20%20%20%20%20%20%20%23%20%20mmdt%3AP5%20mmd%3AQ842%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20mmp%3AP49%20%3Fdata_stmt%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FitemLabel%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22fr%22%29.%0A%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28str%28%3FitemLabel%29%3D%22L%E2%80%99%C3%A9tourdi%22%29.%0A%20%20%20%20%20%20%3Fdata_stmt%20mmps%3AP49%20%3Fdata.%20%20%0A%20%20%20%20%20%20%3Fdata_stmt%20mmpq%3AP52%20%3Fval.%0A%20%20%20%20%20%20%3Fdata%20mmdt%3AP5%20%3Fsimilar%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FsimilarLabel%3B%0A%20%20%20%20%20%20%20%20FILTER%28lang%28%3FsimilarLabel%29%20%3D%20%22fr%22%29.%20%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%20%20%20%20%20%20%20%0AGROUP%20BY%20%3FauthorLabel%20%3Fwikidataitem%20%3FitemLabel%20%3Fitem%20%3FsimilarLabel%20%3FdataLabel%20%3Fval%0AORDER%20BY%20%3Fval%0A%0A)
+- [Overview of French Enlightenment novels in Wikidata with MiMoText ID (and properties in MiMoTextBase)](https://query.wikidata.org/#%23title%3AOverview%20about%20MiMoText%20novels%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20DISTINCT%20%3Fmimotextitem%20%3FauthorLabel%20%3Ftitle%20%3FfullworkURL%20%3FbgrfID%20%3Fpub_date_string%20%3Fpub_date%20%3Fpub_place_string%20%3Fpub_place%20%3Fnarrpers_string%20%3Fnarrloc_string%20%3Fnarrloc%20%3FBGRF_plot_theme%20%3Ftheme%20%3FthemeLabel%20%3FBGRF_tone_intention%20%3Ftone%20%3Fintention%20%3Fpages%20%3Ftoken_count%20%3Fdist_format%20%3Fsentiment_arc%20%0AWHERE%20%7B%20%0A%20%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%20%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor.%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%20%0A%20%20%20%20%20%20%20%20mmdt%3AP4%20%3Ftitle%3B%20%0A%20%20%20%20%20%20%20%20mmdt%3AP21%20%3FfullworkURL%3B%0A%20%20%20%20%20%20%20%20mmdt%3AP22%20%3FbgrfID%3B%0A%20%20%20%20%20%20%20%20mmdt%3AP23%20%3Fpub_date_string%3B%20%0A%20%20%20%20%20%20%20%20mmdt%3AP9%20%3Fpub_date%3B%20%0A%20%20%20%20%20%20%20%20mmdt%3AP24%20%3Fpub_place_string%3B%20%0A%20%20%20%20%20%20%20%20mmdt%3AP10%20%3Fpub_place%3B%0A%20%20%20%20%20%20%20%20mmdt%3AP27%20%3Fnarrpers_string%3B%20%23item%20has%20narrative%20form%2C%20string%20from%20BGRF%0A%20%20%20%20%20%20%20%20mmdt%3AP28%20%3Fnarrloc_string%3B%20%23item%20has%20narrative%20location%2C%20string%20from%20BGRF%0A%20%20%20%20%20%20%20%20mmdt%3AP32%20%3Fnarrloc%3B%20%23item%20has%20narrative%20form%2C%20LODified%0A%20%20%20%20%20%20%20%20mmdt%3AP29%20%3Fcharacters_string%3B%0A%20%20%20%20%20%20%20%20mmdt%3AP30%20%3FBGRF_plot_theme%3B%20%23item%20has%20keyword%20about%20plot%20%2F%20theme%2C%20string%20from%20BGRF%0A%20%20%20%20%20%20%20%20mmdt%3AP36%20%3Ftheme%3B%20%23item%20has%20theme%2C%20LODified%20%28from%203%20source%20types%3A%20BGRF%20%7C%20Topic%20Modeling%20%7C%20scholarly%20literature%29%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20mmdt%3AP31%20%3FBGRF_tone_intention%3B%20%23item%20has%20keyword%20about%20tone%20%2F%20intention%2C%20string%20from%20BGRF%0A%20%20%20%20%20%20%20%20mmdt%3AP38%20%3Ftone%3B%20%23item%20has%20tone%20%2C%20LODified%20%28from%20BGRF%29%0A%20%20%20%20%20%20%20%20mmdt%3AP39%20%3Fintention%3B%20%23item%20has%20intention%20%2C%20LODified%20%28from%20BGRF%29%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20mmdt%3AP25%20%3Fpages%3B%20%23item%20has%20page%20information%0A%20%20%20%20%20%20%20%20mmdt%3AP26%20%3Fdist_format%3B%20%23item%20has%20distribution%20format%0A%20%20%20%20%20%20%20%20mmdt%3AP40%20%3Ftoken_count%3B%20%23item%20has%20token%20count%0A%20%20%20%20%20%20%20%20mmdt%3AP58%20%3Fsentiment_arc.%20%23item%20has%20sentiment%20arc%20diagram%0A%20%20%20%20%20%20%20%20%3Ftheme%20rdfs%3Alabel%20%3FthemeLabel.%0A%20%20%20%20%20%20%20%20FILTER%28lang%28%3FthemeLabel%29%20%3D%20%22en%22%29%0A%7D%0A%20%20%7D%0A%0ALIMIT%205)
+- [Overview of French Enlightenment novels with MiMoText ID (fulltext, BGRF, place, date)](https://query.wikidata.org/#%23%20Overview%20French%20Enlightenment%20novels%20with%20MiMoText%20ID%20%28fulltext%2C%20BGRF%2C%20place%2C%20date%29%20%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20DISTINCT%20%3Fwikidataitem%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3FauthorLabel%20%28SAMPLE%28%3FfullworkURL%29%20as%20%3FfullworkURL%29%20%3FbgrfID%20%3Fpub_date_year%20%3Fpub_place_string%20%0AWHERE%20%7B%20%0A%20%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%0A%20%20%23Federated%20Query%20-%3E%20MiMoTextBase%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20mmdt%3AP21%20%3FfullworkURL%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20mmdt%3AP22%20%3FbgrfID%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FmimotextitemLabel.%20%20%0A%20%20%20%20%20%20FILTER%28lang%28%3FmimotextitemLabel%29%20%3D%20%22en%22%29%0A%20OPTIONAL%20%7B%3Fmimotextitem%20mmdt%3AP9%20%3Fpub_date%20.%0A%20%20%20%20%20%20%20%20%20%20%20BIND%28YEAR%28%3Fpub_date%29%20AS%20%3Fpub_date_year%29%20%7D%0A%20OPTIONAL%20%7B%3Fmimotextitem%20mmdt%3AP24%20%3Fpub_place_string%20%7D%20%0A%20%20%20%20%0A%7D%0A%7D%0AGROUP%20BY%20%3Fwikidataitem%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3FauthorLabel%20%3FbgrfID%20%3Fpub_date_year%20%3Fpub_place_string%0AORDER%20BY%20%3Fwikidataitem%0A%0A)
+- [Themes, narrative locations, tones, intentions of French Enlightenment novels with MiMoText ID](https://query.wikidata.org/#%23%20Themes%2C%20narrative%20locations%2C%20tones%2C%20intentions%20of%20French%20Enlightenment%20novels%20with%20MiMoText%20ID%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3Fwikidataitem%0A%28GROUP_CONCAT%28DISTINCT%20%3FthemeLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Fthemes%29%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FnarrlocLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Fnarrative_locations%29%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FtoneLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Ftones%29%0A%28GROUP_CONCAT%28DISTINCT%20%3FintentionLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Fintentions%29%20%0AWHERE%20%7B%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor.%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20rdfs%3Alabel%20%3FmimotextitemLabel.%0A%20%20FILTER%28lang%28%3FmimotextitemLabel%29%20%3D%20%22en%22%29%0A%20%20%3Fmimotextitem%20mmdt%3AP36%20%3Ftheme.%0A%20%20%3Ftheme%20rdfs%3Alabel%20%3FthemeLabel.%0A%20%20FILTER%28lang%28%3FthemeLabel%29%20%3D%20%22en%22%29%0A%20%20%3Fmimotextitem%20mmdt%3AP32%20%3Fnarrloc.%0A%20%20%3Fnarrloc%20rdfs%3Alabel%20%3FnarrlocLabel.%0A%20%20FILTER%28lang%28%3FnarrlocLabel%29%20%3D%20%22en%22%29%0A%20%20%3Fmimotextitem%20mmdt%3AP38%20%3Ftone.%0A%20%20%3Ftone%20rdfs%3Alabel%20%3FtoneLabel.%0A%20%20FILTER%28lang%28%3FtoneLabel%29%20%3D%20%22en%22%29%0A%20%20%3Fmimotextitem%20mmdt%3AP39%20%3Fintention.%0A%20%20%3Fintention%20rdfs%3Alabel%20%3FintentionLabel.%0A%20%20FILTER%28lang%28%3FintentionLabel%29%20%3D%20%22en%22%29%0A%7D%0A%7D%0AGROUP%20BY%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3Fwikidataitem%0ALIMIT%2050)
+- [Themes of French Enlightenment novels with MiMoText ID as BubbleChart](https://query.wikidata.org/#%23title%3AThemes%20of%20MiMoText%20novels%20in%20Wikidata%0A%23defaultView%3ABubbleChart%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FthemeLabel%20%28count%28%2a%29%20as%20%3Fcount%29%20%0AWHERE%20%7B%20%0A%20%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%20%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid.%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20%0A%20%20%23Federated%20Query%20-%3E%20MiMoTextBase%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%0A%20%20%20%20%20%20%20%7B%3Fmimotextitem%20mmdt%3AP36%20%3Ftheme%20.%20%20%0A%20%20%20%20%20%20%20%3Ftheme%20rdfs%3Alabel%20%3FthemeLabel%20.%20%20%0A%20%20%20%20%20%20%20filter%28lang%28%3FthemeLabel%29%20%3D%20%22en%22%29%20%7D%20%0A%7D%20%0AGROUP%20BY%20%3FthemeLabel%20%0AORDER%20BY%20desc%28%3Fcount%29)
+
+
+
+--
+## (6) Outlook
+
+
+---
+#### Opportunities (LOD, Wikibase and Federation)
+
+- Literary history <!-- .element: class="fragment" data-fragment-index="1" -->  
+  - overcoming canon-centered 'narratives' of literary history
+  - meta-perspective on the disciplinary discourse
+- Linked Open Data <!-- .element: class="fragment" data-fragment-index="2" -->  
+  - Ability to connect heterogeneous data sources 
+  - Allows to model, gather and compare contradicting information   
+  - Makes the process of constructing knowledge transparent (sources)
+  - Can be generated and analyzed using both qualitative and quantitative methods 
+- Federated Queries  <!-- .element: class="fragment" data-fragment-index="3" --> 
+  - Allows to re-use information already present elsewhere (overcoming redundancies)  
+  - Realizes the potential of LOD to link and analize data generated within and across domains and disciplines
+
+
+---
+#### Challenges (LOD for literary history and in general)
+
+- lack of consensus on relevant statement types in the discipline <!-- .element: class="fragment" data-fragment-index="1" --> 
+- lack of consensus on basic data modeling decisions (names and meanings of relevant properties and classes) <!-- .element: class="fragment" data-fragment-index="2" --> 
+- interoperability (tension ‘Wikiverse’ vs. other LOD platforms / non-LOD databases) <!-- .element: class="fragment" data-fragment-index="3" --> 
+- sustainability <!-- .element: class="fragment" data-fragment-index="4" --> 
+- steps towards federation need resources (reconciliation, mapping etc.) <!-- .element: class="fragment" data-fragment-index="5" --> 
+
+---
+#### Outlook 
+
+- The project LODinG (Linked Open Data in the Humanities) will extend our methods to other domains from 2024–2028.
+- [Upcoming Wikidata split](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/WDQS_backend_update/September_2024_scaling_update) (2025): [query-scholarly.wikidata.org](https://query-scholarly.wikidata.org/) & [query-main.wikidata.org](https://query-main.wikidata.org) => Federation is becoming [more relevant](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/WDQS_graph_split/Internal_Federation_Guide) (growth of the main graph)
+- new DARIAH-EU Working Group["DH Wiki"](https://www.dariah.eu/2024/11/04/dhwiki-a-new-dariah-eu-working-group-focusing-on-building-bridges-between-different-sectors/): bridges between DH researchers, GLAM institutions and Wikimedia movement
+- [WikiMUC workshop on federation](https://de.wikipedia.org/wiki/Wikipedia:WikiMUC/Federated_Queries_Workshop) at 5/6th Dec 2024
+
+---
+#### Conclusion / Discussion
+
+- How can we create consensus within the literary studies (in exchange with 'traditional' literary scholars) about relevant statements and their 'atoms' ?
+- How can we organize the process of gradually developing an ontology for literary history that is really relevant and effective as a “shared conceptualization” across project boundaries?
+- The relevance of Linked Open Data in relation to LLM? (#)
+
+
+---
+#### Many thanks! 
+
+<img height="40" data-src="img/basics/mimotext-logo.png">
+
+**To learn more**
+- Tutorial: https://docs.mimotext.uni-trier.de
+- SPARQL endpoint: https://query.mimotext.uni-trier.de
+- MiMoTextBase: https://data.mimotext.uni-trier.de
+- MiMoText Ontology: https://github.com/MiMoText/ontology
+- Reference publications: ['Smart Modeling for Digital Literary History'](https://www.euppublishing.com/doi/10.3366/ijhac.2022.0278) & ['Preprint: Patterns in modeling and querying a knowledge graph for literary history'](https://zenodo.org/records/12080341)
+- Video: https://commons.wikimedia.org/wiki/File:Mining_and_Modeling_Text_at_Trier_University.webm 
+	
+**Link to this page**
+https://mimotext.github.io/lod-lithist/atomization.html#/6/3
+ 
+
+
+--
+## Bonus Slides
+
+
+
+
+---
+#### Challenges and Learnings (using Wikibase)
+- Customizing Wikibase with various extensions required additional effort. <!-- .element: class="fragment" data-fragment-index="1" --> 
+- We recommend using Docker containers for simplifying the installation process and extensions. <!-- .element: class="fragment" data-fragment-index="2" --> 
+- QuickStatements proved to be efficient for most data import scenarios, reducing the need for PyWikiBot customizations.  <!-- .element: class="fragment" data-fragment-index="3" --> 
+
+
+---
+#### Advantages Wikibase infrastructure
+ 
+- Open source software, ideal for handling multilingualism and collaboration
+- Possibilities of analysis, visualization and data export in the DockerWikibaseQueryService 
+- Within the Wikibase ecosystem: sharing the same infrastructure and [basic data model](https://www.mediawiki.org/wiki/Wikibase/DataModel) 
+- Wikidata as largest Wikibase => a hub for linking humanities data across project boundaries 
+
+---
+#### Limitations within the Wikibase infrastructure
+	
+- no systematic ontology <!-- .element: class="fragment" data-fragment-index="1" --> 
+- specific data model which is not directly interoperabel with OWL standard <!-- .element: class="fragment" data-fragment-index="2" --> 
+- problem of semantic expressivity (Sack 2022) <!-- .element: class="fragment" data-fragment-index="3" --> 
+- loss of reasoning potential / possibilities <!-- .element: class="fragment" data-fragment-index="4" --> 
+- biases and dominances (e.g. English language) in reality (despite awareness and initiatives) <!-- .element: class="fragment" data-fragment-index="5" --> 
+
+
+
+---
+#### Process overview
+
+- Linking MiMoTextBase with Wikidata  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Reconciliation with OpenRefine 
+  - Manual corrections
+- Definition of a subset to share with Wikidata  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Subcorpus of 200 fulltexts (collection “roman 18”)
+  - Definition of relevance criteria to add further novels
+  - => in total: about 800 novels (out of about 2000) 
+- Linking Wikidata with the MiMoTextBase <!-- .element: class="fragment" data-fragment-index="3" -->
+  - Proposition of the MiMoText ID to Wikidata 
+  - Creation of new novels in Wikidata and linking them (& already existing novels) to MiMoText novels (using QuickStatement / tool chain with OpenRefine)
+  - Selection of statements added to Wikidata, more specific statements in the MiMoTextBase
+  - [Whitelisting](https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual/SPARQL_Federation_endpoints/pl) MiMoText sparql endpoint in Wikidata ([Phabricator-Ticket](https://phabricator.wikimedia.org/T351488))
+- For more information see <!-- .element: class="fragment" data-fragment-index="4" -->
+  - [MiMoText interview with Christos Varvantakis (Wikimedia Deutschland)](https://tech-news.wikimedia.de/2024/06/28/modeling-the-enlightenment-novel-an-interview-with-the-mimotext-team/) 
+  - [our documentation](https://github.com/MiMoText/ontology/blob/main/module13_federation/federation_mimotextbase_wikidata.md)
+
+---
+#### The query syntax
+
+<a href="img/query-syntax-federated-query.png"><img height="400" data-src="img/query-syntax-federated-query.png"></a>
+
+
+
+---
+#### Using Quickstatements
+<a href="img/quickstatements.png"><img height="450" src="img/quickstatements.png"></img></a>
+
+- https://www.wikidata.org/wiki/Help:QuickStatements
+
+---
+#### Retrieving value using statement node
+<a href="img/statement-node.png"><img height="450" src="img/statement-node.png"></img></a>
+
+- https://mimotext.github.io/MiMoTextBase_Tutorial/aboutMiMoTextBase.html
+
+---
+#### Wikibase Data model (1)
+<a href="img/SPARQL_data_representation.png"><img height="450" data-src="img/SPARQL_data_representation.png"></a>
+
+Source: UserHenkvD: [SPARQL data representation, as used by Wikidata Query Service](https://en.wikibooks.org/wiki/SPARQL/WIKIDATA_Qualifiers,_References_and_Ranks#/media/File:SPARQL_data_representation.png). 2017. CC BY-SA 4.0
+
+---
+#### Wikibase Data model (2)
+<a href="img/property-data-types.png"><img height="450" data-src="img/property-data-types.png"></a>
+
+Fig.: Property data types in the MiMoTextBase (red)
+
+---
+#### Federation between MiMoTextBase and Wikidata
+<a href="img/federated-queries_new.png"><img height="450" data-src="img/federated-queries_new.png"></a> 
+
+---
+## Back Matter
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<hr/>
+<small>
+<br/>Slides: <a href="https://mimotext.github.io/lod-lithist/atomization.html#">https://mimotext.github.io/lod-listhist/atomization.html</a>
+<br/>Project: <a href="https://mimotext.uni-trier.de/en">https://mimotext.uni-trier.de/en</a>
+<br/>Licence: <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution (CC BY)</a>, 2024
+</small>
+<hr/>
+
+
+
+</textarea>
+
+<!-- ============ END OF SLIDE CONTENT =========== -->
+
+</section>
+
+	</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+        Reveal.configure({ pdfSeparateFragments: false });
+		Reveal.initialize({
+			hash: true,
+            progress: true,
+            slideNumber: true,
+            fragments: true,
+            center: false,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+		});
+	</script>
+</body>
+</html>
