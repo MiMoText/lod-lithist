@@ -86,16 +86,15 @@ More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278
   - Complimentarity of both knowledge graphs: MiMoTextBase (domain-specific) and Wikidata (cross-domain)
   - Bidirectional federation to connect advantages of both data bases
 
+
+--
+## (2) Steps towards federation
+
 ---
 #### MiMoTextBase as part of the Wikibase ecosystem
 <a href="img/wikibase_ecosystem_neu.png"><img height="450" data-src="img/wikibase_ecosystem_neu.png"></a>
 
 A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit original visualization: [[Manuel Merz](https://commons.wikimedia.org/wiki/File:Linked-open-data-web.png) / CC-BY-SA 4.0](https://blogs.tib.eu/wp/tib/2021/11/05/tib-at-wikidatacon-part-1/)
-
-
---
-## (2) Steps towards federation
-
 
 ---
 #### Linking both knowledge graphs
@@ -164,16 +163,17 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 - [Themes of French Enlightenment novels with MiMoText ID as BubbleChart](https://query.wikidata.org/#%23title%3AThemes%20of%20MiMoText%20novels%20in%20Wikidata%0A%23defaultView%3ABubbleChart%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FthemeLabel%20%28count%28%2a%29%20as%20%3Fcount%29%20%0AWHERE%20%7B%20%0A%20%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%20%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid.%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20%0A%20%20%23Federated%20Query%20-%3E%20MiMoTextBase%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%0A%20%20%20%20%20%20%20%7B%3Fmimotextitem%20mmdt%3AP36%20%3Ftheme%20.%20%20%0A%20%20%20%20%20%20%20%3Ftheme%20rdfs%3Alabel%20%3FthemeLabel%20.%20%20%0A%20%20%20%20%20%20%20filter%28lang%28%3FthemeLabel%29%20%3D%20%22en%22%29%20%7D%20%0A%7D%20%0AGROUP%20BY%20%3FthemeLabel%20%0AORDER%20BY%20desc%28%3Fcount%29)
 
 ---
-#### Stylometric distances
-
-<a href="img/stylometry.png"><img height="450" data-src="img/stylometry.png"></a>
-[Query](https://query.wikidata.org/#%23title%3A%20Which%20work%20is%20close%20in%20stylometric%20similarity%3F%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0APREFIX%20mmpq%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fqualifier%2F%3E%0APREFIX%20mmps%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0APREFIX%20mmp%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%20%3FauthorLabel%20%3Fwikidataitem%20%3FitemLabel%20%3Fitem%20%3FsimilarLabel%20%3FdataLabel%20%3Fval%0AWHERE%20%7B%20%0A%20%20%23%20Query%20for%20MiMoTextBase%20novels%20and%20similar%20novels%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor.%0A%20%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fitem%29.%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%20%20SELECT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fdata%20%3FdataLabel%20%3FsimilarLabel%20%3Fval%20%0A%20%20%20%20WHERE%20%7B%0A%20%20%20%20%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20%20%20%20%20%20%20%20%20%23%20%20mmdt%3AP5%20mmd%3AQ842%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20mmp%3AP49%20%3Fdata_stmt%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FitemLabel%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22fr%22%29.%0A%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28str%28%3FitemLabel%29%3D%22L%E2%80%99%C3%A9tourdi%22%29.%0A%20%20%20%20%20%20%3Fdata_stmt%20mmps%3AP49%20%3Fdata.%20%20%0A%20%20%20%20%20%20%3Fdata_stmt%20mmpq%3AP52%20%3Fval.%0A%20%20%20%20%20%20%3Fdata%20mmdt%3AP5%20%3Fsimilar%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FsimilarLabel%3B%0A%20%20%20%20%20%20%20%20FILTER%28lang%28%3FsimilarLabel%29%20%3D%20%22fr%22%29.%20%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%20%20%20%20%20%20%20%0AGROUP%20BY%20%3FauthorLabel%20%3Fwikidataitem%20%3FitemLabel%20%3Fitem%20%3FsimilarLabel%20%3FdataLabel%20%3Fval%0AORDER%20BY%20%3Fval%0A%0A)
-
----
 #### Tones
 
 <a href="img/tones.png"><img height="450" data-src="img/tones.png"></a>
 [Query](https://query.wikidata.org/#%23title%3A%20Query%20on%20Wikidata%20regarding%20tonality%20of%20novels%20by%20given%20author%20%0A%0A%23%20For%20a%20given%20author%20present%20on%20Wikidata%2C%20which%20novels%20has%20he%2Fshe%20written%20according%20to%20MiMoText%2C%20and%20what%20is%20the%20tonality%20according%20to%20MiMoTextBase%3F%20%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FauthorLabel%20%3Fwikidataitem%20%3FmimotextitemLabel%20%3Fmimotextitem%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FtoneLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Ftones%29%0A%0AWHERE%20%7B%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor%3B%0A%20%20%20%20%20%23%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20wd%3AQ3157878%20.%20%23%20Q3157878%20%3D%20R%C3%A9v%C3%A9roni%20Saint-Cyr%20%7C%20Q361456%20%3D%20Dorat%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20rdfs%3Alabel%20%3FmimotextitemLabel.%0A%20%20FILTER%28lang%28%3FmimotextitemLabel%29%20%3D%20%22fr%22%29%0A%20%20OPTIONAL%20%7B%20%3Fmimotextitem%20mmdt%3AP38%20%3Ftone.%20%0A%20%20%3Ftone%20rdfs%3Alabel%20%3FtoneLabel.%20%0A%20%20FILTER%28lang%28%3FtoneLabel%29%20%3D%20%22fr%22%29%20%7D%0A%7D%0A%7D%0AGROUP%20BY%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3Fwikidataitem%20%3FauthorLabel%0A)
+
+
+---
+#### Stylometric distances
+
+<a href="img/stylometry.png"><img height="450" data-src="img/stylometry.png"></a>
+[Query](https://query.wikidata.org/#%23title%3A%20Which%20work%20is%20close%20in%20stylometric%20similarity%3F%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0APREFIX%20mmpq%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fqualifier%2F%3E%0APREFIX%20mmps%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0APREFIX%20mmp%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%20%3FauthorLabel%20%3Fwikidataitem%20%3FitemLabel%20%3Fitem%20%3FsimilarLabel%20%3FdataLabel%20%3Fval%0AWHERE%20%7B%20%0A%20%20%23%20Query%20for%20MiMoTextBase%20novels%20and%20similar%20novels%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor.%0A%20%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fitem%29.%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%20%20SELECT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fdata%20%3FdataLabel%20%3FsimilarLabel%20%3Fval%20%0A%20%20%20%20WHERE%20%7B%0A%20%20%20%20%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20%20%20%20%20%20%20%20%20%23%20%20mmdt%3AP5%20mmd%3AQ842%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20mmp%3AP49%20%3Fdata_stmt%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FitemLabel%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22fr%22%29.%0A%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28str%28%3FitemLabel%29%3D%22L%E2%80%99%C3%A9tourdi%22%29.%0A%20%20%20%20%20%20%3Fdata_stmt%20mmps%3AP49%20%3Fdata.%20%20%0A%20%20%20%20%20%20%3Fdata_stmt%20mmpq%3AP52%20%3Fval.%0A%20%20%20%20%20%20%3Fdata%20mmdt%3AP5%20%3Fsimilar%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FsimilarLabel%3B%0A%20%20%20%20%20%20%20%20FILTER%28lang%28%3FsimilarLabel%29%20%3D%20%22fr%22%29.%20%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%20%20%20%20%20%20%20%0AGROUP%20BY%20%3FauthorLabel%20%3Fwikidataitem%20%3FitemLabel%20%3Fitem%20%3FsimilarLabel%20%3FdataLabel%20%3Fval%0AORDER%20BY%20%3Fval%0A%0A)
 
 
 --
@@ -208,7 +208,7 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 - MiMoTextBase: https://data.mimotext.uni-trier.de
 - MiMoText Ontology: https://github.com/MiMoText/ontology
 - Reference publications: ['Smart Modeling for Digital Literary History'](https://www.euppublishing.com/doi/10.3366/ijhac.2022.0278) & ['Preprint: Patterns in modeling and querying a knowledge graph for literary history'](https://doi.org/10.5281/zenodo.12080340)
-- Video: https://commons.wikimedia.org/wiki/File:Mining_and_Modeling_Text_at_Trier_University.webm 
+- [Video](https://commons.wikimedia.org/wiki/File:Mining_and_Modeling_Text_at_Trier_University.webm)
 	
 **Link to this page**
 https://mimotext.github.io/lod-lithist/federated-queries.html#/6/3
@@ -248,12 +248,12 @@ https://mimotext.github.io/lod-lithist/federated-queries.html#/6/3
 ---
 #### Internal relevance criteria
 
-Beside the novels of the ["roman 18" corpus](...), we decided to import only those works into wikidata: 
+Beside the novels of the ["roman 18" corpus](https://doi.org/10.5281/zenodo.10404966), we decided to import only those works into Wikidata: 
 - that have statements on both topics and narrative locations,
 - are referenced by the BGRF or secondary literature,
 - have at least 3 such statements.
 
-[More information](https://github.com/MiMoText/ontology/blob/main/module13_federation/federation_mimotextbase_wikidata.md#novels-which-are-not-part-of-the-roman18-corpus)
+[Query] (https://query.mimotext.uni-trier.de/#PREFIX%20mmdref%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Freference%2F%3E%0APREFIX%20mmpq%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fqualifier%2F%3E%0APREFIX%20mmdt%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0APREFIX%20mmd%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0Aprefix%20mmps%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0Aprefix%20mmpr%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Freference%2F%3E%0Aprefix%20mmp%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0A%0A%23%20works%20that%20have%20statemtents%20on%20topic%20and%20on%20narrative%20location%2C%20that%20are%20either%20referenced%20by%0A%23%20BGRF%20or%20secondary%20literature%20that%20have%20%3E%202%20of%20those%20statements%0A%23%20that%20are%20not%20in%20the%20full%20text%20corpus%20%28as%20they%20are%20already%20imported%20to%20wikidata%29%0A%0ASELECT%20%3Fitem%20%3Ftotal%20WHERE%20%7B%0A%20%20%0A%20%20BIND%28%3Fcount_narrLoc%20%2B%20%3Fcount_about%20as%20%3Ftotal%20%29%20%0A%20%20FILTER%28%3Ftotal%20%3E%202%29%0A%20%20%7B%20%20%20%20%0A%20%20SELECT%20DISTINCT%20%3Fitem%20%20%28COUNT%28DISTINCT%20%3FnarrLoc%29%20as%20%3Fcount_narrLoc%29%20%28COUNT%28%20DISTINCT%20%3Fabout%29%20as%20%3Fcount_about%29%20%0A%20%20WHERE%7B%0A%20%20%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2.%20%23%20item%20is%20instance%20of%20literary%20work%0A%20%20%20%20FILTER%20NOT%20EXISTS%7B%20%3Fitem%20mmdt%3AP21%20%3Ffullwork.%20%7D%0A%20%20%20%20%3Fitem%20mmp%3AP36%20%3Fstatement.%0A%20%20%20%20%3Fstatement%20mmps%3AP36%20%3Fabout.%0A%20%20%0A%20%20%20%20%3Fstatement%20prov%3AwasDerivedFrom%2Fmmpr%3AP18%20%3Fsl.%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20VALUES%20%3Fref%20%7Bmmd%3AQ13%20mmd%3AQ3%7D%20%20%23%20instance%20if%20bibliographie%20or%20scholarly%20work%0A%20%20%20%20%3Fsl%20mmdt%3AP2%20%3Fref.%0A%20%20%0A%20%20%20%20%3Fitem%20mmp%3AP32%20%3FnarrLoc_stmt.%0A%20%20%20%20%3FnarrLoc_stmt%20mmps%3AP32%20%3FnarrLoc.%0A%20%20%20%20%3FnarrLoc_stmt%20prov%3AwasDerivedFrom%2Fmmpr%3AP18%20mmd%3AQ1.%0A%20%20%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%20%20%7DGROUP%20BY%20%3Fitem%0A%20%20%7D%0A%7D%0A%0AORDER%20BY%20DESC%28%3Ftotal%29%0A) & [more information](https://github.com/MiMoText/ontology/blob/main/module13_federation/federation_mimotextbase_wikidata.md#novels-which-are-not-part-of-the-roman18-corpus)
 
 ---
 #### Opportunities (LOD, Wikibase and Federation)
