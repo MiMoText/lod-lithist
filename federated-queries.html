@@ -137,6 +137,9 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 - [*Alternative author names from Wikidata infobox](https://query.mimotext.uni-trier.de/#%23title%3AAlternative%20Labels%20of%20author%20names%20via%20%E2%80%98federated%E2%80%99%20queries%E2%80%99%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20DISTINCT%20%3Fauthor%20%3FauthorLabel%20%3FwikidataEntity%20%3Faltname%0AWHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%3Fitem%20mmdt%3AP5%20%3Fauthor.%0A%20%20%20%20%20%3Fauthor%20rdfs%3Alabel%20%3FauthorLabel%20.%0A%20%20%20%20%20FILTER%28LANG%28%3FauthorLabel%29%20%3D%20%22fr%22%29%20.%0A%20%20%20%20%20%20FILTER%28CONTAINS%28LCASE%28%3FauthorLabel%29%2C%20%22voltaire%22%29%29.%0A%20%20%20%20%20%20%3Fauthor%20mmdt%3AP13%20%3FwikidataEntity.%20%20%23exact%20match%0A%20%0A%20%20%20%20%20%20%23Federated%20Query%20-%3E%20Wikidata%0ASERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%20%20%20%20%20%3FwikidataEntity%20skos%3AaltLabel%20%3Faltname%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%7D%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%20%20%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%20%20%20%20%7D%0A%7D%0A)
 - [Network of influences between authors (using ‘influenced by’)](https://query.mimotext.uni-trier.de/#%23title%3AInfluence%20networks%20of%20authors%20via%20%27federated%20query%27%0A%23defaultView%3AGraph%0APREFIX%20wd%3A%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20entity%0APREFIX%20wdt%3A%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20property%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20property%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Finfluencedby%20%3Fimage%20%0AWHERE%20%7B%0A%20%20%20%20%20%20%3Fitem%20mmdt%3AP5%20%3Fauthor.%0A%20%20%20%20%20%20%3Fauthor%20mmdt%3AP13%20%3FWikidataEntity.%20%20%23exact%20match%0A%20%20%20%20%20%20%0A%23Federated%20Query%20-%3E%20Wikidata%0A%20%20%20%20%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%09%20%3FWikidataEntity%20wdt%3AP737%2Fwdt%3AP737%20%3Finfluencedby.%0A%20%20%09%09%20OPTIONAL%20%7B%20%20%3Finfluencedby%20wdt%3AP18%20%3Fimage.%7D%0A%20%20%20%20%20%20%7D%20%20%20%20%20%0A%20%09%09%20%0A%20%20%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%09%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%20%20%20%20%7D%0A%7D%0A)
 
+::
+Thank you, for explaining what federation is and how we practically implemented it. I will now proceed by showing some examples of Federation in both directions. 
+
 
 ---
 #### Narrative Location of novels about "travel"
@@ -148,8 +151,8 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 ::
 An example for the use of ‘federated queries’ is enriching our spatial concepts with geographical data from Wikidata, which is based on the matching of spatial concepts established in our spatial vocabulary. These matches are part of our Wikibase as a ‘triple pattern’ linking the two Wikibase instances: our domain specific MiMoText graph and the large Wikidata graph. One of the advantages of this approach is that information does not have to be stored redundantly. Instead, we can use the values of Wikidata property ‘coordinate location’ (P625) for a query on narrative locations of French novels of the second half of the 18th century. 
 
-
 Using the map view provided by the Wikidata Query Service for each Wikibase instance, we can get an overview with individual nodes for narrative locations, again interactive, enabling users to click on them and access additional information allowing further exploration
+
 
 
 ---
@@ -166,6 +169,9 @@ As already mentioned, we have matched not only the spatial concepts but also the
 --
 ## (4) Federated Queries (II): Wikidata => MiMoTextBase
 
+::
+The examples shown before executed Federated Queries starting from our project specific graph and using information stored in the larger Wikidata knowledge graph. Federation also works the other way round. 
+
 ---
 #### Example Queries: Wikidata => MiMoTextBase
 -  [*Tones](https://query.wikidata.org/#%23title%3A%20Query%20on%20Wikidata%20regarding%20tonality%20of%20novels%20by%20given%20author%20%0A%0A%23%20For%20a%20given%20author%20present%20on%20Wikidata%2C%20which%20novels%20has%20he%2Fshe%20written%20according%20to%20MiMoText%2C%20and%20what%20is%20the%20tonality%20according%20to%20MiMoTextBase%3F%20%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FauthorLabel%20%3Fwikidataitem%20%3FmimotextitemLabel%20%3Fmimotextitem%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FtoneLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Ftones%29%0A%0AWHERE%20%7B%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor%3B%0A%20%20%20%20%20%23%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20wd%3AQ3157878%20.%20%23%20Q3157878%20%3D%20R%C3%A9v%C3%A9roni%20Saint-Cyr%20%7C%20Q361456%20%3D%20Dorat%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20rdfs%3Alabel%20%3FmimotextitemLabel.%0A%20%20FILTER%28lang%28%3FmimotextitemLabel%29%20%3D%20%22fr%22%29%0A%20%20OPTIONAL%20%7B%20%3Fmimotextitem%20mmdt%3AP38%20%3Ftone.%20%0A%20%20%3Ftone%20rdfs%3Alabel%20%3FtoneLabel.%20%0A%20%20FILTER%28lang%28%3FtoneLabel%29%20%3D%20%22fr%22%29%20%7D%0A%7D%0A%7D%0AGROUP%20BY%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3Fwikidataitem%20%3FauthorLabel%0A)
@@ -179,6 +185,8 @@ As already mentioned, we have matched not only the spatial concepts but also the
 The examples shown before executed Federated Queries starting from our project specific graph and using information stored in the larger Wikidata knowledge graph. Federation also works the other way round. 
 We can start using the Wikidadata SPARQL endpoint and include information stored only in the project specific knowledge graph. The table shows authors, titles, narrative locations and tonalities for french novel of the second half of the eighteenth century. 
 
+::
+We can start using the Wikidadata SPARQL endpoint and include information stored only in the project specific knowledge graph. 
 
 ---
 #### Tones
@@ -187,6 +195,8 @@ We can start using the Wikidadata SPARQL endpoint and include information stored
 <br/>
 [Query](https://query.wikidata.org/#%23title%3A%20Query%20on%20Wikidata%20regarding%20tonality%20of%20novels%20by%20given%20author%20%0A%0A%23%20For%20a%20given%20author%20present%20on%20Wikidata%2C%20which%20novels%20has%20he%2Fshe%20written%20according%20to%20MiMoText%2C%20and%20what%20is%20the%20tonality%20according%20to%20MiMoTextBase%3F%20%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FauthorLabel%20%3Fwikidataitem%20%3FmimotextitemLabel%20%3Fmimotextitem%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FtoneLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Ftones%29%0A%0AWHERE%20%7B%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor%3B%0A%20%20%20%20%20%23%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20wd%3AQ3157878%20.%20%23%20Q3157878%20%3D%20R%C3%A9v%C3%A9roni%20Saint-Cyr%20%7C%20Q361456%20%3D%20Dorat%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20rdfs%3Alabel%20%3FmimotextitemLabel.%0A%20%20FILTER%28lang%28%3FmimotextitemLabel%29%20%3D%20%22fr%22%29%0A%20%20OPTIONAL%20%7B%20%3Fmimotextitem%20mmdt%3AP38%20%3Ftone.%20%0A%20%20%3Ftone%20rdfs%3Alabel%20%3FtoneLabel.%20%0A%20%20FILTER%28lang%28%3FtoneLabel%29%20%3D%20%22fr%22%29%20%7D%0A%7D%0A%7D%0AGROUP%20BY%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3Fwikidataitem%20%3FauthorLabel%0A)
 
+::
+This query and table shows authors, titles and tonalities for french novel of the second half of the eighteenth century. The last column on ‘tones’ is fetched by using the project specific graph. 
 
 ---
 #### Stylometric distances
@@ -196,9 +206,9 @@ We can start using the Wikidadata SPARQL endpoint and include information stored
 [Query](https://query.wikidata.org/#%23title%3A%20Which%20work%20is%20closest%20in%20stylometric%20similarity%3F%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0APREFIX%20mmpq%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fqualifier%2F%3E%0APREFIX%20mmps%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fstatement%2F%3E%0APREFIX%20mmp%3A%20%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2F%3E%0A%0ASELECT%20%20%3Fwikidataitem%20%3FitemLabel%20%3Fsimilar%20%20%3Fauthor2Label%20%3FsimilarLabel%20%20%20%3Fval%0AWHERE%20%7B%20%0A%20%20%23%20Query%20for%20MiMoTextBase%20novels%20and%20similar%20novels%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor.%0A%20%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fitem%29.%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%20%20SELECT%20%20%3Fitem%20%3FitemLabel%20%3Fdata%20%3FdataLabel%20%3Fsimilar%20%3Fval%20%3FsimilarLabel%20%3Fauthor2%20%3Fauthor2Label%0A%20%20%20%20WHERE%20%7B%0A%20%20%20%20%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20%20%20%20%20%20%20%20%20%23%20%20mmdt%3AP5%20mmd%3AQ842%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20mmp%3AP49%20%3Fdata_stmt%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FitemLabel%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22fr%22%29.%0A%20%20%20%20%20%20%20%20%20%20%20%20FILTER%28str%28%3FitemLabel%29%3D%22L%E2%80%99enfant%20du%20bordel%22%29.%0A%20%20%20%20%20%20%3Fdata_stmt%20mmps%3AP49%20%3Fdata.%20%20%0A%20%20%20%20%20%20%3Fdata_stmt%20mmpq%3AP52%20%3Fval.%0A%20%20%20%20%20%20%3Fdata%20mmdt%3AP5%20%3Fsimilar%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20rdfs%3Alabel%20%3FsimilarLabel%3B%0A%20%20%20%20%20%20%20%20FILTER%28lang%28%3FsimilarLabel%29%20%3D%20%22fr%22%29.%0A%20%20%20%20%20%20OPTIONAL%20%7B%3Fdata%20mmdt%3AP5%20%3Fauthor2.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Fauthor2%20rdfs%3Alabel%20%3Fauthor2Label.%0A%20%20%20%20%20%20%20%20FILTER%28lang%28%3Fauthor2Label%29%20%3D%20%22fr%22%29.%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%20%20%20%20%20%20%20%0A%0AORDER%20BY%20%3Fval%0A%0A)
 
 ::
+Some statements in our graph are more narrowly focused on methods of Computational Literary Studies, here is the example of statements on stylometric distances per literary work.  Statements relevant to these methods are located on our local Wikibase instance. 
+More broader statements like author names or  themes of literary works where exported to the Wikidata knowledge graph, assuming there are of interest to a broader public. But triples on stylometric similarity where only stored in the project specific graph. Nevertheless, by using federation we can access it linking both graphs in one query, for example in answering the question: which literary work is close in stylometric distances  to the novel ‘L’enfant du bordel’, a 18th century french novel with disputed authorship? 
 
-Other then tone and style, some statements are more narrowly focused on methods of Computational Literary Studies, here is the example of statements on stylometric distances per literary work.  Statements relevant to these methods are located on our local Wikibase instance. 
-More broader statements like author names, themes of literary works where exported to the Wikidata knowledge graph, assuming there are of interest to a broader public. But triples on stylometric similarity or sentiment analysis where only stored in the project specific graph. Nevertheless, by using federation we can access it linking both graphs in one query, for example in answering the question: which literary work is close in stylometric distances  to the novel ‘L’étourdi, a 18th century french novel with disputed authorship? 
 
 
 --
@@ -212,7 +222,7 @@ More broader statements like author names, themes of literary works where export
 
 ::
 - We cannot go into detail here, but the idea of Wikidata as a hub means for our domain, that we can also access information stored in a third knowledge graph (National Library of France) via Wikidata as a Hub:  
-- So another fruitful property on Wikidata is the collection of identifiers pointing at other knowledge bases, for example at the National Library of France (BnF). We can retrieve information on the BnF via the Wikidata identifier by using the Property wd:P268 (Bibliothèque nationale de France ID) and wdt:P1630 (formatter URL). Query 16 exemplifies this by retrieving authority data on eighteenth century French novels in Wikidata and by transforming the identifier (?bnfid) to a URL (?bnfurl) with the help of regular expressions.
+- So another fruitful property on Wikidata is the collection of identifiers pointing at other knowledge bases. We can retrieve information on the BnF via the Wikidata identifier by using the Property wd:P268 (Bibliothèque nationale de France ID) and wdt:P1630 (formatter URL). The Query exemplifies this by retrieving authority data on eighteenth century French novels in Wikidata and by transforming the identifier (?bnfid) to a URL (?bnfurl) with the help of regular expressions.
 
 ---
 #### Outlook
@@ -220,7 +230,7 @@ More broader statements like author names, themes of literary works where export
 - Sustainability <!-- .element: class="fragment" data-fragment-index="1" -->
  - Sharing data with Wikidata and federation are key steps towards ensuring sustainability and the project’s relevance in the Linked Open Data (LOD) ecosystem 
  - The project LODinG (Linked Open Data in the Humanities) will extend our methods to other domains from 2024–2028. 
-- News 'wikiversum' <!-- .element: class="fragment" data-fragment-index="2" -->
+- News 'wikiverse' <!-- .element: class="fragment" data-fragment-index="2" -->
  - Upcoming [Wikidata split](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/WDQS_backend_update/September_2024_scaling_update) (2025): [query-scholarly.wikidata.org](https://query-scholarly.wikidata.org/) and [query-main.wikidata.org](https://query-main.wikidata.org) does not affect MiMoTextBase; federation will be nevertheless a [key question](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/WDQS_graph_split/Internal_Federation_Guide) 
  - [WikiMUC workshop on federation](https://de.wikipedia.org/wiki/Wikipedia:WikiMUC/Federated_Queries_Workshop) at 5/6th Dec 2024 
  -  new DARIAH-EU Working Group["DH Wiki"](https://www.dariah.eu/2024/11/04/dhwiki-a-new-dariah-eu-working-group-focusing-on-building-bridges-between-different-sectors/): bridges between DH researchers, GLAM institutions and Wikimedia movement 
@@ -232,8 +242,7 @@ More broader statements like author names, themes of literary works where export
 - To sum up, sharing data with Wikidata was a step for us, to ensure sustainability in the LOD ecosystem. 
 - Although the MiMoTextBase was the first, it will certainly not be the last Wikibase created at the Trier Center for Digital Humanities. The MiMoText project modeled the quite specific domain of the French Enlightenment novel; now we are transferring this approach to the broader domain of the humanities. Our project LODinG (Linked Open Data in the Humanities, running from 2024 to 2028) collects, analyzes and models data in the Linked Open Data paradigm across several sub-projects on very different subject areas, such as lexicographic data on historical pandemics or medical-botanical knowledge from the early modern period.
 - Then, I don’t know if you already heard about it, but there is an upcoming change happening at Wikidata at the moment: The graph will be splitted in two parts: scholarly articles and the main graph.  The graph is currently growing at the rate of 1 billion triples per year and it is experiencing scalability issues. Our graph is not affected, but what we can conclude is, that Federation in the Wikiverse will gain in importance in the future. 
-- Finally, for everyone interested further in knowledge graph federation, there is an upcoming paper by us, available as preprint on Zenodo and furthermore, on 5th/6th December there is a WikiMunich Workhop on Federation. 
-
+- Finally, for everyone interested further in knowledge graph federation, there is an upcoming paper by us, available as preprint on Zenodo and furthermore, on 5th/6th December there is a WikiMunich Workhop on Federation, where you can take part remotely or in Munich. 
 
 
 ---
@@ -252,7 +261,8 @@ More broader statements like author names, themes of literary works where export
 **Link to this page**
 https://mimotext.github.io/lod-lithist/federated-queries.html#/6/3
  
-
+::
+Finally, here are more resources, for example our ontology, or a SPARQL Tutorial we wrote. For now we thank you and we are looking forward to your questions. 
 
 --
 ## Bonus Slides
