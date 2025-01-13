@@ -98,16 +98,12 @@ More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278
 
 - Source: [https://xkcd.com/927/](https://xkcd.com/927/)
 
-
-
 ---
 #### Challenge: Reuse and maintenance of vocabularies
 
 <a href="img/lov-vocabularies.png"><img height="450" src="img/lov-vocabularies.png"></img></a>
 
 - Source: [https://lov.linkeddata.es/dataset/lov/](https://lov.linkeddata.es/dataset/lov/)
-
-
 
 ---
 #### Challenges (LOD, 'wikiverse' and in general)
@@ -117,16 +113,18 @@ More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278
 - need for complexity reduction (representation in triples) <!-- .element: class="fragment" data-fragment-index="3" -->
 - interoperability and reuse on the infrastructural level (tension ‘Wikiverse’ vs. other LOD platforms / non-LOD databases) <!-- .element: class="fragment" data-fragment-index="4" --> 
 - interoperability and reuse on the conceptual level (pluralism of vocabularies) <!-- .element: class="fragment" data-fragment-index="5" --> 
-- sustainability <!-- .element: class="fragment" data-fragment-index="6" --> 
-- steps towards federation need resources (reconciliation, mapping etc.) <!-- .element: class="fragment" data-fragment-index="7" --> 
-
-
 
 ---
 #### Opportunity: Multilingualism
 <img height="450" data-src="img/multilingualism.png">
 
 - nevertheless: biases and dominances (e.g. English language and 'written knowledge') in reality (despite awareness and initiatives)
+
+
+---
+#### Opportunity: Linking heterogeneous data from different sources to further ressuorces
+ 
+<a href="img/figure_modeling_narr-loc_new.png"><img height="400" src="img/figure_modeling_narr-loc_new.png"></img></a>
 
 ---
 #### Opportunities (LOD, 'wikiverse' and in general)
@@ -141,10 +139,6 @@ More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278
   - Possibilities of analysis, visualization and data export in the DockerWikibaseQueryService 
   - Within the Wikibase ecosystem: sharing the same infrastructure and [basic data model](https://www.mediawiki.org/wiki/Wikibase/DataModel) 
   - Wikidata as largest Wikibase =>a hub for linking humanities data across project boundaries 
-- Federated Queries  <!-- .element: class="fragment" data-fragment-index="3" --> 
-  - Allows to re-use information already present elsewhere (overcoming redundancies)  
-  - Realizes the potential of LOD to link and analyze data generated within and across domains and disciplines
- 
 
 
 --
@@ -156,6 +150,7 @@ More information: Schöch et al. ([2022](https://doi.org/10.3366/ijhac.2022.0278
 
 <a href="img/5-star-mug.jpg"><img height="450" src="img/5-star-mug.jpg"></img></a>
 
+- "All the above, plus: Link your data to other people's data tro provide context."
 - Source: [https://www.w3.org/DesignIssues/LinkedData.html](https://www.w3.org/DesignIssues/LinkedData.html)
 
 
@@ -170,6 +165,11 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 
 <a href="img/federation-bidirectional_overview.png"><img height="450" data-src="img/federation-bidirectional_overview.png"></a>
 
+---
+#### The query syntax
+
+<a href="img/query-syntax-federated-query.png"><img height="400" data-src="img/query-syntax-federated-query.png"></a>
+
 
 ---
 #### MiMoTextBase => Wikidata: <br/>Narrative Location of novels about "travel"
@@ -178,10 +178,6 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 <br/>
 [Query](https://query.mimotext.uni-trier.de/#%23title%3ANarrative%20Location%20of%20novels%20about%20%22travel%22%0A%23defaultView%3AMap%7B%22hide%22%3A%20%5B%22%3Fnar_loc%22%2C%20%22%3Ftopic%22%5D%2C%20%22layer%22%3A%20%22%3FthemeLabel%22%7D%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20property%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20property%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FnarrLoc%20%3FnarrLocLabel%20%3FwikidataEntityLink%20%3FcoordinateLocation%20%3Ftheme%20%3FthemeLabel%20WHERE%20%7B%0A%20%20%3Fitem%20mmdt%3AP36%20mmd%3AQ3126.%20%20%23%20work%20item%20is%20about%20travel%0A%20%20%3Fitem%20mmdt%3AP36%20%3Ftheme.%20%20%20%20%23%20work%20is%20about%20themes%0A%20%20%3Fitem%20mmdt%3AP32%20%3FnarrLoc.%20%20%23%20work%20has%20narrative%20location%0A%20%20%3FnarrLoc%20mmdt%3AP13%20%3FWikiLink.%20%20%23%20narrative%20location%20has%20exact%20match%20with%20Wikidata%20ID%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FWikiLink%20wdt%3AP625%20%3FcoordinateLocation%20.%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%7D%0A%7D%0A)
 
-::
-An example for the use of ‘federated queries’ is enriching our spatial concepts with geographical data from Wikidata, which is based on the matching of spatial concepts established in our spatial vocabulary. These matches are part of our Wikibase as a ‘triple pattern’ linking the two Wikibase instances: our domain specific MiMoText graph and the large Wikidata graph. One of the advantages of this approach is that information does not have to be stored redundantly. Instead, we can use the values of Wikidata property ‘coordinate location’ (P625) for a query on narrative locations of French novels of the second half of the 18th century. 
-
-Using the map view provided by the Wikidata Query Service for each Wikibase instance, we can get an overview with individual nodes for narrative locations, again interactive, enabling users to click on them and access additional information allowing further exploration
 
 
 ---
@@ -190,24 +186,25 @@ Using the map view provided by the Wikidata Query Service for each Wikibase inst
 <a href="img/imagegrid_bnf.png"><img height="400" data-src="img/imagegrid_bnf.png"></a>
 <br/> [*Link with catalogue data from French National Library <br/> (using BNF id)](https://query.mimotext.uni-trier.de/#%23title%3AMiMoText%20novels%20with%20URL%20to%20Biblioth%C3%A8que%20nationale%20de%20France%20%0A%23defaultView%3AImageGrid%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20prefix%20definition%20for%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20prefix%20definition%20for%20property%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20prefix%20for%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20prefix%20for%20property%0A%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fwikidata%20%3Fbnfurl%20%3Fimage%20%0AWHERE%20%7B%0A%20%20%3Fitem%20mmdt%3AP2%20mmd%3AQ2.%0A%20%20%3Fitem%20mmdt%3AP13%20%3Fwikidata.%0A%20%20%3Fitem%20rdfs%3Alabel%20%3FitemLabel%20.%0A%20%20FILTER%28lang%28%3FitemLabel%29%20%3D%20%22en%22%29%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Fwikidata%20wdt%3AP268%20%3Fbnfid.%0A%20%20%20%20OPTIONAL%7B%20%3Fwikidata%20wdt%3AP18%20%3Fimage.%7D%0A%20%20%20OPTIONAL%7B%20wd%3AP268%20wdt%3AP1630%20%3Fformatterurl.%7D%0A%20%20%20BIND%28IRI%28REPLACE%28%3Fbnfid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3Fformatterurl%29%29%20AS%20%3Fbnfurl%29.%0A%20%20%7D%20%20%20%20%20%20%20%20%20%0A%7D)
 
-::
-- We cannot go into detail here, but the idea of Wikidata as a hub means for our domain, that we can also access information stored in a third knowledge graph (National Library of France) via Wikidata as a Hub:  
-- So another fruitful property on Wikidata is the collection of identifiers pointing at other knowledge bases. We can retrieve information on the BnF via the Wikidata identifier by using the Property wd:P268 (Bibliothèque nationale de France ID) and wdt:P1630 (formatter URL). The Query exemplifies this by retrieving authority data on eighteenth century French novels in Wikidata and by transforming the identifier (?bnfid) to a URL (?bnfurl) with the help of regular expressions.
-
-
-
-
-
 
 
 ---
 ## Outlook
 
 ---
-#### Lessons Learned
+#### Lessons Learned and Future
 
-
-
+- Federated Queries  <!-- .element: class="fragment" data-fragment-index="3" --> 
+  - Allow to re-use information already present elsewhere (overcoming redundancies)  
+  - Realizes the potential of LOD to link and analyze data generated within and across domains and disciplines
+  - Steps towards federation need resources (reconciliation, mapping etc.)                                      
+- Modeling of meta-statements (reification)
+  - Different solutions in different infrastructures
+  - important for (digital) humanities (perspectives, not facts)
+- Exchange in communities crucial (domain-specific, DH, 'wikiverse')
+- Sustainability <!-- .element: class="fragment" data-fragment-index="1" -->
+ - Sharing data with Wikidata and federation are key steps towards ensuring sustainability and the project’s relevance in the Linked Open Data (LOD) ecosystem 
+ - The project LODinG (Linked Open Data in the Humanities) will extend our methods to other domains from 2024–2028. 
 
 
 ---
@@ -224,10 +221,8 @@ Using the map view provided by the Wikidata Query Service for each Wikibase inst
 - [Video](https://commons.wikimedia.org/wiki/File:Mining_and_Modeling_Text_at_Trier_University.webm)
 	
 **Link to this page**
-https://mimotext.github.io/lod-lithist/bidirectional-federation.html#/6/3
+https://mimotext.github.io/lod-lithist/LODinDH.html#/6/3
  
-::
-Finally, here are more resources, for example our ontology, or a SPARQL Tutorial we wrote.  
 
 --
 ## Bonus Slides
