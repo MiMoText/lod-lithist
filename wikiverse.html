@@ -142,7 +142,7 @@ Repository: https://github.com/MiMoText/ontology
 <a href="img/sparql-interface-ex-queries2.png"><img height="400" src="img/sparql-interface-ex-queries2.png"></img></a>
   - SPARQL = SPARQL Protocol and RDF Query Language
   - Query interface: [query.mimotext.uni-trier.de](https://query.mimotext.uni-trier.de)
-
+  - Tutorial: [docs.mimotext.uni-trier.de](https://docs.mimotext.uni-trier.de)
 
 --
 ## (2) Federation
@@ -154,16 +154,20 @@ Repository: https://github.com/MiMoText/ontology
 
 A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit original visualization: [[Manuel Merz](https://commons.wikimedia.org/wiki/File:Linked-open-data-web.png) / CC-BY-SA 4.0](https://blogs.tib.eu/wp/tib/2021/11/05/tib-at-wikidatacon-part-1/)
 
+
+::
+As you see here, the MiMoTextBase as wikibase instance is part of the wikibase ecosystem and also part of the Linked Data Web. Federated queries are necessary to actually link all these individual knowledge graphs or to use the link. We see them as a crucial step in realizing the full potential of Linked Open Data.
+
+
 ---
 #### Linking both knowledge graphs
 
 <a href="img/federation-bidirectional_overview.png"><img height="450" data-src="img/federation-bidirectional_overview.png"></a>
 
-::
-- Federated Queries 
-  - Allow to re-use information already present elsewhere (overcoming redundancies)  
-  - Realizes the potential of LOD to link and analyze data generated within and across domains and disciplines
-  - Steps towards federation need resources (reconciliation, mapping etc.)                                      
+:: 
+This visualization gives an overview about the types of entities ("classes") which were matched between Wikidata. So, we matched “author items”, “literary work items” (so the novels) and then also elements of controlled vocabularies, the “thematic concepts” and “spatial concepts”.
+This matching or mapping of entities across knowledge bases was realized with the property "exact match" in one direction and the "MiMoText ID" as Wikidata property in the other. 
+                                  
 
 ---
 #### MiMoTextBase => Wikidata: <br/>Narrative Location of novels about "travel"
@@ -171,6 +175,11 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 <a href="img/fed-query_narrloc_travel.png"><img height="400" data-src="img/fed-query_narrloc_travel.png"></a>
 <br/>
 [Query](https://query.mimotext.uni-trier.de/#%23title%3ANarrative%20Location%20of%20novels%20about%20%22travel%22%0A%23defaultView%3AMap%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%20%23mimotext%20entity%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%20%23mimotext%20property%0APREFIX%20wd%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%20%23wikidata%20entity%0APREFIX%20wdt%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%20%23wikidata%20property%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FnarrLoc%20%3FnarrLocLabel%20%3FwikidataEntityLink%20%3FcoordinateLocation%20%3Ftheme%20%3FthemeLabel%20WHERE%20%7B%0A%20%20%3Fitem%20mmdt%3AP36%20mmd%3AQ3126.%20%20%23%20work%20item%20is%20about%20travel%0A%20%20%3Fitem%20mmdt%3AP32%20%3FnarrLoc.%20%20%23%20work%20has%20narrative%20location%0A%20%20%3FnarrLoc%20mmdt%3AP13%20%3FWikiLink.%20%20%23%20narrative%20location%20has%20exact%20match%20with%20Wikidata%20ID%0A%20%20%23Federated%20Query%20-%3E%20Wikidata%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fquery.wikidata.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3FWikiLink%20wdt%3AP625%20%3FcoordinateLocation%20.%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%0A%20%20%7D%0A%7D%0A)
+
+
+::
+An example for the use of ‘federated queries’ is enriching our spatial concepts with geographical data from Wikidata, which is based on the matching of spatial concepts established in our spatial vocabulary. These matches are part of our Wikibase as a ‘triple pattern’ linking the two Wikibase instances: our domain specific MiMoText graph and the large Wikidata graph. One of the advantages of this approach is that information does not have to be stored redundantly. Instead, we can use the values of Wikidata property ‘coordinate location’ (P625) for a query on narrative locations of French novels of the second half of the 18th century. 
+Using the map view provided by the Wikidata Query Service for each Wikibase instance, we can get an overview with individual nodes for narrative locations, again interactive, enabling users to click on them and access additional information allowing further exploration
 
 ---
 #### Literary Tones
@@ -294,9 +303,12 @@ This query and table shows authors, titles and tonalities for french novel of th
 
 - Sharing data with Wikidata and federation are key steps towards ensuring sustainability and the project’s relevance in the Linked Open Data (LOD) ecosystem.
 - The project [LODinG (Linked Open Data in the Humanities)](https://loding.uni-trier.de) will extend MiMoText methods to other domains from 2024–2028. The LOD paradigm is relevant in further TCDH projects, e.g. the [Princesses' Libraries project](https://tcdh.uni-trier.de/en/projekt/princesses-libraries-and-knowledge-practices-18th-century-germany).
-- Exchange in different communities crucial for 'shared conceptualizations' (domain-specific and DH) and infrastructural / technical solutions (cross-domain).
-- There's sometimes rather little documentation, but you can get help in active communities: a) [Wikibase community](https://lists.wikimedia.org/postorius/lists/wikibaseug.lists.wikimedia.org/) and b) [Wikibase.cloud](https://lists.wikimedia.org/postorius/lists/wikibase-cloud.lists.wikimedia.org/) (both with mailing lists and very helpful telegram groups).
+- There's sometimes rather little documentation, but you can get help in active communities: a) [Wikibase community](https://lists.wikimedia.org/postorius/lists/wikibaseug.lists.wikimedia.org/) and b) [Wikibase.cloud](https://lists.wikimedia.org/postorius/lists/wikibase-cloud.lists.wikimedia.org/) (mailing lists and telegram groups).
 - Feel free to join the new DARIAH-EU Working Group["DH Wiki"](https://www.dariah.eu/activities/working-groups/dhwiki/) building bridges between DH researchers, GLAM institutions and Wikimedia movement. 
+
+
+::
+- Exchange in different communities crucial for 'shared conceptualizations' (domain-specific and DH) and infrastructural / technical solutions (cross-domain).
 
 
 ---
