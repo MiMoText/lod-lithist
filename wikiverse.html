@@ -147,6 +147,13 @@ Repository: https://github.com/MiMoText/ontology
 --
 ## (2) Federation
 
+::
+•	To actually explore patterns across different knowledge graphs, the concept of federation within the Linked Open Data paradigm is needed
+•	Federation or Federated queries is the term used to describe the querying of multiple SPARQL endpoints.
+•	The idea is that one's own research data is not a data silo, but is connected to the Giant Global Knowledge Graph.
+•	Ideally, one's own data can be supplemented by another Knowledge Graph, or one's own data can usefully supplement other Knowledge Graphs.
+•	The W3C defines "Federated Queries" as follows: “SPARQL can be used to express queries across diverse data sources, whether the data is stored natively as RDF or viewed as RDF via middleware.”
+
 
 ---
 #### MiMoTextBase as part of the Wikibase ecosystem
@@ -156,7 +163,9 @@ A view of the MiMoTextBase within the Wikimedia Linked Open Data web. Credit ori
 
 
 ::
-As you see here, the MiMoTextBase as wikibase instance is part of the wikibase ecosystem and also part of the Linked Data Web. Federated queries are necessary to actually link all these individual knowledge graphs or to use the link. We see them as a crucial step in realizing the full potential of Linked Open Data.
+•	As you see here, the MiMoTextBase as a wikibase instance is part of the wikibase ecosystem and also part of the Linked Data Web. 
+•	Federated queries are necessary to actually link individual knowledge graphs 
+•	We see Federation as a crucial step in realizing the full potential of Linked Open Data. 
 
 
 ---
@@ -165,9 +174,11 @@ As you see here, the MiMoTextBase as wikibase instance is part of the wikibase e
 <a href="img/federation-bidirectional_overview.png"><img height="450" data-src="img/federation-bidirectional_overview.png"></a>
 
 :: 
-This visualization gives an overview about the types of entities ("classes") which were matched between Wikidata. So, we matched “author items”, “literary work items” (so the novels) and then also elements of controlled vocabularies, the “thematic concepts” and “spatial concepts”.
-This matching or mapping of entities across knowledge bases was realized with the property "exact match" in one direction and the "MiMoText ID" as Wikidata property in the other. 
-                                  
+•	In order to run Federated Queries, there are some prerequisites: 
+•	The entities of our graph were matched with Wikidata entities. We did this for all topics, for all place entities, for literary works and for all person entities.
+•	This visualization gives an overview about the types of entities ("classes") which were matched between Wikidata. 
+•	The mapping of entities across knowledge bases was realized with the property "exact match" in one direction and the "MiMoText ID" as Wikidata property in the other.
+
 
 ---
 #### MiMoTextBase => Wikidata: <br/>Narrative Location of novels about "travel"
@@ -178,8 +189,10 @@ This matching or mapping of entities across knowledge bases was realized with th
 
 
 ::
-An example for the use of ‘federated queries’ is enriching our spatial concepts with geographical data from Wikidata, which is based on the matching of spatial concepts established in our spatial vocabulary. These matches are part of our Wikibase as a ‘triple pattern’ linking the two Wikibase instances: our domain specific MiMoText graph and the large Wikidata graph. One of the advantages of this approach is that information does not have to be stored redundantly. Instead, we can use the values of Wikidata property ‘coordinate location’ (P625) for a query on narrative locations of French novels of the second half of the 18th century. 
-Using the map view provided by the Wikidata Query Service for each Wikibase instance, we can get an overview with individual nodes for narrative locations, again interactive, enabling users to click on them and access additional information allowing further exploration
+•	An example for the use of ‘federated queries’ is enriching our spatial concepts with geographical data from Wikidata, which is based on the matching of spatial concepts established in our spatial vocabulary. 
+•	These matches are part of our Wikibase as a ‘triple pattern’ linking the two Wikibase instances: our domain specific MiMoText graph and the large Wikidata graph. 
+•	One of the advantages of this approach is that information does not have to be stored redundantly. Instead, we can use the values of Wikidata property ‘coordinate location’ (P625) for a query on narrative locations of French novels of the second half of the 18th century.
+•	Using the map view provided by the Wikidata Query Service for each Wikibase instance, we can get an overview with individual nodes for narrative locations, again interactive, enabling users to click on them and access additional information allowing further exploration
 
 ---
 #### Literary Tones
@@ -189,7 +202,9 @@ Using the map view provided by the Wikidata Query Service for each Wikibase inst
 [Query](https://query.wikidata.org/#%23title%3A%20Query%20on%20Wikidata%20regarding%20tonality%20of%20novels%20by%20given%20author%20%0A%0A%23%20For%20a%20given%20author%20present%20on%20Wikidata%2C%20which%20novels%20has%20he%2Fshe%20written%20according%20to%20MiMoText%2C%20and%20what%20is%20the%20tonality%20according%20to%20MiMoTextBase%3F%20%0A%0APREFIX%20mmd%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fentity%2F%3E%0APREFIX%20mmdt%3A%3Chttp%3A%2F%2Fdata.mimotext.uni-trier.de%2Fprop%2Fdirect%2F%3E%0A%0ASELECT%20%3FauthorLabel%20%3Fwikidataitem%20%3FmimotextitemLabel%20%3Fmimotextitem%20%0A%28GROUP_CONCAT%28DISTINCT%20%3FtoneLabel%3B%20SEPARATOR%3D%22%2C%20%22%29%20AS%20%3Ftones%29%0A%0AWHERE%20%7B%20%0A%20%20wd%3AP12047%20wdt%3AP1630%20%3FformatterURL.%0A%20%3Fwikidataitem%20wdt%3AP12047%20%3Fmimotextid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20%3Fauthor%3B%0A%20%20%20%20%20%23%20%20%20%20%20%20%20%20%20%20wdt%3AP50%20wd%3AQ3157878%20.%20%23%20Q3157878%20%3D%20R%C3%A9v%C3%A9roni%20Saint-Cyr%20%7C%20Q361456%20%3D%20Dorat%0A%20BIND%28IRI%28REPLACE%28%3Fmimotextid%2C%20%27%5E%28.%2B%29%24%27%2C%20%3FformatterURL%29%29%20AS%20%3Fmimotextitem%29.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%20%20%0A%20%20service%20%3Chttps%3A%2F%2Fquery.mimotext.uni-trier.de%2Fproxy%2Fwdqs%2Fbigdata%2Fnamespace%2Fwdq%2Fsparql%3E%20%7B%0A%20%20%3Fmimotextitem%20mmdt%3AP2%20mmd%3AQ2%3B%0A%20%20rdfs%3Alabel%20%3FmimotextitemLabel.%0A%20%20FILTER%28lang%28%3FmimotextitemLabel%29%20%3D%20%22fr%22%29%0A%20%20OPTIONAL%20%7B%20%3Fmimotextitem%20mmdt%3AP38%20%3Ftone.%20%0A%20%20%3Ftone%20rdfs%3Alabel%20%3FtoneLabel.%20%0A%20%20FILTER%28lang%28%3FtoneLabel%29%20%3D%20%22fr%22%29%20%7D%0A%7D%0A%7D%0AGROUP%20BY%20%3Fmimotextitem%20%3FmimotextitemLabel%20%3Fwikidataitem%20%3FauthorLabel%0A)
 
 ::
-This query and table shows authors, titles and tonalities for french novel of the second half of the eighteenth century. The last column on ‘tones’ is fetched by using the project specific graph. 
+•	As we exported MiMoText identifiers to Wikidata, we can also use federation the other way around, starting on Wikidata. 
+•	This query and table shows authors, titles and tonalities for french novel of the second half of the eighteenth century. 
+•	The last column on ‘tones’ is not available on Wikidata, but fetched by using our project specific graph.
 
 
 
@@ -308,7 +323,7 @@ This query and table shows authors, titles and tonalities for french novel of th
 
 
 ::
-- Exchange in different communities crucial for 'shared conceptualizations' (domain-specific and DH) and infrastructural / technical solutions (cross-domain).
+
 
 
 ---
